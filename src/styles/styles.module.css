@@ -1,0 +1,193 @@
+@keyframes arrow-animation {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+    100% { transform: translateY(0); }
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.homePage{
+    width: 100%;
+    height: 100vh;
+    background-color: #232528;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.form {
+    width: 100%;
+}
+
+.label {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.input {
+    height: 40px;
+    border: 1px solid gray;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    border-radius: 5px;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.error {
+    color: red;
+    margin-bottom: 10px;
+}
+
+.inputError {
+    border-color: red;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #fff;
+}
+
+.icon {
+    padding-right: 10px;
+}
+
+.passwordTextToggle {
+    color: #A9A9A9;
+}
+
+.mainTitle {
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #6E8898;
+    text-align: center;
+}
+
+.buttonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button {
+    padding: 25px 30px;
+    background-color: #050801;
+    color: #D3D0CB;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    letter-spacing: 4px;
+    overflow: hidden;
+    margin: 10px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+.button:hover {
+    background-color: #FB5012;
+    color: #232528;
+    box-shadow: 0 0 20px rgba(251, 80, 18, 0.5);
+    width: 160px;
+}
+
+.buttonText {
+    color: #D3D0CB;
+    font-size: 18px;
+}
+
+.cardWrapper {
+    display: flex;
+
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.container {
+    width: 100%;
+    height: 100vh;
+
+}
+
+.cardContainer {
+    background-color: #000000;
+    border-style: solid;
+    border-color: #9FB1BC;
+    width: 20vw;
+    height: 20vw;
+    border-radius: 10px;
+    margin: 50px 0;
+    min-width: 300px;
+    min-height: 300px;
+}
+
+.homeText {
+    font-size: 20px;
+    color: #6E8898;
+    margin: 100px 50px 50px;
+    text-align: center;
+}
+
+.mainText {
+    color: #9FB1BC;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.cardText {
+    text-align: center;
+    padding: 20px;
+    color: #232528;
+    width: auto;
+    max-width: 20vw;
+    font-size: 24px;
+    min-width: 300px;
+    margin-bottom: 50px;
+}
+
+.homeFooter {
+    height: 30vw;
+    background-color: black;
+}
+
+.arrow {
+    display: flex;
+    width: 50px;
+    height: 50px;
+    margin: auto;
+    border-radius: 50%;
+    animation: arrow-animation 2s infinite;
+}
+
+.arrow:hover {
+    box-shadow: 0 0 50px rgba(251, 80, 18, 0.2);
+}
+
+.arrowImage {
+    height: 50px;
+    width: 50px;
+}
+
+
