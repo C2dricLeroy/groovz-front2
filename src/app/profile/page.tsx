@@ -5,9 +5,10 @@ import {useEffect, useState} from "react";
 import {User} from "@/classes/User";
 import Link from "next/link";
 import {inspect} from "util";
-import styles = module
+import styles from '@/styles/styles.module.css';
 
-function Profile() {
+
+export default function Profile() {
 
     const router = useRouter();
 
@@ -32,5 +33,3 @@ function Profile() {
         </div>
     );
 }
-
-export default Profile;
