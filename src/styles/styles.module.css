@@ -161,7 +161,6 @@
 .mainText {
     font-size: 30px;
     color: #6E8898;
-
     margin-top: 50px;
     text-align: center;
     font-family: 'Quicksand', sans-serif;
@@ -200,6 +199,16 @@
 .arrowImage {
     height: 50px;
     width: 50px;
+}
+
+.mobileHeader {
+    width: 100%;
+    height: 10%;
+    background-color: #9FB1BC;
+    color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 

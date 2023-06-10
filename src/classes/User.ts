@@ -13,13 +13,13 @@ export class User {
         }
     }
 
-    static async getUserInformations(token: any) {
+    static async getUserName() {
         try {
             let token = await this.getToken();
             if (token !== null) {
                 let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
                 console.log(payload);
-                const response = await axios.get(`http://localhost:3333/user/${payload.userId}`, {
+                const response = await axios.get(`http://localhost:3333/user/name/${payload.userId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 console.log(response.data);

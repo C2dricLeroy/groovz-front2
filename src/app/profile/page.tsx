@@ -4,32 +4,38 @@ import {useRouter} from "next/navigation";
 import {useEffect, useState} from "react";
 import {User} from "@/classes/User";
 import Link from "next/link";
-import {inspect} from "util";
 import styles from '@/styles/styles.module.css';
+import MobileProfile from "@/app/components/profile/mobile/MobileProfile";
+import DesktopProfile from "@/app/components/profile/desktop/DesktopProfile";
 
 
 export default function Profile() {
-
-    const router = useRouter();
-
-    const [user, setUser] = useState(null);
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
-        async function fetchUser() {
-            const token =  await User.getToken();
-            const user = await User.getUserInformations(token);
-            setUser(user);
-        }
+        const handleResize = () => {
+            if (window.innerWidth < 500) {
+                setIsMobile(true);
+            } else {
+                setIsMobile(false);
+            }
+        };
 
-        fetchUser();
+        window.addEventListener('resize', handleResize);
+        handleResize();
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
     }, []);
 
     return (
         <div>
-            <p>This page is for profile</p>
-            <Link href={'/feed'}>
-                <p className={styles.underline}>Navigate to feed</p>
-            </Link>
+            {isMobile ?
+                <MobileProfile/>
+                :
+                <DesktopProfile/>
+            }
         </div>
     );
 }
