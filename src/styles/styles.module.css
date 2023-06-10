@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
 @keyframes arrow-animation {
     0% { transform: translateY(0); }
     50% { transform: translateY(10px); }
@@ -77,10 +79,13 @@
 }
 
 .mainTitle {
+    font-size: 120px;
     font-weight: bold;
-    margin-bottom: 20px;
-    color: #6E8898;
+    padding: 100px;
+    color: #9FB1BC;
     text-align: center;
+    font-family: 'roboto', sans-serif;
+
 }
 
 .buttonContainer {
@@ -116,7 +121,9 @@
 
 .buttonText {
     color: #D3D0CB;
-    font-size: 18px;
+    font-size: 20px;
+
+    font-family: 'Quicksand', sans-serif;
 }
 
 .cardWrapper {
@@ -148,12 +155,16 @@
     color: #6E8898;
     margin: 100px 50px 50px;
     text-align: center;
+    font-family: 'Quicksand', sans-serif;
 }
 
 .mainText {
-    color: #9FB1BC;
+    font-size: 30px;
+    color: #6E8898;
+
     margin-top: 50px;
     text-align: center;
+    font-family: 'Quicksand', sans-serif;
 }
 
 .cardText {
@@ -179,6 +190,7 @@
     margin: auto;
     border-radius: 50%;
     animation: arrow-animation 2s infinite;
+
 }
 
 .arrow:hover {
