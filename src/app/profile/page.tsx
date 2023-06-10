@@ -28,7 +28,7 @@ export default function Profile() {
         <div>
             <p>This page is for profile</p>
             <Link href={'/feed'}>
-                <p style={styles.underline}>Navigate to feed</p>
+                <p className={styles.underline}>Navigate to feed</p>
             </Link>
         </div>
     );
