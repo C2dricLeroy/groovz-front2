@@ -49,11 +49,11 @@ function Login() {
                            value={email} required />
 
                     <label className={styles.label} htmlFor="password">Password</label>
-                    <input id="password" className={styles.input} type="password" placeholder="Password"
+                    <input id="password" className={styles.input} type={showPassword ? 'text' : 'password'} placeholder="Password"
                            onChange={(e) => setPassword(e.target.value)}
                            value={password} required />
                     {error && <p className={styles.error}>{error}</p>}
-                    <button className={styles.iconButton} onClick={() => setShowPassword(!showPassword)}>
+                    <button type='button' className={styles.iconButton} onClick={() => setShowPassword(!showPassword)}>
                         {showPassword ? <Visibility /> : <VisibilityOff />}
                     </button>
                     <button className={styles.button} type="submit">Submit</button>
