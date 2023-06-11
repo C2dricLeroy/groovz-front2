@@ -16,7 +16,7 @@
 }
 
 .homePage{
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     background-color: #232528;
     align-items: center;
@@ -88,6 +88,7 @@
 
 .button {
     padding: 25px 30px;
+    margin: 30px;
     background-color: #050801;
     color: #D3D0CB;
     font-weight: bold;
@@ -119,15 +120,16 @@
 }
 
 .cardWrapper {
+    height: auto;
     display: flex;
-
     flex-wrap: wrap;
     justify-content: space-around;
 }
+
 .container {
     width: 100%;
-    height: 100vh;
-
+    height: auto;
+    min-height: 100vh;
 }
 
 .cardContainer {
@@ -181,8 +183,13 @@
     margin: auto;
     border-radius: 50%;
     animation: arrow-animation 2s infinite;
-
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    right: 0;
 }
+
+
 
 .arrow:hover {
     box-shadow: 0 0 50px rgba(251, 80, 18, 0.2);
@@ -201,4 +208,22 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+@media only screen and (max-width: 600px) {
+    .mainTitle{
+        padding: 0px;
+        padding-top: 20%;
+        font-size: 50px;
+    }
+    .mainText{
+        font-size: 20px;
+        margin: 5%;
+        padding-top: 15%;
+    }
+
+    .buttonContainer {
+        margin-top: 20%;
+        flex-direction: column;
+    }
 }

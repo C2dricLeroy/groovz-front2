@@ -4,7 +4,10 @@ import styles from '@/styles/styles.module.css';
 
 function ScrollButton() {
     const handlePress = () => {
-        window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});
+        window.scrollTo({
+            top: window.innerHeight,
+            behavior: 'smooth',
+        });
     };
 
     return (

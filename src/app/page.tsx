@@ -1,22 +1,11 @@
-
-
 import Card from "@/app/components/homepage/Card";
 import HomeFooter from "@/app/components/homepage/homeFooter";
-
 import styles from '@/styles/styles.module.css';
 import Image from "next/image";
 import ScrollButton from "@/app/components/homepage/scrollButton";
 import HomeButton from "@/app/components/homepage/homeButton";
 
 function HomePage() {
-
-    const handlePress = () => {
-        const element = document.querySelector("#homePage");
-        if(element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
-
 
     return (
         <div>
