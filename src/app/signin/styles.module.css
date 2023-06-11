@@ -1,0 +1,37 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.input {
+    height: 40px;
+    width: 150px;
+    border: 1px solid gray;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    border-radius: 5px;
+}
+
+.label {
+    color: #FB5012;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    margin: auto;
+}
+
+.page {
+    width: 100vw;
+    height: 100vh;
+    background-color: #6E8898;
+}
+

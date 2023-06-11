@@ -4,7 +4,9 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import axios from "axios";
-import styles from '@/styles/styles.module.css';
+import {inspect} from "util";
+import styles from "@/app/signin/styles.module.css"
+
 
 
 function Login() {
@@ -32,24 +34,28 @@ function Login() {
     };
 
     return (
-        <div className={styles.container}>
-            <div>
-                <p className={styles.title}>This page is for Signin</p>
-                <div className={styles.form}>
-                    <p className={styles.label}>Signin Form</p>
-                    <input className={styles.input} placeholder="Email" onChange={(e) => setEmail(e.target.value)}
-                           value={email}/>
-                    <input className={styles.input} placeholder="Password" type="password"
+        <div className={styles.page}>
+            <div className={styles.container}>
+                <h1 className={styles.title}>This page is for Signin</h1>
+                <form className={styles.form} onSubmit={signinSubmit}>
+                    <label className={styles.label} htmlFor="email">Email</label>
+                    <input id="email" className={styles.input} type="email" placeholder="Email"
+                           onChange={(e) => setEmail(e.target.value)}
+                           value={email} required />
+                    <label className={styles.label} htmlFor="password">Password</label>
+                    <input id="password" className={styles.input} type="password" placeholder="Password"
                            onChange={(e) => setPassword(e.target.value)}
-                           value={password}/>
+                           value={password} required />
                     {error && <p className={styles.error}>{error}</p>}
-                </div>
-                <button title={"Submit"} onClick={signinSubmit}>Submit</button>
+                    <button type="submit">Submit</button>
+                </form>
                 <Link href="/signup">
-                    <p className={styles.underline}>Doesn&apost;t have an account ? Signup</p>
+                    <p className={styles.underline}>Don't have an account? Signup</p>
                 </Link>
             </div>
         </div>
+
+
     );
 }
 
