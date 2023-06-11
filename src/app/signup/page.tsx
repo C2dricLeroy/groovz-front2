@@ -1,15 +1,19 @@
 "use client";
 import { useState } from 'react';
 import axios from "axios";
-import styles from '@/styles/styles.module.css';
+
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import {inspect} from "util";
+import styles from "@/app/signup/styles.module.css"
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 function Signup() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
-    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
 
@@ -18,9 +22,7 @@ function Signup() {
     const isAdmin = false;
     const isSuspended = false;
 
-    const togglePasswordVisibility = () => {
-        setIsPasswordVisible(!isPasswordVisible);
-    }
+
 
     const validateEmail = () => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -39,10 +41,10 @@ function Signup() {
         }
     }
 
-    const signupSubmit = () => {
+    const signupSubmit = async () => {
+        await validateEmail();
+        await validatePassword();
 
-        validateEmail();
-        validatePassword();
 
         if (emailError || passwordError) {
             return;
@@ -69,39 +71,49 @@ function Signup() {
     }
 
     return (
-        <div className={styles.container}>
-            <h1 className={styles.title}>This page is for signup</h1>
-            <div className={styles.form}>
-                <p className={styles.label}>SignUp Form</p>
-                <input className={styles.input} placeholder="Username" onChange={e => setUsername(e.target.value)}
-                       value={username}/>
-                <div className={styles.inputContainer}>
+        <div className={styles.page}>
+            <div className={styles.container}>
+                <h1 className={styles.title}>Signup</h1>
+                <div className={styles.form}>
+                    <label className={styles.label} htmlFor="username">Username</label>
+                    <input id="username" className={styles.input} placeholder="Username" onChange={e => setUsername(e.target.value)}
+                           value={username}/>
+
+                    <label className={styles.label} htmlFor="password">Password</label>
+                    <div className={styles.inputContainer}>
+                        <input
+                            id="password"
+                            className={passwordError ? styles.inputError : styles.input}
+                            placeholder="Password"
+                            type={showPassword ? 'text' : 'password'}
+                            onChange={e => setPassword(e.target.value)}
+                            onBlur={validatePassword}
+                            value={password}
+                        />
+                        <button type='button' className={styles.iconButton} onClick={() => setShowPassword(!showPassword)}>
+                            {showPassword ? <Visibility /> : <VisibilityOff />}
+                        </button>
+                    </div>
+
+                    <label className={styles.label} htmlFor="email">Email</label>
                     <input
-                        className={passwordError ? styles.inputError : styles.input}
-                        placeholder="Password"
-                        type={isPasswordVisible ? "text" : "password"}
-                        onChange={e => setPassword(e.target.value)}
-                        onBlur={validatePassword}
-                        value={password}
+                        id="email"
+                        className={emailError ? styles.inputError : styles.input}
+                        placeholder="Email"
+                        onChange={e => setEmail(e.target.value)}
+                        onBlur={validateEmail}
+                        value={email}
                     />
-                    <button onClick={togglePasswordVisibility} className={styles.icon}>
-                        {isPasswordVisible ? "Hide" : "Show"}
-                    </button>
+
                 </div>
-                <input
-                    className={emailError ? styles.inputError : styles.input}
-                    placeholder="Email"
-                    onChange={e => setEmail(e.target.value)}
-                    onBlur={validateEmail}
-                    value={email}
-                />
+                <button className={styles.button} title={"Submit"} onClick={signupSubmit}>Submit</button>
+                <Link href="/signin">
+                    <p className={styles.underline}>already have an account? Signin</p>
+                </Link>
             </div>
-            <button title={"Submit"} onClick={signupSubmit}>Submit</button>
-            <Link href="/signin">
-                <p className={styles.underline}>already have an account? Signin</p>
-            </Link>
         </div>
     );
+
 }
 
 export default Signup;
