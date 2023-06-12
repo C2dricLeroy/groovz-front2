@@ -11,12 +11,13 @@
     top: 0;
     left: 15%;
     right: 0;
-    background-color: #6E8898;
+    background-color: #232528;
     height: 10%;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+    color: #9FB1BC;
 }
 
 .nav {
@@ -24,7 +25,7 @@
     top: 0;
     left: 0;
     z-index: 1000;
-    background-color: #9FB1BC;
+    background-color: #6E8898;
     width: 15%;
     height: 100vh;
     display: flex;
@@ -63,7 +64,8 @@
     position: fixed;
     top: 10%;
     left: 15%;
-    color: white
+    color: white;
+
 }
 
 .underline {
@@ -73,7 +75,11 @@
 .userInformations {
     width: 100%;
     height: 40%;
-    border: 1px solid grey;
+    border-top: 1px solid grey;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 .playlistContainer {
@@ -88,9 +94,38 @@
 }
 
 .subtitle {
-    color: #6E8898;
+    color: #9FB1BC;
     margin-top: 1.5%;
     margin-left: 2%;
     font-size: 25px;
     text-decoration: underline;
+}
+
+.imageContainer {
+    width: 20vh;
+    height: 20vh;
+    border: 1px solid gray;
+    border-radius: 50%;
+}
+
+.stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.profileLinks {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 20px;
+    bottom: 0px;
+    padding: 2.5%;
+}
+
+.userStats {
+    width: 20%;
+    min-width: 25%;
 }
