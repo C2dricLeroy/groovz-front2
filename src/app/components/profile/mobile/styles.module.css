@@ -1,0 +1,143 @@
+
+.box {
+    background-color: #232528;
+    height: 100vh;
+}
+
+
+.linkContainer {
+    border: 1px solid grey;
+    box-shadow: rgba(211, 208, 203, 0.24) 0px 3px 8px;
+    height: 20%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.linkContainer:hover {
+    background-color: #232525;
+    color: #a4350c;
+}
+
+.drawerHeader {
+    display: flex;
+    justify-content: flex-end;
+    box-shadow: rgba(211, 208, 203, 0.24) 0px 3px 8px;
+}
+
+.profilInformationsContainer {
+    width: 100%;
+    height: 35%;
+    max-height: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: stretch;
+    color: white
+}
+
+.profileInformations {
+
+}
+
+.imageBackground {
+    height: 85%;
+    width: 100%;
+    background-color: #dddddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profileLinks {
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.profileImage {
+    position: absolute;
+    left: 3%;
+    transform: translateY(75%);
+}
+
+.profileStats {
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.mobileHeader {
+    width: 100%;
+    height: 8%;
+    background-color: #9FB1BC;
+    color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.page {
+    width: 100vw;
+    height: 100vh;
+    background-color: #232528;
+}
+
+.playlistContainer {
+    width: 100%;
+    height: 25%;
+    border-top: 1px solid #6E8898;
+    border-bottom: 1px solid #6E8898;
+    display: flex;
+    justify-content: center;
+}
+
+.followedContainer {
+    border-bottom: 1px solid #6E8898;
+    width: 100%;
+    height: 25%;
+    display: flex;
+    justify-content: center;
+}
+
+.subtitle {
+    font-size: 30px;
+    color: #6E8898;
+    margin-top: 5px;
+    text-decoration: underline;
+}
+
+.userName {
+    color: #232528;
+    font-size: 40px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+
+.createPlaylist {
+    position: relative;
+    right: -75%;
+    background-color: #9FB1BC;
+    border: 1px solid #232528;
+    border-radius: 50px;
+    margin: 2px;
+
+}
+.createPlaylist:hover {
+    background-color: #6E8898;
+    border: 1px solid #f3f3f3;
+    color: #232528;
+}
+
+.secondContainer {
+    position: relative;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+}

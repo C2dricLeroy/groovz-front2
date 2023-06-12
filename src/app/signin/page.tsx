@@ -10,8 +10,6 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 
-
-
 function Login() {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
@@ -21,15 +19,15 @@ function Login() {
     const router = useRouter()
 
 
-    const signinSubmit = async () => {
-
+    const signinSubmit = async (e: any) => {
+        e.preventDefault();
         try {
             const response = await axios.post('http://localhost:3333/user/signin', {
                 email,
                 password
             });
             localStorage.setItem('userToken', response.data.token);
-            await router.push('/feed');
+            router.push('/feed');
         } catch (error: any) {
             console.error(error);
             if (error.response && error.response.status === 400) {
@@ -63,8 +61,6 @@ function Login() {
                 </Link>
             </div>
         </div>
-
-
     );
 }
 

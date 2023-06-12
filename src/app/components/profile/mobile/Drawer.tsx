@@ -5,6 +5,9 @@ import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
+import {inspect} from "util";
+import styles from "@/app/components/profile/mobile/styles.module.css"
+import Link from "next/link";
 
 export default function TemporaryDrawer() {
     const [isOpen, setIsOpen] = React.useState(false);
@@ -24,10 +27,27 @@ export default function TemporaryDrawer() {
             onClick={toggleDrawer(false)}
             onKeyDown={toggleDrawer(false)}
         >
+            <div className={styles.box}>
+                <div className={styles.drawerHeader}>
+                    <IconButton onClick={toggleDrawer(false)} style={{color: "white"}}>
+                        <CloseIcon />
+                    </IconButton>
+                </div>
+
+
+                <div className={styles.linkContainer}>
+                    <Link href={'/feed'}>
+                        <p className={styles.underline}>Navigate to feed</p>
+                    </Link>
+                </div>
+                <div className={styles.linkContainer}>
+                    <p>Link2 </p>
+                </div>
+                <div className={styles.linkContainer}>
+                    <p>Link3 </p>
+                </div>
+            </div>
             
-            <IconButton onClick={toggleDrawer(false)}>
-                <CloseIcon />
-            </IconButton>
 
 
         </Box>
