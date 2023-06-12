@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import styles from "@/styles/styles.module.css";
+import styles from "@/app/components/profile/desktop/styles.module.css";
 import {useEffect, useState} from "react";
 import {User} from "@/classes/User";
+import DesktopHeader from "@/app/components/profile/desktop/DesktopHeader";
+import DesktopNav from "@/app/components/profile/desktop/DesktopNav";
 
 export default function DesktopProfile(){
     const [user, setUser] = useState(null);
@@ -17,11 +19,23 @@ export default function DesktopProfile(){
         fetchUser();
     }, []);
     return (
-        <div>
-            <p>desktop</p>
-            <Link href={'/feed'}>
-                <p className={styles.underline}>Navigate to feed</p>
-            </Link>
+        <div className={styles.page}>
+            <DesktopHeader></DesktopHeader>
+            <DesktopNav></DesktopNav>
+            <div className={styles.container}>
+                <div className={styles.userInformations}>
+
+                </div>
+                <div className={styles.playlistContainer}>
+                    <h2 className={styles.subtitle}>My Playlists</h2>
+                </div>
+                <div className={styles.followedContainer}>
+                    <h2 className={styles.subtitle}>Recently followed</h2>
+                </div>
+            </div>
+
+
+
         </div>
     )
 }

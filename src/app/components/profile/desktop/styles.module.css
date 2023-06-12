@@ -1,0 +1,96 @@
+.page {
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    background-color: #232528;
+}
+
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 15%;
+    right: 0;
+    background-color: #6E8898;
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: #9FB1BC;
+    width: 15%;
+    height: 100vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+}
+
+.linkContainer {
+    height: auto;
+    min-height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 30vh;
+}
+
+.iconContainer {
+    width: 20%;
+    min-width: 20%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.searchbar {
+    width: 50%;
+    min-width: 50%;
+}
+
+.container {
+    width: 85%;
+    height: 90%;
+    position: fixed;
+    top: 10%;
+    left: 15%;
+    color: white
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.userInformations {
+    width: 100%;
+    height: 40%;
+    border: 1px solid grey;
+}
+
+.playlistContainer {
+    width: 100%;
+    height: 30%;
+    border: 1px solid grey;
+}
+.followedContainer {
+    width: 100%;
+    height: 30%;
+    border: 1px solid grey;
+}
+
+.subtitle {
+    color: #6E8898;
+    margin-top: 1.5%;
+    margin-left: 2%;
+    font-size: 25px;
+    text-decoration: underline;
+}
