@@ -9,6 +9,7 @@ import Image from "next/image";
 interface IUser {
     userName: string;
     follows: string;
+    followers: string;
 
 }
 
@@ -20,10 +21,12 @@ export default function MobileProfile() {
 
             const name = await User.getUserName();
             const follows = await User.getFollows();
-            
+            const followers = await User.getFollowers();
+
             setUser({
                 userName: name.userName,
                 follows: follows,
+                followers: followers
             });
         }
 
@@ -51,7 +54,7 @@ export default function MobileProfile() {
                     <div className={styles.secondContainer}>
                         <div className={styles.profileStats}>
                             <p>follows {user?.follows.length}</p>
-                            <p>stat 2</p>
+                            <p>followed by {user?.followers.length}</p>
                         </div>
                         <div className={styles.profileLinks}>
                             <p>Link1</p>

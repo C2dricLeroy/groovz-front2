@@ -11,6 +11,7 @@ import Image from "next/image";
 interface IUser {
     userName: string;
     follows: string;
+    followers: string;
 
 }
 export default function DesktopProfile(){
@@ -21,10 +22,12 @@ export default function DesktopProfile(){
 
             const name = await User.getUserName();
             const follows = await User.getFollows();
+            const followers = await User.getFollowers();
 
             setUser({
                 userName: name.userName,
                 follows: follows,
+                followers: followers
             });
         }
 
@@ -45,8 +48,8 @@ export default function DesktopProfile(){
                         <div className={styles.userStats}>
                             <p className={styles.userName}>{user?.userName}</p>
                             <div className={styles.stats}>
-                                <p>follows: {user?.follows.length}</p>
-                                <p>stats 2</p>
+                                <p>follows {user?.follows.length}</p>
+                                <p>followed by {user?.followers.length}</p>
                             </div>
                         </div>
                         <button type="button" className={styles.createPlaylist}>Create a Playlist</button>

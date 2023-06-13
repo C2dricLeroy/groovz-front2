@@ -45,4 +45,20 @@ export class User {
             return null;
         }
     }
+
+    static async getFollowers() {
+        try {
+            let token = await this.getToken();
+            if (token !== null) {
+                let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
+                const response = await axios.get(`http://localhost:3333/user/followers/${payload.userId}`, {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+                return response.data;
+            }
+        } catch (error) {
+            console.error(error);
+            return null;
+        }
+    }
 }
