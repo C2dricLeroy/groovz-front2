@@ -42,7 +42,7 @@ export default function DesktopProfile(){
 
                         <div className={styles.imageContainer}>
                             <Image src={"/profil-de-lutilisateur.png"} alt={"profile picture"} width={250} height={250} className={styles.profileImage}></Image>
-                            <p>Change Profile Picture</p>
+                            <p>Modify Profile</p>
                         </div>
 
                         <div className={styles.userStats}>
