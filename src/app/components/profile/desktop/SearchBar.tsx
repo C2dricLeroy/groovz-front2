@@ -6,13 +6,14 @@ import {useEffect, useRef, useState} from "react";
 import axios from "axios";
 import {Buffer} from "buffer";
 import {User} from "@/classes/User";
+import Link from "next/link";
 
 const WhiteSearchIcon = styled(SearchIcon)(({ theme }) => ({
     color: '#ffffff',
 }));
 export default function SearchBar() {
     const [searchTerm, setSearchTerm] = useState('');
-    const [searchResults, setSearchResults] = useState<{ userName: string }[]>([]);
+    const [searchResults, setSearchResults] = useState<{ userName: string, userId: string }[]>([]);
     const searchRef = useRef<HTMLDivElement>(null);
 
 
@@ -68,9 +69,12 @@ export default function SearchBar() {
             </div>
             <div className={styles.results}>
                 {searchResults.map((result, index) => (
-                    <p key={index} className={styles.searchResults}>{result?.userName}</p>
+                    <div className={styles.searchResults} key={result?.userId}>
+                        <Link key={result?.userId} href={`/profile/userProfile/${result?.userId}`}>{result?.userName}</Link>
+                    </div>
                 ))}
             </div>
+
         </div>
     )
 }

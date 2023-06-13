@@ -9,7 +9,7 @@
 
 
 .header {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 15%;
     right: 0;
@@ -20,6 +20,7 @@
     justify-content: space-evenly;
     align-items: center;
     color: #9FB1BC;
+    z-index: 3000;
 }
 
 .nav {
@@ -227,6 +228,7 @@
     border-bottom: none;
 }
 
+
 .search {
     display: flex;
     flex-direction: column;
@@ -242,5 +244,11 @@
     width: 240px;
     color: white;
     border-radius: 10px;
+
+}
+.searchResults:hover {
+    padding: 10px 20px;
+
+    background-color: #273037;
 
 }
