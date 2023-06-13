@@ -8,6 +8,7 @@ import Image from "next/image";
 
 interface IUser {
     userName: string;
+    follows: string;
 
 }
 
@@ -18,7 +19,12 @@ export default function MobileProfile() {
         async function fetchUser() {
 
             const name = await User.getUserName();
-            setUser({userName: name.userName});
+            const follows = await User.getFollows();
+            
+            setUser({
+                userName: name.userName,
+                follows: follows,
+            });
         }
 
         fetchUser();
@@ -36,7 +42,7 @@ export default function MobileProfile() {
                 <div className={styles.profilInformationsContainer}>
                     <div className={styles.imageBackground}>
                         <div className={styles.profilInformations}>
-                            <p className={styles.userName}>{user?.userName} Modifier</p>
+                            <p className={styles.userName}>{user?.userName}</p>
                             <button className={styles.createPlaylist} type="button">Create a Playlist</button>
                         </div>
                     </div>
@@ -44,7 +50,7 @@ export default function MobileProfile() {
 
                     <div className={styles.secondContainer}>
                         <div className={styles.profileStats}>
-                            <p>stat 1</p>
+                            <p>follows {user?.follows.length}</p>
                             <p>stat 2</p>
                         </div>
                         <div className={styles.profileLinks}>

@@ -8,13 +8,24 @@ import DesktopHeader from "@/app/components/profile/desktop/DesktopHeader";
 import DesktopNav from "@/app/components/profile/desktop/DesktopNav";
 import Image from "next/image";
 
+interface IUser {
+    userName: string;
+    follows: string;
+
+}
 export default function DesktopProfile(){
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState<IUser | null>(null);
 
     useEffect(() => {
         async function fetchUser() {
-            const user = await User.getUserName();
-            setUser(user);
+
+            const name = await User.getUserName();
+            const follows = await User.getFollows();
+
+            setUser({
+                userName: name.userName,
+                follows: follows,
+            });
         }
 
         fetchUser();
@@ -32,9 +43,9 @@ export default function DesktopProfile(){
                         </div>
 
                         <div className={styles.userStats}>
-                            <p>UserName</p>
+                            <p className={styles.userName}>{user?.userName}</p>
                             <div className={styles.stats}>
-                                <p>stat 1</p>
+                                <p>follows: {user?.follows.length}</p>
                                 <p>stats 2</p>
                             </div>
                         </div>
