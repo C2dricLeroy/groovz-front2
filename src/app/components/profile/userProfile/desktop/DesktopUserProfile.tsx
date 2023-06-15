@@ -60,7 +60,7 @@ export default function DesktopUserProfile({ userId }: DesktopUserProfileProps){
 
                     <div className={styles.imageContainer}>
                         <Image src={"/profil-de-lutilisateur.png"} alt={"profile picture"} width={250} height={250} className={styles.profileImage}></Image>
-                        <p>Modify Profile</p>
+
                     </div>
 
                     <div className={styles.userStats}>

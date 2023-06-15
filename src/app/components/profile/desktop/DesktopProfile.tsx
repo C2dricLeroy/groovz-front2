@@ -14,8 +14,44 @@ interface IUser {
     followers: string;
 
 }
+
+
 export default function DesktopProfile(){
     const [user, setUser] = useState<IUser | null>(null);
+    const [showModal, setShowModal] = useState(false);
+    const [newName, setNewName] = useState("");
+
+    async function handleUpdateName() {
+        if (newName && newName.trim() !== "") {
+            await User.updateName(newName);
+            setUser(prevUser => {
+                if (prevUser === null) {
+                    return null;
+                } else {
+                    return {...prevUser, userName: newName}
+                }
+            });
+            setShowModal(false);
+        } else {
+            alert("User name cannot be empty");
+        }
+
+    }
+
+    function handleOpenModal() {
+        alert("Warning, your userName is the only way for your friends to find you on Groovz. Changing your name should be well considered decision");
+        setShowModal(true);
+    }
+
+    function handleNameChange(e: any) {
+        setNewName(e.target.value);
+    }
+
+    function handleCloseModal(e: any) {
+        if (e.target === e.currentTarget) {
+            setShowModal(false);
+        }
+    }
 
     useEffect(() => {
         async function fetchUser() {
@@ -42,7 +78,16 @@ export default function DesktopProfile(){
 
                         <div className={styles.imageContainer}>
                             <Image src={"/profil-de-lutilisateur.png"} alt={"profile picture"} width={250} height={250} className={styles.profileImage}></Image>
-                            <p>Modify Profile</p>
+                            <button className={styles.underline} onClick={handleOpenModal}>Modify Profile</button>
+                            {showModal &&
+                                <div className={styles.modal} onClick={handleCloseModal}>
+                                    <div className={styles.modalContent}>
+                                        <label htmlFor="newName">New name:</label>
+                                        <input type="text" id="newName" value={newName} onChange={handleNameChange} />
+                                        <button onClick={handleUpdateName}>Validate</button>
+                                    </div>
+                                </div>
+                            }
                         </div>
 
                         <div className={styles.userStats}>

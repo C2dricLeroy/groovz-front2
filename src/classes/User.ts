@@ -83,7 +83,6 @@ export class User {
         try {
             let token = await this.getToken();
             if (token !== null) {
-
                 const response = await axios.get(`http://localhost:3333/user/followers/${userId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
@@ -101,6 +100,22 @@ export class User {
             if (token !== null) {
                 const response = await axios.get(`http://localhost:3333/user/follows/${userId}`, {
                     headers: { Authorization: `Bearer ${token}` }
+                });
+                return response.data;
+            }
+        } catch (error) {
+            console.error(error);
+            return null;
+        }
+    }
+
+    static async updateName(userName: string){
+        try {
+            let token = await this.getToken();
+            if (token !== null) {
+                let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
+                const response = await axios.patch(`http://localhost:3333/user/updateName/${payload.userId}`, {
+                    userName: userName
                 });
                 return response.data;
             }
