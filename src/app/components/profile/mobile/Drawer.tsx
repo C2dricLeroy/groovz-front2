@@ -29,7 +29,7 @@ export default function TemporaryDrawer() {
         >
             <div className={styles.box}>
                 <div className={styles.drawerHeader}>
-                    <IconButton onClick={toggleDrawer(false)} style={{color: "white"}}>
+                    <IconButton onClick={toggleDrawer(false)}  style={{color: "white", margin: "10px"}}>
                         <CloseIcon />
                     </IconButton>
                 </div>
@@ -55,7 +55,7 @@ export default function TemporaryDrawer() {
 
     return (
         <div>
-            <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
+            <IconButton style={{color: "white", margin: "10px"}} edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
                 {isOpen ? <CloseIcon /> : <MenuIcon />}
             </IconButton>
             <Drawer

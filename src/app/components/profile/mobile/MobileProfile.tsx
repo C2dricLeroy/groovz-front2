@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 import {User} from "@/classes/User";
 import TemporaryDrawer from "@/app/components/profile/mobile/Drawer";
 import Image from "next/image";
+import SearchBar from "@/app/components/profile/mobile/SearchBar";
 
 interface IUser {
     userName: string;
@@ -38,9 +39,15 @@ export default function MobileProfile() {
     return (
             <div className={styles.page}>
                 <div className={styles.mobileHeader}>
-                    <TemporaryDrawer/>
-                    <p>logo</p>
-                    <p>searchbar</p>
+                    <div className={styles.header}>
+                        <TemporaryDrawer/>
+                        <p>logo</p>
+                    </div>
+
+                    <div className={styles.searchBarContainer}>
+                        <SearchBar></SearchBar>
+                    </div>
+
                 </div>
                 <div className={styles.profilInformationsContainer}>
                     <div className={styles.imageBackground}>

@@ -1,4 +1,3 @@
-
 .box {
     background-color: #232528;
     height: 100vh;
@@ -70,14 +69,23 @@
     justify-content: space-evenly;
 }
 
-.mobileHeader {
-    width: 100%;
-    height: 8%;
-    background-color: #9FB1BC;
-    color: #ffffff;
+.header {
+    width: 100vw;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+}
+
+.mobileHeader {
+    width: 100%;
+    height: 12%;
+    background-color: #9FB1BC;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .page {
@@ -141,4 +149,106 @@
     flex-direction: column;
     justify-content: space-around;
 
+}
+
+.searchBarContainer {
+    width: 100vw;
+    height: 5vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #9FB1BC;
+
+}
+
+
+.searchBox {
+    background: #2f3640;
+    width: 100%;
+    height: 40px;
+    border-radius: 40px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+
+}
+
+.searchBox:hover > .searchInput {
+    width: 240px;
+    padding: 0 6px;
+}
+
+.searchBox:hover > .searchButton {
+    background: transparent;
+    color : #2f3640;
+}
+
+.searchButton {
+    color: white;
+    float: right;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #2f3640;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+
+}
+
+.searchInput {
+    border:none;
+    background: none;
+    outline:none;
+    float:left;
+    padding: 0;
+    color: white;
+    font-size: 16px;
+    transition: 0.4s;
+    line-height: 40px;
+    width: 0px;
+
+}
+
+.searchResults {
+    padding: 10px 20px;
+    border-bottom: 1px solid whitesmoke;
+}
+
+.searchResults:last-child {
+    border-bottom: none;
+}
+
+.search {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.results  {
+
+    z-index: 1000;
+    background-color: #2F3640FF;
+    width: 240px;
+    color: white;
+    border-radius: 10px;
+
+}
+.searchResults:hover {
+    padding: 10px 20px;
+    background-color: #273037;
+
+}
+
+.logo {
+    margin: 10px;
+    margin-right: 40%;
 }
