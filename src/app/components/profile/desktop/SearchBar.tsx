@@ -17,6 +17,8 @@ const WhiteSearchIcon = styled(SearchIcon)(({ theme }) => ({
 }));
 export default function SearchBar() {
     const [searchTerm, setSearchTerm] = useState('');
+    const [isSearchDone, setIsSearchDone] = useState(false);
+
     const [searchResults, setSearchResults] = useState<{ userName: string, userId: string }[]>([]);
     const searchRef = useRef<HTMLDivElement>(null);
 
@@ -32,6 +34,7 @@ export default function SearchBar() {
         setSearchResults([]);
 
         if (!searchTerm.trim()) {
+            setIsSearchDone(true);
             return;
         }
 
@@ -44,7 +47,7 @@ export default function SearchBar() {
                     headers: {Authorization: `Bearer ${token}`}
                 });
                 let results = response.data.filter((item: UserDataType) => item.userId !== userId);
-    console.log(results);
+                setIsSearchDone(true);
                 setSearchResults(results);
             }
         } catch (error) {
@@ -56,6 +59,7 @@ export default function SearchBar() {
         function handleClickOutside(event: any) {
             if (searchRef.current && !searchRef.current.contains(event.target)) {
                 setSearchResults([]);
+                setIsSearchDone(false);
             }
         }
 
@@ -76,11 +80,15 @@ export default function SearchBar() {
                 </button>
             </div>
             <div className={styles.results}>
-                {searchResults.map((result, index) => (
-                    <div className={styles.searchResults} key={result?.userId}>
-                        <Link key={result?.userId} href={`/profile/userProfile/${result?.userId}`}>{result?.userName}</Link>
-                    </div>
-                ))}
+                {searchResults.length > 0 ? (
+                    searchResults.map((result, index) => (
+                        <div className={styles.searchResults} key={result?.userId}>
+                            <Link key={result?.userId} href={`/profile/userProfile/${result?.userId}`}>{result?.userName}</Link>
+                        </div>
+                    ))
+                ) : (
+                    isSearchDone && <div>No results found</div>
+                )}
             </div>
 
         </div>
