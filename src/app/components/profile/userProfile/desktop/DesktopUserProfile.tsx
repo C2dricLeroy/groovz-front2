@@ -7,6 +7,7 @@ import {User} from "@/classes/User";
 import DesktopHeader from "@/app/components/profile/desktop/DesktopHeader";
 import DesktopNav from "@/app/components/profile/desktop/DesktopNav";
 import Image from "next/image";
+import {UserFollow} from "@/classes/UserFollow";
 
 interface IUser {
     userName: string;
@@ -20,6 +21,7 @@ interface DesktopUserProfileProps {
 }
 export default function DesktopUserProfile({ userId }: DesktopUserProfileProps){
     const [user, setUser] = useState<IUser | null>(null);
+    const [isFollowing, setIsFollowing] = useState<boolean>(false);
 
     useEffect(() => {
         async function fetchUser() {
@@ -27,16 +29,28 @@ export default function DesktopUserProfile({ userId }: DesktopUserProfileProps){
             const name = await User.getUserNameById(userId);
             const follows = await User.getFollowsById(userId);
             const followers = await User.getFollowersById(userId);
+            const following = await UserFollow.isUserFollowed(userId);
 
             setUser({
                 userName: name.userName,
                 follows: follows,
                 followers: followers
             });
+            setIsFollowing(following);
         }
 
         fetchUser();
     }, []);
+
+    const toggleFollow = async () => {
+        if (isFollowing) {
+            await UserFollow.unfollow(userId);
+        } else {
+            await UserFollow.follow(userId);
+        }
+        setIsFollowing(!isFollowing);
+    }
+
     return (
         <div className={styles.page}>
             <DesktopHeader></DesktopHeader>
@@ -56,7 +70,9 @@ export default function DesktopUserProfile({ userId }: DesktopUserProfileProps){
                             <p>followed by {user?.followers.length}</p>
                         </div>
                     </div>
-                    <button type="button" className={styles.createPlaylist}>Follow</button>
+                    <button type="button" className={styles.createPlaylist} onClick={toggleFollow}>
+                        {isFollowing ? 'Unfollow' : 'Follow'}
+                    </button>
 
 
                 </div>
