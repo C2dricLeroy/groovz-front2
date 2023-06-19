@@ -5,8 +5,7 @@ import axios from "axios";
 export class User {
     static async  getToken() {
         try {
-            let token = await localStorage.getItem('userToken');
-            return token;
+            return await localStorage.getItem('userToken');
         } catch (e) {
             console.error(e);
             return null;

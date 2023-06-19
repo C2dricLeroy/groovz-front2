@@ -1,24 +1,33 @@
-import axios from "axios";
+import axios from 'axios';
+import {User} from './User';
 
-export class Spotify {
-    static async tokenStorage(userId: number, accessToken: string, refreshToken: string) {
-        try {
-            const response = await axios.post('http://localhost:3333/spotify/tokenStorage', {
-                userId: userId,
-                accessToken: accessToken,
-                refreshToken: refreshToken
-            });
+class Spotify {
+    static async getToken() {
+        const appToken = await User.getToken();
+        const {refreshToken, spotifyToken} = await axios.get(`http://localhost:3333/spotify/getSpotifyAccess/${appToken}`);
 
+        const instance = axios.create({
+            baseURL: 'https://api.spotify.com/v1/',
+            timeout: 5000,
+            headers: { 'Authorization': 'Bearer ' + spotifyToken }
+        });
 
-            if (response.status === 200) {
-                console.log('Les jetons ont été enregistrés avec succès');
-                return true;
-            } else {
-                console.error('Une erreur est survenue lors de l\'enregistrement des jetons');
-                return false;
+        instance.interceptors.response.use(response => response, async function axiosRetryInterceptor(error) {
+            if (error.response && error.response.status === 401) {
+                const originalRequest = error.config;
+                const response = await axios.post('/api/spotify/refreshToken', {
+                    refreshToken: refreshToken
+                });
+                if (response.status === 200) {
+                    originalRequest.headers['Authorization'] = 'Bearer ' + response.data.accessToken;
+                    return axios(originalRequest);
+                }
             }
-        } catch (error) {
-            console.error('Une erreur est survenue lors de l\'envoi des jetons au serveur :', error);
-        }
+            return Promise.reject(error);
+        });
+
+        return instance;
     }
 }
+
+export default Spotify;
