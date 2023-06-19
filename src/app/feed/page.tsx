@@ -3,6 +3,7 @@
 import Link from "next/link";
 import styles from '@/styles/styles.module.css';
 import { useRouter } from 'next/navigation';
+import SpotifyLoginButton from "@/app/components/Spotify/SpotifyLoginButton";
 
 export default function Feed() {
     const router = useRouter();
@@ -22,6 +23,7 @@ export default function Feed() {
                 <p className={styles.underline}>Navigate to profile page</p>
             </Link>
             <button onClick={signOut}>Sign out</button>
+            <SpotifyLoginButton></SpotifyLoginButton>
         </div>
     );
 }
