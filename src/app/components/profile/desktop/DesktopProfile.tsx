@@ -12,7 +12,6 @@ interface IUser {
     userName: string;
     follows: string;
     followers: string;
-
 }
 
 

@@ -6,11 +6,13 @@ import {User} from "@/classes/User";
 import TemporaryDrawer from "@/app/components/profile/mobile/Drawer";
 import Image from "next/image";
 import SearchBar from "@/app/components/profile/mobile/SearchBar";
+import {Customer} from "@/classes/Customer";
 
 interface IUser {
     userName: string;
     follows: string;
     followers: string;
+    playlists: string
 
 }
 
@@ -18,6 +20,7 @@ export default function MobileProfile() {
     const [user, setUser] = useState<IUser | null>(null);
     const [showModal, setShowModal] = useState(false);
     const [newName, setNewName] = useState("");
+
 
     async function handleUpdateName() {
         if (newName && newName.trim() !== "") {
@@ -57,18 +60,18 @@ export default function MobileProfile() {
             const name = await User.getUserName();
             const follows = await User.getFollows();
             const followers = await User.getFollowers();
+            const playlists = await Customer.getPlaylists();
+
 
             setUser({
                 userName: name.userName,
                 follows: follows,
-                followers: followers
+                followers: followers,
+                playlists: playlists
             });
         }
-
         fetchUser();
     }, []);
-
-
 
     return (
             <div className={styles.page}>

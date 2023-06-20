@@ -7,7 +7,9 @@ const redirect_uri = encodeURIComponent('http://localhost:3333/spotify/callback'
 
 const scopes = [
     'user-read-private',
+    'user-read-email',
     'playlist-read-private',
+    'playlist-read-collaborative',
     'playlist-modify-public',
     'playlist-modify-private',
     'user-top-read',
@@ -36,6 +38,7 @@ export default function SpotifyLoginButton() {
 
 
             const response = await axios.get(`http://localhost:3333/spotify/generateState/${userId}`);
+
             const state = await response.data;
 
 
