@@ -7,6 +7,7 @@ import TemporaryDrawer from "@/app/components/profile/mobile/Drawer";
 import Image from "next/image";
 import SearchBar from "@/app/components/profile/mobile/SearchBar";
 import {Customer} from "@/classes/Customer";
+import PlaylistLists from "@/app/components/profile/mobile/PlaylistLists";
 
 interface IUser {
     userName: string;
@@ -121,6 +122,7 @@ export default function MobileProfile() {
 
                 <div className={styles.playlistContainer}>
                     <h2 className={styles.subtitle}>My playlists</h2>
+                    <PlaylistLists></PlaylistLists>
                 </div>
                 <div className={styles.followedContainer}>
                     <h2 className={styles.subtitle}>Recently followed</h2>
