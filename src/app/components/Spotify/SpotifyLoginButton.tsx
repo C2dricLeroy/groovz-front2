@@ -8,6 +8,7 @@ const redirect_uri = encodeURIComponent('http://localhost:3333/spotify/callback'
 const scopes = [
     'user-read-private',
     'user-read-email',
+    'user-follow-read',
     'playlist-read-private',
     'playlist-read-collaborative',
     'playlist-modify-public',
