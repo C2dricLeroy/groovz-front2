@@ -7,7 +7,7 @@ import TemporaryDrawer from "@/app/components/profile/mobile/Drawer";
 import Image from "next/image";
 import SearchBar from "@/app/components/profile/mobile/SearchBar";
 import {Customer} from "@/classes/Customer";
-import PlaylistLists from "@/app/components/profile/mobile/PlaylistLists";
+import PlaylistLists from "@/app/components/profile/PlaylistLists";
 
 interface IUser {
     userName: string;

@@ -7,7 +7,8 @@ import {User} from "@/classes/User";
 import DesktopHeader from "@/app/components/profile/desktop/DesktopHeader";
 import DesktopNav from "@/app/components/profile/desktop/DesktopNav";
 import Image from "next/image";
-import PlaylistLists from "@/app/components/profile/mobile/PlaylistLists";
+import PlaylistLists from "@/app/components/profile/PlaylistLists";
+import RecentlyFollowed from "@/app/components/profile/RecentlyFollowed";
 
 interface IUser {
     userName: string;
@@ -117,6 +118,7 @@ export default function DesktopProfile(){
                 </div>
                 <div className={styles.followedContainer}>
                     <h2 className={styles.subtitle}>Recently followed</h2>
+                    <RecentlyFollowed></RecentlyFollowed>
                 </div>
             </div>
         </div>
