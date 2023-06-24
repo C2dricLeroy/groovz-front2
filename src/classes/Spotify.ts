@@ -34,11 +34,11 @@ class Spotify {
 
             if (error.response && error.response.status === 401) {
                 const originalRequest = error.config;
-                const response = await axios.post(`http://localhost:3333/spotify/refreshToken/${payload.userId}`, {
+                const res = await axios.post(`http://localhost:3333/spotify/refreshToken/${payload.userId}`, {
                     refreshToken: refreshToken
                 });
-                if (response.status === 200) {
-                    originalRequest.headers['Authorization'] = 'Bearer ' + response.data.spotifyAccessToken;
+                if (res.status === 200) {
+                    originalRequest.headers['Authorization'] = 'Bearer ' + res.data.spotifyAccessToken;
                     return axios(originalRequest);
                 }
             }
@@ -51,7 +51,6 @@ class Spotify {
         const spotifyInstance = await Spotify.createAxiosInstance();
         try {
             const response = await spotifyInstance.get('/me');
-            console.log(response.data);
             return response.data.id;
         } catch (error) {
             console.log(error);
