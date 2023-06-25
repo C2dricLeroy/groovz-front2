@@ -74,7 +74,7 @@ export default function RecentlyFollowed() {
             <div style={{ display: 'flex', overflowX: 'auto', width: '90%', alignItems:'center', justifyContent: 'center', margin: '2vh'}}>
                 {artists.slice(scrollIndex, scrollIndex + itemsToShow).map((artist) => (
                     <div key={artist.id} style={{display: 'flex', flexDirection: 'column', flex: '0 0 auto', marginRight: '10px', alignItems:'center', justifyContent: 'center' }}>
-                        <a href={artist.external_urls.spotify}>
+                        <a href={artist.external_urls.spotify} target="_blank" rel="noopener noreferrer">
                             <img
                                 src={artist.images[0]?.url || 'defaultImageURL'}
                                 alt={artist.name}

@@ -74,7 +74,7 @@ export default function PlaylistLists() {
             <div style={{ display: 'flex', overflowX: 'auto', width: '90%', alignItems:'center', justifyContent: 'center', margin: '2vh'}}>
                 {playlists.slice(scrollIndex, scrollIndex + itemsToShow).map((playlist) => (
                     <div key={playlist.id} style={{display: 'flex', flexDirection: 'column', flex: '0 0 auto', marginRight: '10px', alignItems:'center', justifyContent: 'center' }}>
-                        <a href={playlist.external_urls.spotify}>
+                        <a href={playlist.external_urls.spotify} target="_blank" rel="noopener noreferrer">
                             <img
                             src={playlist.images[0]?.url || 'defaultImageURL'}
                             alt={playlist.name}

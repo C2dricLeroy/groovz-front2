@@ -4,7 +4,7 @@ import Link from "next/link";
 import styles from "@/app/components/profile/desktop/styles.module.css";
 import {useEffect, useState} from "react";
 import {User} from "@/classes/User";
-import DesktopHeader from "@/app/components/profile/desktop/DesktopHeader";
+import DesktopHeader from "@/app/components/common/desktop/DesktopHeader";
 import DesktopNav from "@/app/components/profile/desktop/DesktopNav";
 import Image from "next/image";
 import PlaylistLists from "@/app/components/profile/PlaylistLists";

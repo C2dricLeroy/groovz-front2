@@ -6,7 +6,7 @@ import {User} from "@/classes/User";
 import TemporaryDrawer from "@/app/components/profile/mobile/Drawer";
 import Image from "next/image";
 import {UserFollow} from "@/classes/UserFollow";
-import SearchBar from "@/app/components/profile/mobile/SearchBar";
+import SearchBar from "@/app/components/common/mobile/SearchBar";
 
 interface IUser {
     userName: string;

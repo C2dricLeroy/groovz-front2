@@ -1,0 +1,131 @@
+.page {
+    width: 100%;
+    max-width: 100vw;
+    height: auto;
+    background-color: #232528;
+}
+
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: #232528;
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    border-right: 1px solid whitesmoke;
+}
+
+.linkContainer {
+    height: auto;
+    min-height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 30vh;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.container {
+    width: 80%;
+    height: auto;
+    position: absolute;
+    top: 10%;
+    left: 20%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.recommandationsContainer {
+    width: 70%;
+    height: auto;
+    margin: 2vh;
+    margin-top: 4vh;
+    padding: 2vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #FB5012;
+    border-radius: 5px;
+}
+
+.recommendation {
+    display: flex;
+    flex-direction: column;
+    width: 15vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.recommandationName {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 15vw;
+}
+
+.postForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70vw;
+    height: auto;
+
+
+}
+
+.postCreationComponent {
+    background-color: hsla(200, 15%, 47%, 0.5);
+    margin: 2vh;
+    padding: 2vh;
+    border-radius: 5px;
+    position: relative;
+}
+
+.postSubmitButton {
+    background-color: hsla(141, 53%, 24%, 1);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    right: 2vw;
+    bottom: 2vh;
+
+}
+
+.postSubmitButton:hover {
+    background-color: hsla(141, 53%, 20%, 1);
+}
+
+.postSubmitButton:active {
+    background-color: hsla(141, 53%, 15%, 1);
+}
+
+.playlistChoice {
+    color: #6E8898;
+    width: 100%;
+    margin: 2vh;
+}
+
+.playlistComment {
+    color: #6E8898;
+    width: 100%;
+    margin: 2vh;
+}

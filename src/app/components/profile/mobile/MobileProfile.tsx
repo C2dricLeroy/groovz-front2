@@ -5,7 +5,7 @@ import {useEffect, useState} from "react";
 import {User} from "@/classes/User";
 import TemporaryDrawer from "@/app/components/profile/mobile/Drawer";
 import Image from "next/image";
-import SearchBar from "@/app/components/profile/mobile/SearchBar";
+import SearchBar from "@/app/components/common/mobile/SearchBar";
 import {Customer} from "@/classes/Customer";
 import PlaylistLists from "@/app/components/profile/PlaylistLists";
 import RecentlyFollowed from "@/app/components/profile/RecentlyFollowed";
