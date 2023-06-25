@@ -71,18 +71,22 @@ export default function PlaylistLists() {
                     }}
                 />
             </button>
-            <div style={{ display: 'flex', overflowX: 'auto', width: '90%', alignItems:'center', justifyContent: 'center'}}>
+            <div style={{ display: 'flex', overflowX: 'auto', width: '90%', alignItems:'center', justifyContent: 'center', margin: '2vh'}}>
                 {playlists.slice(scrollIndex, scrollIndex + itemsToShow).map((playlist) => (
                     <div key={playlist.id} style={{display: 'flex', flexDirection: 'column', flex: '0 0 auto', marginRight: '10px', alignItems:'center', justifyContent: 'center' }}>
-                        <img
+                        <a href={playlist.external_urls.spotify}>
+                            <img
                             src={playlist.images[0]?.url || 'defaultImageURL'}
                             alt={playlist.name}
                             style={{
                                 width: window.innerWidth <= 600 ? '130px' : '200px',
                                 height: window.innerWidth <= 600 ? '130px' : '200px',
+                                margin: '1vh'
                             }}
                         />
-                        <h2 style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: window.innerWidth <= 600 ? '130px' : '200px' }}>{playlist.name}</h2>
+                            <h2 style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: window.innerWidth <= 600 ? '130px' : '200px', margin: '1vh' }}>{playlist.name}</h2>
+                        </a>
+
                     </div>
                 ))}
             </div>

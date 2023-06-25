@@ -36,9 +36,7 @@
     color: white
 }
 
-.profileInformations {
 
-}
 
 .imageBackground {
     height: 85%;
@@ -67,6 +65,13 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+
+}
+
+.Stats {
+    font-size : 15px;
+    margin: 2px;
+    text-align: center;
 }
 
 .header {
@@ -107,18 +112,20 @@
 }
 
 .followedContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     border-bottom: 1px solid #6E8898;
     width: 100%;
-    height: 25%;
-    display: flex;
-    justify-content: center;
+    height: auto;
 }
 
 .subtitle {
-    font-size: 30px;
+    font-size: 20px;
     color: #6E8898;
     margin-top: 5px;
     text-decoration: underline;
+    margin: 2vh;
 }
 
 .userName {

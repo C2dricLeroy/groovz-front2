@@ -8,6 +8,7 @@ import Image from "next/image";
 import SearchBar from "@/app/components/profile/mobile/SearchBar";
 import {Customer} from "@/classes/Customer";
 import PlaylistLists from "@/app/components/profile/PlaylistLists";
+import RecentlyFollowed from "@/app/components/profile/RecentlyFollowed";
 
 interface IUser {
     userName: string;
@@ -89,12 +90,12 @@ export default function MobileProfile() {
                 </div>
                 <div className={styles.profilInformationsContainer}>
                     <div className={styles.imageBackground}>
-                        <div className={styles.profilInformations}>
+                        <div>
                             <p className={styles.userName}>{user?.userName}</p>
                             <button className={styles.createPlaylist} type="button">Create a Playlist</button>
                         </div>
                     </div>
-                    <button className={styles.underline} onClick={handleOpenModal}>Modify Profile</button>
+                    <button className={[styles.underline, styles.Stats].join(' ')} onClick={handleOpenModal}>Modify Profile</button>
                     {showModal &&
                         <div className={styles.modal} onClick={handleCloseModal}>
                             <div className={styles.modalContent}>
@@ -108,13 +109,13 @@ export default function MobileProfile() {
 
                     <div className={styles.secondContainer}>
                         <div className={styles.profileStats}>
-                            <p>follows {user?.follows.length}</p>
-                            <p>followed by {user?.followers.length}</p>
+                            <p className={styles.Stats}>follows {user?.follows.length}</p>
+                            <p className={styles.Stats}>followed by {user?.followers.length}</p>
                         </div>
                         <div className={styles.profileLinks}>
-                            <p>Link1</p>
-                            <p>Link2</p>
-                            <p>Link3</p>
+                            <p className={styles.Stats}>Link1</p>
+                            <p className={styles.Stats}>Link2</p>
+                            <p className={styles.Stats}>Link3</p>
                         </div>
                     </div>
 
@@ -126,6 +127,7 @@ export default function MobileProfile() {
                 </div>
                 <div className={styles.followedContainer}>
                     <h2 className={styles.subtitle}>Recently followed</h2>
+                    <RecentlyFollowed></RecentlyFollowed>
                 </div>
 
 

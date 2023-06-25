@@ -23,16 +23,18 @@ export default function RecentlyFollowed() {
                 setItemsToShow(6)
             }
         }
-        const fetchPlaylists = async () => {
-            const artists = await Customer.getFollowedArtists();
-            setArtists(artists.items);
+        const fetchArtists = async () => {
+            const result = await Customer.getFollowedArtists();
+            setArtists(result.artists.items);
             setLoading(false);
         };
-        fetchPlaylists();
+        fetchArtists();
+
         handleResize();
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
+
 
     const scrollRight = () => {
         if (scrollIndex < artists.length - itemsToShow) {
@@ -69,18 +71,22 @@ export default function RecentlyFollowed() {
                     }}
                 />
             </button>
-            <div style={{ display: 'flex', overflowX: 'auto', width: '90%', alignItems:'center', justifyContent: 'center'}}>
+            <div style={{ display: 'flex', overflowX: 'auto', width: '90%', alignItems:'center', justifyContent: 'center', margin: '2vh'}}>
                 {artists.slice(scrollIndex, scrollIndex + itemsToShow).map((artist) => (
                     <div key={artist.id} style={{display: 'flex', flexDirection: 'column', flex: '0 0 auto', marginRight: '10px', alignItems:'center', justifyContent: 'center' }}>
-                        <img
-                            src={artist.images[0]?.url || 'defaultImageURL'}
-                            alt={artist.name}
-                            style={{
-                                width: window.innerWidth <= 600 ? '130px' : '200px',
-                                height: window.innerWidth <= 600 ? '130px' : '200px',
-                            }}
-                        />
-                        <h2 style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: window.innerWidth <= 600 ? '130px' : '200px' }}>{playlist.name}</h2>
+                        <a href={artist.external_urls.spotify}>
+                            <img
+                                src={artist.images[0]?.url || 'defaultImageURL'}
+                                alt={artist.name}
+                                style={{
+                                    width: window.innerWidth <= 600 ? '130px' : '200px',
+                                    height: window.innerWidth <= 600 ? '130px' : '200px',
+                                    margin: '1vh'
+                                }}
+                            />
+                            <h2 style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: window.innerWidth <= 600 ? '130px' : '200px', margin: '1vh' }}>{artist.name}</h2>
+                        </a>
+
                     </div>
                 ))}
             </div>
