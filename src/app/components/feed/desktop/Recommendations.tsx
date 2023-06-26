@@ -23,8 +23,12 @@ export default function Recommendations() {
     return(
         <div className = {styles.recommandationsContainer}>
             {newRecommendations.map((recommendation) => (
-                <a href={recommendation.external_urls.spotify} target="_blank" rel="noopener noreferrer">
-                    <div key={recommendation.id} className={styles.recommendation}>
+                <a
+                    key={recommendation.id}
+                    href={recommendation.external_urls.spotify}
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    <div className={styles.recommendation}>
                         <img
                             src={recommendation.album.images[0]?.url || 'defaultImageURL'}
                             alt={recommendation.name}
@@ -33,6 +37,7 @@ export default function Recommendations() {
                     </div>
                 </a>
             ))}
+
 
         </div>
     )
