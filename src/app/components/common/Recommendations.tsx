@@ -1,4 +1,4 @@
-import styles from '@/app/components/feed/desktop/styles.module.css'
+import styles from '@/app/components/common/styles.module.css'
 import {useEffect, useState} from "react";
 import {Customer} from "@/classes/Customer";
 export default function Recommendations() {

@@ -57,6 +57,15 @@ class Spotify {
             throw new Error(`Failed to get Spotify user ID: ${error.message}`);
         }
     }
+     static async getPlaylistById(id){
+        const spotifyInstance = await Spotify.createAxiosInstance();
+        try {
+            const response = await spotifyInstance.get(`playlists/${id}`)
+            return response.data;
+        } catch (error) {
+            throw new Error(`Failed to get Plalist By Id: ${error.message}`)
+        }
+     }
 }
 
 export default Spotify;

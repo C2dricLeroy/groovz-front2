@@ -1,9 +1,9 @@
 import styles from '@/app/components/feed/desktop/styles.module.css'
-import FeedNav from "@/app/components/common/desktop/FeedNav";
+import FeedNav from "@/app/components/feed/desktop/FeedNav";
 import DesktopHeader from "@/app/components/common/desktop/DesktopHeader";
-import Recommendations from "@/app/components/feed/desktop/Recommendations";
-import PostCreation from "@/app/components/feed/desktop/Postcreation";
-import Posts from "@/app/components/feed/desktop/Posts";
+import Recommendations from "@/app/components/common/Recommendations";
+import PostCreation from "@/app/components/common/Postcreation";
+import Posts from "@/app/components/common/Posts";
 
 
 export default function DesktopFeed() {

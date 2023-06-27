@@ -3,12 +3,14 @@ import Link from "next/link";
 import styles from "@/app/components/profile/mobile/styles.module.css";
 import {useEffect, useState} from "react";
 import {User} from "@/classes/User";
-import TemporaryDrawer from "@/app/components/profile/mobile/Drawer";
+import TemporaryDrawer from "@/app/components/profile/mobile/ProfileDrawer";
 import Image from "next/image";
 import SearchBar from "@/app/components/common/mobile/SearchBar";
 import {Customer} from "@/classes/Customer";
 import PlaylistLists from "@/app/components/profile/PlaylistLists";
 import RecentlyFollowed from "@/app/components/profile/RecentlyFollowed";
+import MobileDrawer from "@/app/components/profile/mobile/ProfileDrawer";
+import ProfileDrawer from "@/app/components/profile/mobile/ProfileDrawer";
 
 interface IUser {
     userName: string;
@@ -79,7 +81,7 @@ export default function MobileProfile() {
             <div className={styles.page}>
                 <div className={styles.mobileHeader}>
                     <div className={styles.header}>
-                        <TemporaryDrawer/>
+                        <ProfileDrawer/>
                         <p>logo</p>
                     </div>
 

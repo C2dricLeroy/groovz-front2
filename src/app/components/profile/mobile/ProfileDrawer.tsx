@@ -9,7 +9,7 @@ import {inspect} from "util";
 import styles from "@/app/components/profile/mobile/styles.module.css"
 import Link from "next/link";
 
-export default function TemporaryDrawer() {
+export default function ProfileDrawer() {
     const [isOpen, setIsOpen] = React.useState(false);
 
     const toggleDrawer = (open: any) => (event: any) => {

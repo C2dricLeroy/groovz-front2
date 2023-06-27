@@ -1,0 +1,309 @@
+.recommandationsContainer {
+    width: 70%;
+    height: auto;
+    margin: 2vh;
+    margin-top: 4vh;
+    padding: 2vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #FB5012;
+    border-radius: 5px;
+}
+
+.recommendation {
+    display: flex;
+    flex-direction: column;
+    width: 15vw;
+    margin-top: 1vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.recommandationName {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 15vw;
+}
+
+.postCreationComponent {
+    background-color: hsla(200, 15%, 47%, 0.5);
+    margin: 2vh;
+    padding: 2vh;
+    border-radius: 5px;
+    position: relative;
+}
+
+.postForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70vw;
+    height: auto;
+}
+
+.playlistChoice {
+    color: #6E8898;
+    width: 100%;
+    margin: 2vh;
+}
+
+.playlistComment {
+    color: #6E8898;
+    width: 100%;
+    margin: 2vh;
+}
+
+.postSubmitButton {
+    background-color: hsla(141, 53%, 24%, 1);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    right: 2vw;
+    bottom: 2vh;
+}
+
+.postSubmitButton:hover {
+    background-color: hsla(141, 53%, 20%, 1);
+}
+
+.postSubmitButton:active {
+    background-color: hsla(141, 53%, 15%, 1);
+}
+
+.post {
+    width: 80%;
+    margin: 1vh;
+    background-color:#9FB1BC ;
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    border-radius: 50px;
+}
+
+.postHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin-right: 30%;
+}
+
+.postProfilePicture {
+    width: 10%;
+    margin-top: 1vh;
+    margin-left: 1vh;
+    margin-right: 3vh;
+}
+
+.userName {
+    color: #454545;
+}
+
+.userName:hover {
+    text-decoration: underline;
+}
+
+.userName:active {
+    text-decoration: underline;
+}
+
+.postPlaylistTitle {
+    color: #454545;
+}
+
+.postPlaylistTitle:hover {
+    text-decoration: underline;
+}
+
+.postPlaylistTitle:active {
+    text-decoration: underline;
+}
+
+.postDate {
+    color: #454545;
+}
+
+.postContainer {
+    width: 100%;
+    height: auto;
+    margin: 1vh;
+    padding: 1vh;
+    border-radius: 2px;
+    color: #454545;
+}
+
+.postPlaylistContainer {
+    width: 100%;
+    height: auto;
+    padding: 1vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.postPlaylistPicture {
+    width: 30%;
+}
+
+.line {
+    width: 90%;
+    border: 1px solid black;
+}
+
+.postFooter {
+
+}
+
+.commentsContainer {
+    margin: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.comments {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    margin-bottom: 1vh;
+    padding: 5px;
+}
+
+.commentInput {
+    border-radius: 10px;
+    margin: 1vh;
+    color: black;
+}
+
+.commentSubmitButton {
+    background-color: hsla(16, 96%, 51%, 0.9);
+    border: none;
+    border-radius: 30px;
+    margin: 1vh;
+    padding: 1vh;
+}
+
+.commentSubmitButton:hover {
+    background-color: hsla(16, 100%, 32%, 1);
+}
+
+.commentSubmitButton:active {
+    background-color: hsla(16, 100%, 32%, 1);
+}
+
+
+.iconsContainer{
+
+}
+
+.loadMore {
+    background-color: #FB5012;
+    border-radius: 30px;
+    padding: 1vh;
+    margin: 1vh;
+}
+
+.loadMore:hover {
+    background-color: #ab4825;
+}
+
+.loadMore:active {
+    background-color: #ab4825;
+}
+
+.posts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 70vw;
+    height: auto;
+    margin: 2vh;
+    padding: 2vh;
+    background-color: hsla(200, 15%, 47%, 0.5);
+    border-radius: 5px
+}
+
+.postContainerElement {
+    width: 72vw;
+    background-color: hsla(200, 15%, 47%, 0.5) ;
+}
+
+.profilePicture{
+
+}
+
+.textArea {
+    width: 75%;
+    margin-left: 5%;
+}
+
+
+@media (max-width: 1065px) {
+
+
+    .textArea {
+        width: 50%;
+    }
+
+}
+
+@media (max-width: 500px) {
+    .postCreationComponent {
+        text-align: center;
+        position: initial;
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        align-items: center;
+        padding: 0;
+    }
+
+    .postSubmitButton {
+        position: initial;
+    }
+
+    .playlistComment {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0
+    }
+
+    .textArea {
+        margin: 0;
+    }
+
+    .posts {
+        width: 100%;
+        height: auto;
+        margin: 0;
+        padding: 0;
+        background-color: #232528;
+    }
+
+    .post {
+        width: 100vw;
+        border-radius: 2px;
+        margin: 1vh;
+    }
+
+    .postHeader {
+        margin: 0;
+    }
+
+    .commentsContainer {
+        width: 100%;
+        margin: 1vh 0;
+    }
+}

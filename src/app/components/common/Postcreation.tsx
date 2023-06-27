@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {Customer} from "@/classes/Customer";
-import styles from '@/app/components/feed/desktop/styles.module.css'
+import styles from '@/app/components/common/styles.module.css'
 import {Post} from "@/classes/Post";
 
 export default function PostCreation() {
@@ -54,9 +54,8 @@ export default function PostCreation() {
                 </div>
                 <div>
                     <label className = {styles.playlistComment}>
-                        Text:
-                        <textarea style={{ width: '75%',
-                            marginLeft: '5%'}} value={comment} onChange={(e) => setComment(e.target.value)} />
+                        <p>Text:</p>
+                        <textarea className={styles.textArea} value={comment} onChange={(e) => setComment(e.target.value)} />
                     </label>
                 </div>
                 <button type="submit" className={styles.postSubmitButton}>Poster</button>

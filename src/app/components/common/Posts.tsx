@@ -1,7 +1,8 @@
 import {useEffect, useState} from "react";
-import styles from '@/app/components/feed/desktop/styles.module.css'
+import styles from '@/app/components/common/styles.module.css'
 import {Post} from "@/classes/Post";
 import Link from "next/link";
+import Spotify from "@/classes/Spotify";
 
 
 export default function Posts() {
@@ -10,11 +11,28 @@ export default function Posts() {
     const [loadedPostsCount, setLoadedPostsCount] = useState(10);
     const [comment, setComment] = useState("");
 
+
     useEffect(() => {
         const fetchPosts = async () => {
             const initialPosts: any = await Post.getPosts();
 
-            setPosts(initialPosts);
+            const playlistIds = initialPosts
+                .filter(post => post.playlistId != null)
+                .map(post => post.playlistId);
+
+            const playlistsPromises = playlistIds.map(id => Spotify.getPlaylistById(id));
+            const playlists = await Promise.all(playlistsPromises);
+
+            const postsWithPlaylists = initialPosts.map((post) => {
+                if (post.playlistId != null) {
+                    const playlist = playlists.find(pl => pl.id === post.playlistId);
+                    return { ...post, playlist: playlist };
+                } else {
+                    return post;
+                }
+            });
+
+            setPosts(postsWithPlaylists);
         };
 
         fetchPosts();
@@ -45,16 +63,21 @@ export default function Posts() {
                 const dateObject = new Date(post.createdAt);
                 const formattedDate = `${dateObject.getFullYear()}-${('0' + (dateObject.getMonth() + 1)).slice(-2)}-${('0' + dateObject.getDate()).slice(-2)}`;
 
+
                 return (
                     <div className={styles.post}>
                         <div className={styles.postHeader}>
                             <div className={styles.postProfilePicture}>
-                                <Link href={`/profile/userProfile/${post.userId}`}>
+                                <Link target="_blank"
+                                      rel="noopener noreferrer"
+                                      href={`/profile/userProfile/${post.userId}`}>
                                     <img className={styles.profilePicture} src="/profil-de-lutilisateur.png" alt="profile picture" />
                                 </Link>
                             </div>
                             <div className={styles.userName}>
-                                <Link href={`/profile/userProfile/${post.userId}`}>
+                                <Link target="_blank"
+                                      rel="noopener noreferrer"
+                                      href={`/profile/userProfile/${post.userId}`}>
                                     <p><b>{post.user.userName}</b></p>
                                 </Link>
                             </div>
@@ -65,6 +88,17 @@ export default function Posts() {
                         <div key={post.postId} className={styles.postContainer}>
                             <p>{post.text}</p>
                         </div>
+                        {post.playlist && (
+                            <div>
+                                <Link href={post.playlist.external_urls.spotify}>
+                                    <div className={styles.postPlaylistContainer}>
+                                        <h4 className={styles.postPlaylistTitle}><b>{post.playlist.name}</b></h4>
+                                        <img className={styles.postPlaylistPicture} src={post.playlist.images[0].url} alt="Playlist Cover"/>
+                                    </div>
+                                </Link>
+                            </div>
+
+                        )}
                         <div className={styles.line}></div>
                         <div className={styles.postFooter}>
                             <div className={styles.commentsContainer}>
