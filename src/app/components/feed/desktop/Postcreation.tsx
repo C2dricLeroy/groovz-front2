@@ -24,6 +24,7 @@ export default function PostCreation() {
     }, []);
 
 
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         await Post.sharePlaylist(comment, selectedPlaylist);
@@ -41,11 +42,13 @@ export default function PostCreation() {
                         <select style={{ width: '70%',
                         marginLeft: '5%'}}
                                 placeholder="Select a playlist" value={selectedPlaylist} onChange={(e) => setSelectedPlaylist(e.target.value)}>
-                            {playlists.length > 0 && playlists.map(playlist => (
-                                <option key={playlist.id} value={playlist.id}>
-                                    {playlist.name}
-                                </option>
-                            ))}
+                            {playlists.length > 0 && playlists.map(playlist =>
+                                (playlist.public === true) ? (
+                                    <option key={playlist.id} value={playlist.id}>
+                                        {playlist.name}
+                                    </option>
+                                ) : null
+                            )}
                         </select>
                     </label>
                 </div>

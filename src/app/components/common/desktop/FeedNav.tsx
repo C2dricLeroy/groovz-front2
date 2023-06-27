@@ -14,6 +14,7 @@ export default function FeedNav() {
     return (
         <nav className={styles.nav}>
             <p>LOGO</p>
+            <p>PROFILE PICTURE</p>
             <div className={styles.linkContainer}>
                 <Link href="/profile">
                 <p className={styles.underline}>My Profile</p>
