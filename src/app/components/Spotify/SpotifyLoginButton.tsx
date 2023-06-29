@@ -24,13 +24,11 @@ export default function SpotifyLoginButton() {
 
     let client_id = process.env.CLIENT_ID;
 
-
     const handleLogin = async () => {
 
         const token = await User.getToken();
 
         if (token !== null) {
-
             let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
             let userId = payload.userId;
             if (!client_id) {
@@ -39,13 +37,9 @@ export default function SpotifyLoginButton() {
 
 
             const response = await axios.get(`http://localhost:3333/spotify/generateState/${userId}`);
-
             const state = await response.data;
 
-
-
             window.location.href = `https://accounts.spotify.com/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}&state=${state}`;
-
         }
     }
 

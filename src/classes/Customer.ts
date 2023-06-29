@@ -19,7 +19,6 @@ export class Customer {
         const spotifyInstance = await Spotify.createAxiosInstance();
         try {
             const response = await spotifyInstance.get(`/me/following?type=artist`);
-
             return response.data;
         } catch (error) {
             throw new Error(`Failed to get followed artists: ${error.message}`);
@@ -42,7 +41,6 @@ export class Customer {
         const followedArtists = response.artists.items;
         const randomArtistIndex = Math.floor(Math.random() * followedArtists.length);
         const randomArtist = followedArtists[randomArtistIndex];
-
         try {
             const response = await spotifyInstance.get(`/recommendations?seed_artists=${randomArtist.id}&limit=3`)
             return response.data.tracks;

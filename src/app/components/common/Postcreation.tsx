@@ -23,8 +23,6 @@ export default function PostCreation() {
         fetchPlaylists();
     }, []);
 
-
-
     const handleSubmit = async (event) => {
         event.preventDefault();
         await Post.sharePlaylist(comment, selectedPlaylist);

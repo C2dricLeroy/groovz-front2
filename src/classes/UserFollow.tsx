@@ -11,7 +11,7 @@ export class UserFollow {
             if (token !== null) {
                 let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
                 let correctUserId = parseInt(userId);
-                const response = await axios.post(`http://localhost:3333/follow/isUserFollowed`, {
+                const response = await axios.post(`http://217.160.238.71:3333/follow/isUserFollowed`, {
                         followedUserId: correctUserId,
                         userId: parseInt(payload.userId)
                     },
@@ -20,7 +20,6 @@ export class UserFollow {
                     });
                 return response.data;
             }
-
         } catch (error) {
             console.error(error);
             return null;
@@ -32,7 +31,7 @@ export class UserFollow {
             let token = await User.getToken();
             if (token !== null) {
                 let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
-                const response = await axios.post(`http://localhost:3333/follow/follow`, {
+                const response = await axios.post(`http://217.160.238.71:3333/follow/follow`, {
                     followedUserId: parseInt(userId),
                     userId: parseInt(payload.userId)
                 },
@@ -41,7 +40,6 @@ export class UserFollow {
                 });
                 return response.data;
             }
-
         } catch (error) {
             console.error(error);
             return null;
@@ -54,7 +52,7 @@ export class UserFollow {
             if (token !== null) {
                 let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
 
-                const response = await axios.post('http://localhost:3333/follow/unfollow', {
+                const response = await axios.post('http://217.160.238.71:3333/follow/unfollow', {
                         followedUserId: parseInt(userId),
                         userId: parseInt(payload.userId)
                     },
@@ -63,7 +61,6 @@ export class UserFollow {
                     });
                 return response.data;
             }
-
         } catch (error) {
             console.error(error);
             return null;

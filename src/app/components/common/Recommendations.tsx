@@ -19,7 +19,6 @@ export default function Recommendations() {
         fetchRecommendations();
     }, []);
 
-
     return(
         <div className = {styles.recommandationsContainer}>
             {newRecommendations.map((recommendation) => (
@@ -37,8 +36,6 @@ export default function Recommendations() {
                     </div>
                 </a>
             ))}
-
-
         </div>
     )
 }

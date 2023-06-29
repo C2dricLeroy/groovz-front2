@@ -22,8 +22,6 @@ function Signup() {
     const isAdmin = false;
     const isSuspended = false;
 
-
-
     const validateEmail = () => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
@@ -45,12 +43,11 @@ function Signup() {
         await validateEmail();
         await validatePassword();
 
-
         if (emailError || passwordError) {
             return;
         }
 
-        axios.post('http://localhost:3333/user/signup', {
+        axios.post('http://http://217.160.238.71:3333/user/signup', {
             username,
             password,
             email,
@@ -78,7 +75,6 @@ function Signup() {
                     <label className={styles.label} htmlFor="username">Username</label>
                     <input id="username" className={styles.input} placeholder="Username" onChange={e => setUsername(e.target.value)}
                            value={username}/>
-
                     <label className={styles.label} htmlFor="password">Password</label>
                     <div className={styles.inputContainer}>
                         <input
@@ -94,7 +90,6 @@ function Signup() {
                             {showPassword ? <Visibility /> : <VisibilityOff />}
                         </button>
                     </div>
-
                     <label className={styles.label} htmlFor="email">Email</label>
                     <input
                         id="email"
@@ -104,7 +99,6 @@ function Signup() {
                         onBlur={validateEmail}
                         value={email}
                     />
-
                 </div>
                 <button className={styles.button} title={"Submit"} onClick={signupSubmit}>Submit</button>
                 <Link href="/signin">
@@ -113,7 +107,6 @@ function Signup() {
             </div>
         </div>
     );
-
 }
 
 export default Signup;

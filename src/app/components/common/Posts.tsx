@@ -11,11 +11,9 @@ export default function Posts() {
     const [loadedPostsCount, setLoadedPostsCount] = useState(10);
     const [comment, setComment] = useState("");
 
-
     useEffect(() => {
         const fetchPosts = async () => {
             const initialPosts: any = await Post.getPosts();
-
             const playlistIds = initialPosts
                 .filter(post => post.playlistId != null)
                 .map(post => post.playlistId);
@@ -31,10 +29,8 @@ export default function Posts() {
                     return post;
                 }
             });
-
             setPosts(postsWithPlaylists);
         };
-
         fetchPosts();
     }, []);
 
@@ -54,15 +50,12 @@ export default function Posts() {
         setComment(e.target.value);
     };
 
-    console.log(posts)
-
     return (
 
         <div className={styles.posts}>
             {posts.map((post) => {
                 const dateObject = new Date(post.createdAt);
                 const formattedDate = `${dateObject.getFullYear()}-${('0' + (dateObject.getMonth() + 1)).slice(-2)}-${('0' + dateObject.getDate()).slice(-2)}`;
-
 
                 return (
                     <div className={styles.post}>
@@ -120,7 +113,6 @@ export default function Posts() {
                                 </form>
                             </div>
                             <div className={styles.iconsContainer}>
-
                             </div>
                         </div>
                     </div>

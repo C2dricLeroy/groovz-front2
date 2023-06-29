@@ -29,12 +29,10 @@ export default function RecentlyFollowed() {
             setLoading(false);
         };
         fetchArtists();
-
         handleResize();
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
-
 
     const scrollRight = () => {
         if (scrollIndex < artists.length - itemsToShow) {
@@ -86,7 +84,6 @@ export default function RecentlyFollowed() {
                             />
                             <h2 style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: window.innerWidth <= 600 ? '130px' : '200px', margin: '1vh' }}>{artist.name}</h2>
                         </a>
-
                     </div>
                 ))}
             </div>

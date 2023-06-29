@@ -8,7 +8,6 @@ import styles from '@/styles/styles.module.css';
 import MobileProfile from "@/app/components/profile/mobile/MobileProfile";
 import DesktopProfile from "@/app/components/profile/desktop/DesktopProfile";
 
-
 export default function Profile() {
     const [isMobile, setIsMobile] = useState(false);
 

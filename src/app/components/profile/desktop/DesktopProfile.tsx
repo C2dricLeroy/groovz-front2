@@ -36,7 +36,6 @@ export default function DesktopProfile(){
         } else {
             alert("User name cannot be empty");
         }
-
     }
 
     function handleOpenModal() {
@@ -67,16 +66,15 @@ export default function DesktopProfile(){
                 followers: followers
             });
         }
-
         fetchUser();
     }, []);
+
     return (
         <div className={styles.page}>
             <DesktopHeader></DesktopHeader>
             <DesktopNav></DesktopNav>
             <div className={styles.container}>
                 <div className={styles.userInformations}>
-
                         <div className={styles.imageContainer}>
                             <Image src={"/profil-de-lutilisateur.png"} alt={"profile picture"} width={250} height={250} className={styles.profileImage}></Image>
                             <button className={styles.underline} onClick={handleOpenModal}>Modify Profile</button>
@@ -90,7 +88,6 @@ export default function DesktopProfile(){
                                 </div>
                             }
                         </div>
-
                         <div className={styles.userStats}>
                             <p className={styles.userName}>{user?.userName}</p>
                             <div className={styles.stats}>
@@ -99,8 +96,6 @@ export default function DesktopProfile(){
                             </div>
                         </div>
                         <button type="button" className={styles.createPlaylist}>Create a Playlist</button>
-
-
                 </div>
                 <div className={styles.profileLinks}>
                     <p>Link 1</p>
@@ -109,9 +104,6 @@ export default function DesktopProfile(){
                     <p>Link 4</p>
                     <p>Link 5</p>
                 </div>
-
-
-
                 <div className={styles.playlistContainer}>
                     <h2 className={styles.subtitle}>My Playlists</h2>
                     <PlaylistLists></PlaylistLists>

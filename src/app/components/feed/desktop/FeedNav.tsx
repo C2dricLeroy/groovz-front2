@@ -11,6 +11,7 @@ export default function FeedNav() {
             console.error('Error during sign out', error);
         }
     };
+
     return (
         <nav className={styles.nav}>
             <p>LOGO</p>
@@ -22,7 +23,6 @@ export default function FeedNav() {
                 <Link href={'/feed'}>
                     <p className={styles.underline}>Feed</p>
                 </Link>
-
                 <p>link3</p>
             </div>
             <button onClick={signOut}>Log out</button>

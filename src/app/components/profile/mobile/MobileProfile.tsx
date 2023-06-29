@@ -25,7 +25,6 @@ export default function MobileProfile() {
     const [showModal, setShowModal] = useState(false);
     const [newName, setNewName] = useState("");
 
-
     async function handleUpdateName() {
         if (newName && newName.trim() !== "") {
             await User.updateName(newName);
@@ -40,7 +39,6 @@ export default function MobileProfile() {
         } else {
             alert("User name cannot be empty");
         }
-
     }
 
     function handleOpenModal() {
@@ -66,7 +64,6 @@ export default function MobileProfile() {
             const followers = await User.getFollowers();
             const playlists = await Customer.getPlaylists();
 
-
             setUser({
                 userName: name.userName,
                 follows: follows,
@@ -84,11 +81,9 @@ export default function MobileProfile() {
                         <ProfileDrawer/>
                         <p>logo</p>
                     </div>
-
                     <div className={styles.searchBarContainer}>
                         <SearchBar></SearchBar>
                     </div>
-
                 </div>
                 <div className={styles.profilInformationsContainer}>
                     <div className={styles.imageBackground}>
@@ -108,7 +103,6 @@ export default function MobileProfile() {
                         </div>
                     }
                     <Image src={"/profil-de-lutilisateur.png"} alt={"profile picture"} width={100} height={100} className={styles.profileImage}></Image>
-
                     <div className={styles.secondContainer}>
                         <div className={styles.profileStats}>
                             <p className={styles.Stats}>follows {user?.follows.length}</p>
@@ -120,9 +114,7 @@ export default function MobileProfile() {
                             <p className={styles.Stats}>Link3</p>
                         </div>
                     </div>
-
                 </div>
-
                 <div className={styles.playlistContainer}>
                     <h2 className={styles.subtitle}>My playlists</h2>
                     <PlaylistLists></PlaylistLists>
@@ -131,9 +123,6 @@ export default function MobileProfile() {
                     <h2 className={styles.subtitle}>Recently followed</h2>
                     <RecentlyFollowed></RecentlyFollowed>
                 </div>
-
-
-
             </div>
         )
 }

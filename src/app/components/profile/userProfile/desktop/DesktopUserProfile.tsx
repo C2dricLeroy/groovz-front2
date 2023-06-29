@@ -13,7 +13,6 @@ interface IUser {
     userName: string;
     follows: string;
     followers: string;
-
 }
 
 interface DesktopUserProfileProps {
@@ -38,7 +37,6 @@ export default function DesktopUserProfile({ userId }: DesktopUserProfileProps){
             });
             setIsFollowing(following);
         }
-
         fetchUser();
     }, []);
 
@@ -57,12 +55,9 @@ export default function DesktopUserProfile({ userId }: DesktopUserProfileProps){
             <DesktopNav></DesktopNav>
             <div className={styles.container}>
                 <div className={styles.userInformations}>
-
                     <div className={styles.imageContainer}>
                         <Image src={"/profil-de-lutilisateur.png"} alt={"profile picture"} width={250} height={250} className={styles.profileImage}></Image>
-
                     </div>
-
                     <div className={styles.userStats}>
                         <p className={styles.userName}>{user?.userName}</p>
                         <div className={styles.stats}>
@@ -73,8 +68,6 @@ export default function DesktopUserProfile({ userId }: DesktopUserProfileProps){
                     <button type="button" className={styles.createPlaylist} onClick={toggleFollow}>
                         {isFollowing ? 'Unfollow' : 'Follow'}
                     </button>
-
-
                 </div>
                 <div className={styles.profileLinks}>
                     <p>Link 1</p>
@@ -83,9 +76,6 @@ export default function DesktopUserProfile({ userId }: DesktopUserProfileProps){
                     <p>Link 4</p>
                     <p>Link 5</p>
                 </div>
-
-
-
                 <div className={styles.playlistContainer}>
                     <h2 className={styles.subtitle}>My Playlists</h2>
                 </div>

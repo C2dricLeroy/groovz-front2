@@ -14,10 +14,8 @@ export default function PlaylistLists() {
     useEffect(() => {
         function handleResize() {
             if (window.matchMedia('(max-width: 600px)').matches) {
-                // If the screen is 600px wide or less, show 2 items
                 setItemsToShow(2);
             } else if (window.matchMedia('(max-width: 900px)').matches) {
-                // If the screen is 900px wide or less, show 3 items
                 setItemsToShow(3);
             } else if (window.matchMedia('(max-width: 1100px)').matches) {
                 setItemsToShow(5);

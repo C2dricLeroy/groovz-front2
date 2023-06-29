@@ -21,9 +21,6 @@ export default function Feed() {
         }
     };
 
-
-
-
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
