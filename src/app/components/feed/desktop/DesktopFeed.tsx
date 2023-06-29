@@ -5,7 +5,6 @@ import Recommendations from "@/app/components/common/Recommendations";
 import PostCreation from "@/app/components/common/Postcreation";
 import Posts from "@/app/components/common/Posts";
 
-
 export default function DesktopFeed() {
 
     return (
@@ -17,9 +16,6 @@ export default function DesktopFeed() {
                 <PostCreation></PostCreation>
                 <Posts></Posts>
             </div>
-
-
-
         </div>
     )
 }

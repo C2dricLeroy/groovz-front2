@@ -2,7 +2,7 @@ import styles from '@/app/components/common/styles.module.css'
 import {useEffect, useState} from "react";
 import {Customer} from "@/classes/Customer";
 export default function Recommendations() {
-    const [newRecommendations, setRecommendations] = useState([]);
+    const [newRecommendations, setRecommendations] = useState<any>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -19,10 +19,9 @@ export default function Recommendations() {
         fetchRecommendations();
     }, []);
 
-
     return(
         <div className = {styles.recommandationsContainer}>
-            {newRecommendations.map((recommendation) => (
+            {newRecommendations.map((recommendation: any) => (
                 <a
                     key={recommendation.id}
                     href={recommendation.external_urls.spotify}
@@ -37,8 +36,6 @@ export default function Recommendations() {
                     </div>
                 </a>
             ))}
-
-
         </div>
     )
 }

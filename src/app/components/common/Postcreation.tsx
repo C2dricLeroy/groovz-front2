@@ -4,8 +4,8 @@ import styles from '@/app/components/common/styles.module.css'
 import {Post} from "@/classes/Post";
 
 export default function PostCreation() {
-    const [playlists, setPlaylists] = useState([]);
-    const [selectedPlaylist, setSelectedPlaylist] = useState(null);
+    const [playlists, setPlaylists] = useState<{public: boolean, id: string, name: string}[]>([]);
+    const [selectedPlaylist, setSelectedPlaylist] = useState<string | undefined>(undefined);
     const [comment, setComment] = useState("");
     const [loading, setLoading] = useState(true);
 
@@ -23,9 +23,7 @@ export default function PostCreation() {
         fetchPlaylists();
     }, []);
 
-
-
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event: any) => {
         event.preventDefault();
         await Post.sharePlaylist(comment, selectedPlaylist);
     }
@@ -42,7 +40,7 @@ export default function PostCreation() {
                         <select style={{ width: '70%',
                         marginLeft: '5%'}}
                                 placeholder="Select a playlist" value={selectedPlaylist} onChange={(e) => setSelectedPlaylist(e.target.value)}>
-                            {playlists.length > 0 && playlists.map(playlist =>
+                            {(playlists || []).length > 0 && playlists?.map(playlist =>
                                 (playlist.public === true) ? (
                                     <option key={playlist.id} value={playlist.id}>
                                         {playlist.name}

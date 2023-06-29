@@ -7,6 +7,7 @@ interface HomeButtonProps {
     title: string;
     link: string;
 }
+
 function useMyRouter() {
     try {
         return useRouter();
@@ -14,9 +15,10 @@ function useMyRouter() {
         console.log("Failed to use");
     }
 }
-export default function HomeButton({ title, link }: HomeButtonProps) {
 
+export default function HomeButton({ title, link }: HomeButtonProps) {
         const router = useMyRouter();
+
         return (
         <button className={styles.button} type="button" onClick={() => router?.push(link)}>
             {title}

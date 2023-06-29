@@ -4,26 +4,23 @@ import {Post} from "@/classes/Post";
 import Link from "next/link";
 import Spotify from "@/classes/Spotify";
 
-
 export default function Posts() {
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState<any[]>([]);
     const [visiblePosts, setVisiblePosts] = useState<number>(10);
     const [loadedPostsCount, setLoadedPostsCount] = useState(10);
     const [comment, setComment] = useState("");
 
-
     useEffect(() => {
         const fetchPosts = async () => {
             const initialPosts: any = await Post.getPosts();
-
             const playlistIds = initialPosts
-                .filter(post => post.playlistId != null)
-                .map(post => post.playlistId);
+                .filter((post: any) => post.playlistId != null)
+                .map((post: any) => post.playlistId);
 
-            const playlistsPromises = playlistIds.map(id => Spotify.getPlaylistById(id));
+            const playlistsPromises = playlistIds.map((id: any) => Spotify.getPlaylistById(id));
             const playlists = await Promise.all(playlistsPromises);
 
-            const postsWithPlaylists = initialPosts.map((post) => {
+            const postsWithPlaylists = initialPosts.map((post: any) => {
                 if (post.playlistId != null) {
                     const playlist = playlists.find(pl => pl.id === post.playlistId);
                     return { ...post, playlist: playlist };
@@ -31,10 +28,8 @@ export default function Posts() {
                     return post;
                 }
             });
-
             setPosts(postsWithPlaylists);
         };
-
         fetchPosts();
     }, []);
 
@@ -50,22 +45,18 @@ export default function Posts() {
         alert('Comments are not available yet, please retry later!')
     }
 
-    const handleCommentChange = (e) => {
+    const handleCommentChange = (e: any) => {
         setComment(e.target.value);
     };
 
-    console.log(posts)
-
     return (
-
         <div className={styles.posts}>
             {posts.map((post) => {
                 const dateObject = new Date(post.createdAt);
                 const formattedDate = `${dateObject.getFullYear()}-${('0' + (dateObject.getMonth() + 1)).slice(-2)}-${('0' + dateObject.getDate()).slice(-2)}`;
 
-
                 return (
-                    <div className={styles.post}>
+                    <div key={post.postId} className={styles.post}>
                         <div className={styles.postHeader}>
                             <div className={styles.postProfilePicture}>
                                 <Link target="_blank"
@@ -89,7 +80,7 @@ export default function Posts() {
                             <p>{post.text}</p>
                         </div>
                         {post.playlist && (
-                            <div>
+                            <div key={post.playlist.id}>
                                 <Link href={post.playlist.external_urls.spotify}>
                                     <div className={styles.postPlaylistContainer}>
                                         <h4 className={styles.postPlaylistTitle}><b>{post.playlist.name}</b></h4>
@@ -120,7 +111,6 @@ export default function Posts() {
                                 </form>
                             </div>
                             <div className={styles.iconsContainer}>
-
                             </div>
                         </div>
                     </div>

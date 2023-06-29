@@ -16,7 +16,6 @@ export default function ProfileDrawer() {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;
         }
-
         setIsOpen(open);
     };
 
@@ -33,8 +32,6 @@ export default function ProfileDrawer() {
                         <CloseIcon />
                     </IconButton>
                 </div>
-
-
                 <div className={styles.linkContainer}>
                     <Link href={'/feed'}>
                         <p className={styles.underline}>Navigate to feed</p>
@@ -47,9 +44,6 @@ export default function ProfileDrawer() {
                     <p>Link3 </p>
                 </div>
             </div>
-            
-
-
         </Box>
     );
 

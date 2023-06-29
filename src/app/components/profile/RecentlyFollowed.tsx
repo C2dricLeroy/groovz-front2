@@ -29,12 +29,10 @@ export default function RecentlyFollowed() {
             setLoading(false);
         };
         fetchArtists();
-
         handleResize();
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
-
 
     const scrollRight = () => {
         if (scrollIndex < artists.length - itemsToShow) {
@@ -72,7 +70,7 @@ export default function RecentlyFollowed() {
                 />
             </button>
             <div style={{ display: 'flex', overflowX: 'auto', width: '90%', alignItems:'center', justifyContent: 'center', margin: '2vh'}}>
-                {artists.slice(scrollIndex, scrollIndex + itemsToShow).map((artist) => (
+                {artists.slice(scrollIndex, scrollIndex + itemsToShow).map((artist: any) => (
                     <div key={artist.id} style={{display: 'flex', flexDirection: 'column', flex: '0 0 auto', marginRight: '10px', alignItems:'center', justifyContent: 'center' }}>
                         <a href={artist.external_urls.spotify} target="_blank" rel="noopener noreferrer">
                             <img
@@ -86,7 +84,6 @@ export default function RecentlyFollowed() {
                             />
                             <h2 style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: window.innerWidth <= 600 ? '130px' : '200px', margin: '1vh' }}>{artist.name}</h2>
                         </a>
-
                     </div>
                 ))}
             </div>

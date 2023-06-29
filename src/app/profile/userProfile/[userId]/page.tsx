@@ -8,11 +8,9 @@ import styles from '@/styles/styles.module.css';
 import MobileUserProfile from "@/app/components/profile/userProfile/mobile/MobileUserProfile";
 import DesktopUserProfile from "@/app/components/profile/userProfile/desktop/DesktopUserProfile";
 
-
 export default function Profile({params}: { params: { userId: string } }) {
     const [isMobile, setIsMobile] = useState(false);
     const userId = params.userId;
-
 
     useEffect(() => {
         const handleResize = () => {

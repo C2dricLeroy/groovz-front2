@@ -22,13 +22,9 @@ export default function SearchBar() {
     const [searchResults, setSearchResults] = useState<{ userName: string, userId: string }[]>([]);
     const searchRef = useRef<HTMLDivElement>(null);
 
-
-
-
     const handleInputChange = (event: any) => {
         setSearchTerm(event.target.value);
     }
-
 
     const handleSearch = async () => {
         setSearchResults([]);
@@ -63,7 +59,6 @@ export default function SearchBar() {
             }
         }
 
-        // Bind the event listener
         document.addEventListener("mousedown", handleClickOutside);
         return () => {
             // Unbind the event listener on clean up
@@ -90,7 +85,6 @@ export default function SearchBar() {
                     isSearchDone && <div>No results found</div>
                 )}
             </div>
-
         </div>
     )
 }

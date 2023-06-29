@@ -4,7 +4,7 @@ import {Customer} from "@/classes/Customer";
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 
 export default function PlaylistLists() {
-    const [playlists, setPlaylists] = useState([]);
+    const [playlists, setPlaylists] = useState<any>([]);
     const [loading, setLoading] = useState(true);
     const [scrollIndex, setScrollIndex] = useState(0);
     const [isHoveredLeft, setHoveredLeft] = useState(false);
@@ -14,10 +14,8 @@ export default function PlaylistLists() {
     useEffect(() => {
         function handleResize() {
             if (window.matchMedia('(max-width: 600px)').matches) {
-                // If the screen is 600px wide or less, show 2 items
                 setItemsToShow(2);
             } else if (window.matchMedia('(max-width: 900px)').matches) {
-                // If the screen is 900px wide or less, show 3 items
                 setItemsToShow(3);
             } else if (window.matchMedia('(max-width: 1100px)').matches) {
                 setItemsToShow(5);
@@ -72,7 +70,7 @@ export default function PlaylistLists() {
                 />
             </button>
             <div style={{ display: 'flex', overflowX: 'auto', width: '90%', alignItems:'center', justifyContent: 'center', margin: '2vh'}}>
-                {playlists.slice(scrollIndex, scrollIndex + itemsToShow).map((playlist) => (
+                {playlists.slice(scrollIndex, scrollIndex + itemsToShow).map((playlist: any) => (
                     <div key={playlist.id} style={{display: 'flex', flexDirection: 'column', flex: '0 0 auto', marginRight: '10px', alignItems:'center', justifyContent: 'center' }}>
                         <a href={playlist.external_urls.spotify} target="_blank" rel="noopener noreferrer">
                             <img
