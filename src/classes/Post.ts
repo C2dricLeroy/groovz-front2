@@ -3,7 +3,7 @@ import {Buffer} from "buffer";
 import axios from "axios";
 
 export class Post {
-    static async sharePlaylist(text, playlist) {
+    static async sharePlaylist(text: string, playlist: any) {
         try {
             let token = await User.getToken();
             const now = new Date();
@@ -19,11 +19,11 @@ export class Post {
 
                     });
                     return response.data;
-                } catch (error) {
+                } catch (error: any) {
                     throw new Error(`Failed to share the Playlist : ${error.message}`)
                 }
             }
-        } catch (error) {
+        } catch (error: any) {
             console.error(error);
             return null;
         }
@@ -40,11 +40,11 @@ export class Post {
                     let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
                     const response = await axios.get(`http://217.160.238.71:3333/post/${payload.userId}?limit=${limit}&skip=${skip}`)
                     return response.data;
-                } catch (error) {
+                } catch (error: any) {
                     throw new Error(`Failed to share the Playlist : ${error.message}`)
                 }
             }
-        } catch (error) {
+        } catch (error: any) {
             throw new Error(`Failed to Get UserId ${error.message}`)
         }
     }
@@ -58,11 +58,11 @@ export class Post {
                     let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
                     const response = await axios.get(`http://217.160.238.71:3333/post/other/${payload.userId}?skip=${skip}`)
                     return response.data;
-                } catch (error) {
+                } catch (error: any) {
                     throw new Error(`Failed to share the Playlist : ${error.message}`)
                 }
             }
-        } catch (error) {
+        } catch (error: any) {
             throw new Error(`Failed to Get UserId ${error.message}`)
         }
     }

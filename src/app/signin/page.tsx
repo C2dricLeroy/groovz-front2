@@ -54,7 +54,7 @@ function Login() {
                     <button className={styles.button} type="submit">Submit</button>
                 </form>
                 <Link href="/signup">
-                    <p className={styles.underline}>Don't have an account? Signup</p>
+                    <p className={styles.underline}>Don&apost have an account? Signup</p>
                 </Link>
             </div>
         </div>
