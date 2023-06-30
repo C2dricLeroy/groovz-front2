@@ -1,4 +1,5 @@
-FROM node:14-slim
+FROM node:18-alpine
 COPY . .
+RUN npm install
 EXPOSE 3000
-CMD ["/bin/bash", "-c","npm install && npm run start"]
+CMD ["/bin/bash", "-c","npm run start"]
