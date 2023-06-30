@@ -28,7 +28,7 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            cd /home/${{ secrets.SERVER_USERNAME }}/app
+            cd /${{ secrets.SERVER_USERNAME }}/app
             docker build -t next-app:latest .
             docker stop next-app || true
             docker rm next-app || true
