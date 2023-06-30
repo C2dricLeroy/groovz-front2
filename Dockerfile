@@ -12,7 +12,7 @@ WORKDIR /app
 COPY . .
 
 # Install all the dependencies
-RUN npm install
+RUN NODE_ENV=development npm i
 
 # Generate the build of the application
 RUN npm run build
