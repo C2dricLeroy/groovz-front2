@@ -1,7 +1,7 @@
 FROM node:18.5 as builder
 WORKDIR /app
 COPY package*.json ./
-RUN npm install -y
+RUN npm install - --timeout=300000
 COPY . .
 RUN npm run build
 
