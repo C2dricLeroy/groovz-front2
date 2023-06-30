@@ -1,12 +1,32 @@
-FROM stable-slim
+# Stage 1: Compile and Build angular codebase
 
-RUN apt update && apt upgrade -y && apt install curl -y  \
-    curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -  \
-    sudo apt policy nodejs -y && sudo apt install nodejs -y  \
-    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - \
-    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list \
-    sudo apt install yarn && npx yarn install && npx yarn build
+# Use official node image as the base image
+FROM node:lts as build
 
+RUN npm install -g http-server
+
+# Set the working directory
+WORKDIR /app
+
+# Add the source code to app
 COPY . .
-EXPOSE 3000
-CMD ["/bin/bash", "-c","npx yarn start"]
+
+# Install all the dependencies
+RUN npm install
+
+# Generate the build of the application
+RUN npm run build --configuration production
+
+# Stage 2: Serve app with nginx server
+
+# Use official nginx image as the base image
+FROM nginx:latest
+# Copy the build output to replace the default nginx contents.
+COPY --from=build /app/dist/bank-root-front /usr/share/nginx/html
+
+COPY nginx/nginx.conf /etc/nginx/nginx.conf
+
+# Expose port 80
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
