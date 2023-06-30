@@ -1,5 +1,5 @@
 FROM node:18-slim
 COPY . .
-RUN npm install
+RUN yarn install
 EXPOSE 3000
-CMD ["/bin/bash", "-c","npm run start"]
+CMD ["/bin/bash", "-c","yarn run start"]
