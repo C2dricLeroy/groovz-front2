@@ -1,5 +1,5 @@
-FROM node:18-slim
+FROM node:18-slim-buster
 COPY . .
-RUN apt-get install -y yarn && yarn install
+RUN yarn install
 EXPOSE 3000
 CMD ["/bin/bash", "-c","yarn run start"]
