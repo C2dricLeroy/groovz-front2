@@ -22,7 +22,7 @@ RUN npm run build --configuration production
 # Use official nginx image as the base image
 FROM nginx:latest
 # Copy the build output to replace the default nginx contents.
-COPY --from=build /app/dist/bank-root-front /usr/share/nginx/html
+COPY --from=build /app/dist/groovz-front2 /usr/share/nginx/html
 
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
 
