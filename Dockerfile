@@ -1,11 +1,12 @@
-FROM node:18.5 as builder
+FROM node:18 as builder
 WORKDIR /app
 COPY package*.json ./
-RUN npm install - --timeout=300000
+RUN npm install
 COPY . .
 RUN npm run build
+EXPOSE 3000
 
-FROM node:18.5-alpine
+FROM node:18-slim
 WORKDIR /app
 COPY --from=builder /app .
 CMD ["npm", "start"]
