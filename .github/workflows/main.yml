@@ -20,7 +20,6 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
             docker stop next-app
-            docker stop next-app
             docker system prune -a -f  
 
       - name: Send files to server
