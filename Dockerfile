@@ -15,7 +15,8 @@ COPY . .
 RUN npm install
 
 # Generate the build of the application
-RUN npm run build --configuration production
+RUN npm run build
 
+EXPOSE 3000
 
 CMD ["nginx", "-g", "daemon off;"]
