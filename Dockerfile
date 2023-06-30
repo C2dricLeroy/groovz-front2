@@ -1,4 +1,4 @@
-FROM node:18-slim-buster
+FROM node:20-buster-slim
 COPY . .
 RUN yarn install
 EXPOSE 3000
