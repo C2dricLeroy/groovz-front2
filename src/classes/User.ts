@@ -17,7 +17,7 @@ export class User {
             let token = await this.getToken();
             if (token !== null) {
                 let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
-                const response = await axios.get(`https://217.160.238.71:3333/user/name/${payload.userId}`, {
+                const response = await axios.get(`http://217.160.238.71:3333/user/name/${payload.userId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 return response.data;
@@ -33,7 +33,7 @@ export class User {
             let token = await this.getToken();
             if (token !== null) {
                 let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
-                const response = await axios.get(`https://217.160.238.71:3333/user/follows/${payload.userId}`, {
+                const response = await axios.get(`http://217.160.238.71:3333/user/follows/${payload.userId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 return response.data;
@@ -49,7 +49,7 @@ export class User {
             let token = await this.getToken();
             if (token !== null) {
                 let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
-                const response = await axios.get(`https://217.160.238.71:3333/user/followers/${payload.userId}`, {
+                const response = await axios.get(`http://217.160.238.71:3333/user/followers/${payload.userId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 return response.data;
@@ -64,7 +64,7 @@ export class User {
         try {
             let token = await this.getToken();
             if (token !== null) {
-                const response = await axios.get(`https://217.160.238.71:3333/user/name/${id}`, {
+                const response = await axios.get(`http://217.160.238.71:3333/user/name/${id}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 return response.data;
@@ -79,7 +79,7 @@ export class User {
         try {
             let token = await this.getToken();
             if (token !== null) {
-                const response = await axios.get(`https://217.160.238.71:3333/user/followers/${userId}`, {
+                const response = await axios.get(`http://217.160.238.71:3333/user/followers/${userId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 return response.data;
@@ -94,7 +94,7 @@ export class User {
         try {
             let token = await this.getToken();
             if (token !== null) {
-                const response = await axios.get(`https://217.160.238.71:3333/user/follows/${userId}`, {
+                const response = await axios.get(`http://217.160.238.71:3333/user/follows/${userId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 return response.data;
@@ -110,7 +110,7 @@ export class User {
             let token = await this.getToken();
             if (token !== null) {
                 let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
-                const response = await axios.patch(`https://217.160.238.71:3333/user/updateName/${payload.userId}`, {
+                const response = await axios.patch(`http://217.160.238.71:3333/user/updateName/${payload.userId}`, {
                     userName: userName
                 });
                 return response.data;
