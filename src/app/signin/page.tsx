@@ -20,7 +20,7 @@ function Login() {
     const signinSubmit = async (e: any) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://217.160.238.71:3333/user/signin', {
+            const response = await axios.post('https://api.groovz.fr/user/signin', {
                 email,
                 password
             });
