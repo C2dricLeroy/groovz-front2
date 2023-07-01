@@ -17,7 +17,7 @@ function Signup() {
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
 
-    const accountStatus = 5;
+    const accountStatus = 1;
     const createdAt = new Date(Date.now());
     const isAdmin = false;
     const isSuspended = false;
