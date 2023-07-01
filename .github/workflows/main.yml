@@ -39,8 +39,6 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            curl -sL https://deb.nodesource.com/setup_18.x | sudo bash -
-            sudo apt-get install -y nodejs
             cd /app
             npm install
             npm run start
