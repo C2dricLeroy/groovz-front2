@@ -47,7 +47,7 @@ function Signup() {
             return;
         }
 
-        axios.post('http://217.160.238.71:3333/user/signup', {
+        axios.post('https://api.groovz.fr:3333/user/signup', {
             username,
             password,
             email,
