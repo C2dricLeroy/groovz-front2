@@ -1,56 +1,44 @@
-name: Build and Deploy Frontend
+name: Deploy Next.js App
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
-  build_and_deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Clear docker context
-        uses: appleboy/ssh-action@master
+      - name: Install Node.js
+        uses: actions/setup-node@v2
         with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USERNAME }}
-          password: ${{ secrets.SERVER_PASSWORD }}
-          script: |
-            docker stop next-app
-            docker system prune -a -f  
+          node-version: 18
 
-      - name: Send files to server
+      - name: Install dependencies and build
+        run: |
+          npm ci
+          npm run build
+
+      - name: SCP files to server
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           source: .
-          target: app
+          target: /app
 
-      - name: Build API Image
+      - name: Execute commands on the server
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            cd /${{ secrets.SERVER_USERNAME }}/app/
-            docker build -t next-app:1.0 .
-
-      - name: Run Docker Image
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USERNAME }}
-          password: ${{ secrets.SERVER_PASSWORD }}
-          script: |
-            docker run -d \
-              --name=next-app \
-              -e CLIENT_SECRET=${{ secrets.CLIENT_SECRET }} \
-              -e CLIENT_ID=${{ secrets.CLIENT_ID }} \
-              -p 3000:3000 \
-              next-app:1.0
+            cd /app
+            npm install
+            npm run start
