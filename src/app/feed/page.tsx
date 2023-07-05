@@ -11,7 +11,6 @@ import DesktopFeed from "@/app/components/feed/desktop/DesktopFeed";
 import MobileFeed from "@/app/components/feed/mobile/MobileFeed";
 
 export default function Feed() {
-    const router = useRouter();
 
     const [isMobile, setIsMobile] = useState(false);
 
