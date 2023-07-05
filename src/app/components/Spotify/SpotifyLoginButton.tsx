@@ -3,7 +3,7 @@ import {User} from "@/classes/User";
 import {Buffer} from "buffer";
 import axios from "axios";
 
-const redirect_uri = encodeURIComponent('http://localhost:3333/spotify/callback');
+const redirect_uri = encodeURIComponent('http://217.160.238.71:3333/spotify/callback');
 
 const scopes = [
     'user-read-private',
@@ -22,7 +22,7 @@ const scope = encodeURIComponent(scopes.join(' '));
 
 export default function SpotifyLoginButton() {
 
-    let client_id = process.env.NEXT_PUBLIC_CLIENT_ID;
+    let client_id = process.env.CLIENT_ID;
 
     const handleLogin = async () => {
 
@@ -36,7 +36,7 @@ export default function SpotifyLoginButton() {
             }
 
 
-            const response = await axios.get(`https://api.groovz.fr:3333/spotify/generateState/${userId}`);
+            const response = await axios.get(`http://217.160.238.71:3333/spotify/generateState/${userId}`);
             const state = await response.data;
 
             window.location.href = `https://accounts.spotify.com/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}&state=${state}`;

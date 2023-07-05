@@ -12,14 +12,6 @@ import MobileFeed from "@/app/components/feed/mobile/MobileFeed";
 
 export default function Feed() {
     const router = useRouter();
-    const signOut = async () => {
-        try {
-            localStorage.removeItem('userToken');
-            router.push('/');
-        } catch (error) {
-            console.error('Error during sign out', error);
-        }
-    };
 
     const [isMobile, setIsMobile] = useState(false);
 

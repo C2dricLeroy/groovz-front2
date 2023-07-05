@@ -13,6 +13,7 @@ export default function Posts() {
     useEffect(() => {
         const fetchPosts = async () => {
             const initialPosts: any = await Post.getPosts();
+            console.log(initialPosts)
             const playlistIds = initialPosts
                 .filter((post: any) => post.playlistId != null)
                 .map((post: any) => post.playlistId);

@@ -1,4 +1,5 @@
 .spotifyLoginButton {
+
     display: inline-block;
     padding: 10px 20px;
     font-size: 16px;
@@ -6,15 +7,15 @@
     text-align: center;
     text-decoration: none;
     color: #ffffff;
-    background-color: #1DB954; /* Couleur verte de Spotify */
+    background-color: #1DB954;
     border-radius: 30px;
     transition: background-color 0.2s ease;
 }
 
 .spotifyLoginButton:hover {
-    background-color: #1ED760; /* Couleur verte plus claire au survol */
+    background-color: #1ED760;
 }
 
 .spotifyLoginButton:active {
-    background-color: #1DB954; /* Couleur verte plus foncée lorsqu'on clique sur le bouton */
+    background-color: #1DB954;
 }
