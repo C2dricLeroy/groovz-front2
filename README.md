@@ -1,34 +1,39 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Groovz
 
-## Getting Started
+## Overview
 
-First, run the development server:
+Groovz is a modern music application that allows users to discover new music, create playlists and share them with their friends.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Key Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. **Music Discovery:** Discover new music based on your listening habits.
+2. **Playlist Creation:** Create custom playlists and share them with your friends.
+3. **Social Features:** Follow your friends and see what they're listening to.
+4. **And More:** There's so much more to discover with Groovz!
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Technology Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Groovz is built with a variety of modern technologies to provide the best user experience.
 
-## Learn More
+- **Frontend:** (Next.js)
+- **Backend:** (Nest.js)
+- **Database:** (PostgreSQL)
 
-To learn more about Next.js, take a look at the following resources:
+## How to Install (need an update)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Here are the steps to install Groovz on your local machine:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. Clone the repository: `git clone <repository_url>`
+2. Navigate to the directory: `cd groovz`
+3. Install dependencies: `npm install`
+4. Start the server: `npm start`
 
-## Deploy on Vercel
+## Contributing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+We welcome contributions! Please see our contributing guide for more details.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## License
+
+Groovz is licensed under the MIT License. Please see the [license](LICENSE) file for more details.
+
+Thank you for considering Groovz!
