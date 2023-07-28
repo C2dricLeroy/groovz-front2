@@ -37,7 +37,7 @@ export default function SearchBar() {
             if (token !== null) {
                 let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
                 let userId = payload.userId;
-                const response = await axios.get(`http://localhost:3333/search/${searchTerm}`, {
+                const response = await axios.get(process.env.NEXT_PUBLIC_SEVRER_HTTP + `/search/${searchTerm}`, {
                     headers: {Authorization: `Bearer ${token}`}
                 });
                 let results = response.data.filter((item: UserDataType) => item.userId !== userId);

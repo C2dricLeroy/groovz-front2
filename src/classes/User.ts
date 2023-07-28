@@ -2,7 +2,7 @@ import {Buffer} from "buffer";
 import axios from "axios";
 
 
-function getFullName(user) {
+function getFullName(user: any) {
     return user.firstName + ' ' + user.lastName;
 }
 

@@ -3,7 +3,7 @@ import {User} from "@/classes/User";
 import {Buffer} from "buffer";
 import axios from "axios";
 
-const redirect_uri = encodeURIComponent('http://217.160.238.71:3333/spotify/callback');
+const redirect_uri = encodeURIComponent(process.env.NEXT_PUBLIC_SERVER_HTTP + '/spotify/callback');
 
 const scopes = [
     'user-read-private',
@@ -36,7 +36,7 @@ export default function SpotifyLoginButton() {
             }
 
 
-            const response = await axios.get(`http://217.160.238.71:3333/spotify/generateState/${userId}`);
+            const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/spotify/generateState/${userId}`);
             const state = await response.data;
 
             window.location.href = `https://accounts.spotify.com/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}&state=${state}`;

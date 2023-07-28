@@ -10,7 +10,7 @@ export class Post {
             if (token !== null) {
                 try {
                     let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
-                    const response = await axios.post(`http://217.160.238.71:3333/post/share`, {
+                    const response = await axios.post(process.env.NEXT_PUBLIC_SERVER_HTTP + `/post/share`, {
                         userId: payload.userId,
                         text: text,
                         postTypeId: 1,
@@ -38,7 +38,7 @@ export class Post {
             if (token !== null) {
                 try {
                     let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
-                    const response = await axios.get(`http://217.160.238.71:3333/post/${payload.userId}?limit=${limit}&skip=${skip}`)
+                    const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/post/${payload.userId}?limit=${limit}&skip=${skip}`)
                     return response.data;
                 } catch (error: any) {
                     throw new Error(`Failed to share the Playlist : ${error.message}`)
@@ -56,7 +56,7 @@ export class Post {
             if (token !== null) {
                 try {
                     let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
-                    const response = await axios.get(`http://217.160.238.71:3333/post/other/${payload.userId}?skip=${skip}`)
+                    const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/post/other/${payload.userId}?skip=${skip}`)
                     return response.data;
                 } catch (error: any) {
                     throw new Error(`Failed to share the Playlist : ${error.message}`)
