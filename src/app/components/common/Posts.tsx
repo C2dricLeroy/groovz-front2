@@ -1,8 +1,8 @@
 import {useEffect, useState} from "react";
 import styles from '@/app/components/common/styles.module.css'
-import {Post} from "@/classes/Post";
+import {Post} from "@/models/Post";
 import Link from "next/link";
-import Spotify from "@/classes/Spotify";
+import Spotify from "@/models/Spotify";
 
 export default function Posts() {
     const [posts, setPosts] = useState<any[]>([]);

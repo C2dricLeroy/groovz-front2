@@ -2,10 +2,10 @@
 import Link from "next/link";
 import styles from "@/app/components/profile/mobile/styles.module.css";
 import {useEffect, useState} from "react";
-import {User} from "@/classes/User";
+import {User} from "@/models/User";
 import TemporaryDrawer from "@/app/components/profile/mobile/ProfileDrawer";
 import Image from "next/image";
-import {UserFollow} from "@/classes/UserFollow";
+import {UserFollow} from "@/models/UserFollow";
 import SearchBar from "@/app/components/common/mobile/SearchBar";
 
 interface IUser {

@@ -2,11 +2,11 @@
 import Link from "next/link";
 import styles from "@/app/components/profile/mobile/styles.module.css";
 import {useEffect, useState} from "react";
-import {User} from "@/classes/User";
+import {User} from "@/models/User";
 import TemporaryDrawer from "@/app/components/profile/mobile/ProfileDrawer";
 import Image from "next/image";
 import SearchBar from "@/app/components/common/mobile/SearchBar";
-import {Customer} from "@/classes/Customer";
+import {Customer} from "@/models/Customer";
 import PlaylistLists from "@/app/components/profile/PlaylistLists";
 import RecentlyFollowed from "@/app/components/profile/RecentlyFollowed";
 import MobileDrawer from "@/app/components/profile/mobile/ProfileDrawer";

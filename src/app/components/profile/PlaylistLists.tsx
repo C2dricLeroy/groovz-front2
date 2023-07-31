@@ -1,6 +1,6 @@
 "use client";
 import {useEffect, useState} from "react";
-import {Customer} from "@/classes/Customer";
+import {Customer} from "@/models/Customer";
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 
 export default function PlaylistLists() {

@@ -1,5 +1,5 @@
 import styles from "@/app/components/Spotify/styles.module.css"
-import {User} from "@/classes/User";
+import {User} from "@/models/User";
 import {Buffer} from "buffer";
 import axios from "axios";
 

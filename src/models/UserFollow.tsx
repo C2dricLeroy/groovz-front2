@@ -1,6 +1,6 @@
 import {Buffer} from "buffer";
 import axios from "axios";
-import {User} from "@/classes/User";
+import {User} from "@/models/User";
 
 
 export class UserFollow {

@@ -2,7 +2,7 @@
 
 import {useRouter} from "next/navigation";
 import {useEffect, useState} from "react";
-import {User} from "@/classes/User";
+import {User} from "@/models/User";
 import Link from "next/link";
 import styles from '@/styles/styles.module.css';
 import MobileUserProfile from "@/app/components/profile/userProfile/mobile/MobileUserProfile";

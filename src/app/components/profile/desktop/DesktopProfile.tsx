@@ -3,7 +3,7 @@
 import Link from "next/link";
 import styles from "@/app/components/profile/desktop/styles.module.css";
 import {useEffect, useState} from "react";
-import {User} from "@/classes/User";
+import {User} from "@/models/User";
 import DesktopHeader from "@/app/components/common/desktop/DesktopHeader";
 import DesktopNav from "@/app/components/profile/desktop/DesktopNav";
 import Image from "next/image";

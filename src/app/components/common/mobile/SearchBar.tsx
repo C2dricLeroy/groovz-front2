@@ -5,7 +5,7 @@ import { styled } from '@mui/system';
 import {useEffect, useRef, useState} from "react";
 import axios from "axios";
 import {Buffer} from "buffer";
-import {User} from "@/classes/User";
+import {User} from "@/models/User";
 import Link from "next/link";
 
 interface UserDataType {

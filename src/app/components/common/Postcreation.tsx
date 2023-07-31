@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
-import {Customer} from "@/classes/Customer";
+import {Customer} from "@/models/Customer";
 import styles from '@/app/components/common/styles.module.css'
-import {Post} from "@/classes/Post";
+import {Post} from "@/models/Post";
 
 export default function PostCreation() {
     const [playlists, setPlaylists] = useState<{public: boolean, id: string, name: string}[]>([]);

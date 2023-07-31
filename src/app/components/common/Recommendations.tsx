@@ -1,6 +1,6 @@
 import styles from '@/app/components/common/styles.module.css'
 import {useEffect, useState} from "react";
-import {Customer} from "@/classes/Customer";
+import {Customer} from "@/models/Customer";
 export default function Recommendations() {
     const [newRecommendations, setRecommendations] = useState<any>([]);
     const [loading, setLoading] = useState(true);
