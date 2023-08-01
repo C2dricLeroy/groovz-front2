@@ -60,11 +60,8 @@ export default function useProfileViewModel() {
 
     return {
         user,
-        setUser,
         newName,
-        setNewName,
         showModal,
-        setShowModal,
         handleUpdateName,
         handleOpenModal,
         handleCloseModal,

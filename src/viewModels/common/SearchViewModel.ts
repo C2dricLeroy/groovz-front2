@@ -38,10 +38,10 @@ export function useSearchViewModel() {
 
     return {
         searchTerm,
-        isSearchDone,
-        searchResults,
         setSearchResults,
         setIsSearchDone,
+        isSearchDone,
+        searchResults,
         handleInputChange,
         handleSearch,
     }

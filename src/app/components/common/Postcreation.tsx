@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {Customer} from "@/models/Customer";
 import styles from '@/app/components/common/styles.module.css'
 import {Post} from "@/models/Post";
-import {usePostCreationViewModel} from "@/app/viewModels/common/PostCreationViewModel";
+import {usePostCreationViewModel} from "@/viewModels/common/PostCreationViewModel";
 
 export default function PostCreation() {
     const PostCreationViewModel = usePostCreationViewModel();

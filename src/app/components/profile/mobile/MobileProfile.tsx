@@ -5,7 +5,7 @@ import SearchBar from "@/app/components/common/SearchBar";
 import PlaylistLists from "@/app/components/profile/PlaylistLists";
 import RecentlyFollowed from "@/app/components/profile/RecentlyFollowed";
 import ProfileDrawer from "@/app/components/profile/mobile/ProfileDrawer";
-import useProfileViewModel from "@/app/viewModels/profile/ProfileviewModel";
+import useProfileViewModel from "@/viewModels/profile/ProfileviewModel";
 
 export default function MobileProfile() {
     const ProfileViewModel = useProfileViewModel();

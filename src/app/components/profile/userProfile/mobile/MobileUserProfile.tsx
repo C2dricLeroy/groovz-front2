@@ -7,7 +7,7 @@ import TemporaryDrawer from "@/app/components/profile/mobile/ProfileDrawer";
 import Image from "next/image";
 import {UserFollow} from "@/models/UserFollow";
 import SearchBar from "@/app/components/common/SearchBar";
-import useUserProfileViewModel from "@/app/viewModels/profile/userProfile/UserProfileViewModel";
+import useUserProfileViewModel from "@/viewModels/profile/userProfile/UserProfileViewModel";
 
 interface IUser {
     userName: string;

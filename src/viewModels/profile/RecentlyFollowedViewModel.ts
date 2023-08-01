@@ -46,11 +46,7 @@ export default function useRecentlyFollowedViewModel() {
         scrollRight,
         scrollIndex,
         artists,
-        setArtists,
         loading,
-        setLoading,
-        setScrollIndex,
         itemsToShow,
-        setItemsToShow
     }
 }

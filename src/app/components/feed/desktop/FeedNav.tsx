@@ -1,7 +1,7 @@
 import styles from "@/app/components/feed/desktop/styles.module.css"
 import Link from "next/link";
 import {useRouter} from "next/navigation";
-import useFeedNavViewModel from "@/app/viewModels/feed/desktop/FeedNavViewModel";
+import useFeedNavViewModel from "@/viewModels/feed/desktop/FeedNavViewModel";
 export default function FeedNav() {
 
     const FeedNavViewModel = useFeedNavViewModel();

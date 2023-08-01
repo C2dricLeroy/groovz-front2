@@ -3,7 +3,7 @@ import styles from '@/app/components/common/styles.module.css'
 import {Post} from "@/models/Post";
 import Link from "next/link";
 import Spotify from "@/models/Spotify";
-import usePostViewModel from "@/app/viewModels/common/PostViewModel";
+import usePostViewModel from "@/viewModels/common/PostViewModel";
 
 export default function Posts() {
     const PostViewModel = usePostViewModel();

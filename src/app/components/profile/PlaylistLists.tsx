@@ -2,7 +2,7 @@
 import {useEffect, useState} from "react";
 import {Customer} from "@/models/Customer";
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
-import usePlaylistViewModel from "@/app/viewModels/profile/PlaylistListViewModel";
+import usePlaylistViewModel from "@/viewModels/profile/PlaylistListViewModel";
 
 export default function PlaylistLists() {
     const [isHoveredLeft, setHoveredLeft] = useState(false);

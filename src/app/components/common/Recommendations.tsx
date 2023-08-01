@@ -1,7 +1,7 @@
 import styles from '@/app/components/common/styles.module.css'
 import {useEffect, useState} from "react";
 import {Customer} from "@/models/Customer";
-import useRecommendationViewModel from "@/app/viewModels/common/RecommendationViewModel";
+import useRecommendationViewModel from "@/viewModels/common/RecommendationViewModel";
 export default function Recommendations() {
     const recommendationViewModel = useRecommendationViewModel();
 

@@ -2,7 +2,7 @@
 import {useEffect, useState} from "react";
 import {Customer} from "@/models/Customer";
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
-import useRecentlyFollowedViewModel from "@/app/viewModels/profile/RecentlyFollowedViewModel";
+import useRecentlyFollowedViewModel from "@/viewModels/profile/RecentlyFollowedViewModel";
 
 export default function RecentlyFollowed() {
     const [isHoveredLeft, setHoveredLeft] = useState(false);

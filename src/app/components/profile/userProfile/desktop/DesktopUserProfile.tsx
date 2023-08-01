@@ -8,7 +8,7 @@ import DesktopHeader from "@/app/components/common/desktop/DesktopHeader";
 import DesktopNav from "@/app/components/profile/desktop/DesktopNav";
 import Image from "next/image";
 import {UserFollow} from "@/models/UserFollow";
-import useUserProfileViewModel from "@/app/viewModels/profile/userProfile/UserProfileViewModel";
+import useUserProfileViewModel from "@/viewModels/profile/userProfile/UserProfileViewModel";
 
 interface DesktopUserProfileProps {
     userId: string;

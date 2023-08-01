@@ -9,7 +9,7 @@ import DesktopNav from "@/app/components/profile/desktop/DesktopNav";
 import Image from "next/image";
 import PlaylistLists from "@/app/components/profile/PlaylistLists";
 import RecentlyFollowed from "@/app/components/profile/RecentlyFollowed";
-import useDesktopProfileViewModel from "@/app/viewModels/profile/ProfileviewModel";
+import useDesktopProfileViewModel from "@/viewModels/profile/ProfileviewModel";
 
 export default function DesktopProfile(){
     const DesktopProfileViewModel = useDesktopProfileViewModel();
