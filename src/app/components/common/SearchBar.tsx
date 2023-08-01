@@ -3,7 +3,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { styled } from '@mui/system';
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { useSearchViewModel } from "@/app/viewModels/SearchViewModel";
+import { useSearchViewModel } from "@/app/viewModels/common/SearchViewModel";
 
 const WhiteSearchIcon = styled(SearchIcon)(({ theme }) => ({
     color: '#ffffff',
