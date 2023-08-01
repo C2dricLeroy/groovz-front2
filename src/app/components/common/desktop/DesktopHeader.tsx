@@ -1,6 +1,7 @@
 import styles from "@/app/components/profile/desktop/styles.module.css"
-import SearchBar from "@/app/components/common/desktop/SearchBar";
+import SearchBar from "@/app/components/common/SearchBar";
 import SpotifyLoginButton from "@/app/components/Spotify/SpotifyLoginButton";
+
 export default function DesktopHeader() {
     return (
         <header className={styles.header}>

@@ -14,7 +14,7 @@ class Spotify {
         }
         let payload = JSON.parse(Buffer.from(splitToken, 'base64').toString());
         try{
-            const response = await axios.get(`http://217.160.238.71:3333/spotify/getSpotifyAccess/${payload.userId}`);
+            const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/spotify/getSpotifyAccess/${payload.userId}`);
             const spotifyToken = response.data.spotifyAccessToken;
             const refreshToken = response.data.spotifyRefreshToken;
             return { spotifyToken, refreshToken };
@@ -44,7 +44,7 @@ class Spotify {
 
             if (error.response && error.response.status === 401) {
                 const originalRequest = error.config;
-                const res = await axios.post(`http://217.160.238.71:3333/spotify/refreshToken/${payload.userId}`, {
+                const res = await axios.post(process.env.NEXT_PUBLIC_SERVER_HTTP + `/spotify/refreshToken/${payload.userId}`, {
                     refreshToken: refreshToken
                 });
                 if (res.status === 200) {

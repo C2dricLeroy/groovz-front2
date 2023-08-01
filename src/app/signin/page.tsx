@@ -21,7 +21,7 @@ function Login() {
     const signinSubmit = async (e: any) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://217.160.238.71:3333/user/signin', {
+            const response = await axios.post(process.env.NEXT_PUBLIC_SERVER_HTTP + '/user/signin', {
                 email,
                 password
             });
@@ -55,7 +55,7 @@ function Login() {
                     <button className={styles.button} type="submit">Submit</button>
                 </form>
                 <Link href="/signup">
-                    <p className={styles.underline}>Don&apost have an account? Signup</p>
+                    <p className={styles.underline}>Don&apos;t have an account? Signup</p>
                 </Link>
             </div>
         </div>

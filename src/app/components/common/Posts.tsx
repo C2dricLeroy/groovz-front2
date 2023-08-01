@@ -1,60 +1,18 @@
 import {useEffect, useState} from "react";
 import styles from '@/app/components/common/styles.module.css'
-import {Post} from "@/classes/Post";
+import {Post} from "@/models/Post";
 import Link from "next/link";
-import Spotify from "@/classes/Spotify";
+import Spotify from "@/models/Spotify";
+import usePostViewModel from "@/viewModels/common/PostViewModel";
 
 export default function Posts() {
-    const [posts, setPosts] = useState<any[]>([]);
-    const [visiblePosts, setVisiblePosts] = useState<number>(10);
-    const [loadedPostsCount, setLoadedPostsCount] = useState(10);
-    const [comment, setComment] = useState("");
-
-    useEffect(() => {
-        const fetchPosts = async () => {
-            const initialPosts: any = await Post.getPosts();
-            console.log(initialPosts)
-            const playlistIds = initialPosts
-                .filter((post: any) => post.playlistId != null)
-                .map((post: any) => post.playlistId);
-
-            const playlistsPromises = playlistIds.map((id: any) => Spotify.getPlaylistById(id));
-            const playlists = await Promise.all(playlistsPromises);
-
-            const postsWithPlaylists = initialPosts.map((post: any) => {
-                if (post.playlistId != null) {
-                    const playlist = playlists.find(pl => pl.id === post.playlistId);
-                    return { ...post, playlist: playlist };
-                } else {
-                    return post;
-                }
-            });
-            setPosts(postsWithPlaylists);
-        };
-        fetchPosts();
-    }, []);
-
-    const handleLoadMore = async () => {
-        const newPosts = await Post.getOtherPosts(loadedPostsCount);
-        setPosts((prevPosts) => [...prevPosts, ...newPosts]);
-        setVisiblePosts((prevVisiblePosts) => prevVisiblePosts + 5);
-        setLoadedPostsCount(prevCount => prevCount + 10);
-    };
-
-    const handleCommentSubmit = async () => {
-        console.log('Thanks for commenting')
-        alert('Comments are not available yet, please retry later!')
-    }
-
-    const handleCommentChange = (e: any) => {
-        setComment(e.target.value);
-    };
+    const PostViewModel = usePostViewModel();
 
     return (
         <div className={styles.posts}>
-            {posts.map((post) => {
+            {PostViewModel.posts.map((post) => {
                 const dateObject = new Date(post.createdAt);
-                const formattedDate = `${dateObject.getFullYear()}-${('0' + (dateObject.getMonth() + 1)).slice(-2)}-${('0' + dateObject.getDate()).slice(-2)}`;
+                const formattedDate = PostViewModel.formatDate(dateObject);
 
                 return (
                     <div key={post.postId} className={styles.post}>
@@ -98,12 +56,12 @@ export default function Posts() {
                                     <p>comment</p>
                                     <p>comment</p>
                                 </div>
-                                <form onSubmit={handleCommentSubmit}>
+                                <form onSubmit={PostViewModel.handleCommentSubmit}>
                                     <input
                                         type="text"
                                         placeholder="Add a comment..."
-                                        value={comment}
-                                        onChange={handleCommentChange}
+                                        value={PostViewModel.comment}
+                                        onChange={PostViewModel.handleCommentChange}
                                         className={styles.commentInput}
                                     />
                                     <button type="submit" className={styles.commentSubmitButton}>
@@ -117,7 +75,7 @@ export default function Posts() {
                     </div>
                 );
             })}
-            <button className={styles.loadMore} onClick={handleLoadMore}>Load more posts</button>
+            <button className={styles.loadMore} onClick={PostViewModel.handleLoadMore}>Load more posts</button>
         </div>
     )
 }

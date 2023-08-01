@@ -3,51 +3,19 @@
 import Link from "next/link";
 import styles from "@/app/components/profile/desktop/styles.module.css";
 import {useEffect, useState} from "react";
-import {User} from "@/classes/User";
+import {User} from "@/models/User";
 import DesktopHeader from "@/app/components/common/desktop/DesktopHeader";
 import DesktopNav from "@/app/components/profile/desktop/DesktopNav";
 import Image from "next/image";
-import {UserFollow} from "@/classes/UserFollow";
-
-interface IUser {
-    userName: string;
-    follows: string;
-    followers: string;
-}
+import {UserFollow} from "@/models/UserFollow";
+import useUserProfileViewModel from "@/viewModels/profile/userProfile/UserProfileViewModel";
 
 interface DesktopUserProfileProps {
     userId: string;
 }
+
 export default function DesktopUserProfile({ userId }: DesktopUserProfileProps){
-    const [user, setUser] = useState<IUser | null>(null);
-    const [isFollowing, setIsFollowing] = useState<boolean>(false);
-
-    useEffect(() => {
-        async function fetchUser() {
-
-            const name = await User.getUserNameById(userId);
-            const follows = await User.getFollowsById(userId);
-            const followers = await User.getFollowersById(userId);
-            const following = await UserFollow.isUserFollowed(userId);
-
-            setUser({
-                userName: name.userName,
-                follows: follows,
-                followers: followers
-            });
-            setIsFollowing(following);
-        }
-        fetchUser();
-    }, []);
-
-    const toggleFollow = async () => {
-        if (isFollowing) {
-            await UserFollow.unfollow(userId);
-        } else {
-            await UserFollow.follow(userId);
-        }
-        setIsFollowing(!isFollowing);
-    }
+    const { user, isFollowing, toggleFollow } = useUserProfileViewModel(userId);
 
     return (
         <div className={styles.page}>

@@ -1,58 +1,23 @@
 "use client";
 import {useEffect, useState} from "react";
-import {Customer} from "@/classes/Customer";
+import {Customer} from "@/models/Customer";
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
+import usePlaylistViewModel from "@/viewModels/profile/PlaylistListViewModel";
 
 export default function PlaylistLists() {
-    const [playlists, setPlaylists] = useState<any>([]);
-    const [loading, setLoading] = useState(true);
-    const [scrollIndex, setScrollIndex] = useState(0);
     const [isHoveredLeft, setHoveredLeft] = useState(false);
     const [isHoveredRight, setHoveredRight] = useState(false);
-    const [itemsToShow, setItemsToShow] = useState(5);
 
-    useEffect(() => {
-        function handleResize() {
-            if (window.matchMedia('(max-width: 600px)').matches) {
-                setItemsToShow(2);
-            } else if (window.matchMedia('(max-width: 900px)').matches) {
-                setItemsToShow(3);
-            } else if (window.matchMedia('(max-width: 1100px)').matches) {
-                setItemsToShow(5);
-            } else {
-                setItemsToShow(6)
-            }
-        }
-        const fetchPlaylists = async () => {
-            const playlists = await Customer.getPlaylists();
-            setPlaylists(playlists.items);
-            setLoading(false);
-        };
-        fetchPlaylists();
-        handleResize();
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    const playlistViewModel = usePlaylistViewModel();
 
-    const scrollRight = () => {
-        if (scrollIndex < playlists.length - itemsToShow) {
-            setScrollIndex(scrollIndex + 1);
-        }
-    };
-    const scrollLeft = () => {
-        if (scrollIndex > 0) {
-            setScrollIndex(scrollIndex - 1);
-        }
-    };
-
-    if (loading) {
+    if (playlistViewModel.loading) {
         return <div>Chargement...</div>;
     }
 
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <button
-                onClick={scrollLeft}
+                onClick={playlistViewModel.scrollLeft}
                 onMouseEnter={() => setHoveredLeft(true)}
                 onMouseLeave={() => setHoveredLeft(false)}
                 style={{
@@ -70,7 +35,7 @@ export default function PlaylistLists() {
                 />
             </button>
             <div style={{ display: 'flex', overflowX: 'auto', width: '90%', alignItems:'center', justifyContent: 'center', margin: '2vh'}}>
-                {playlists.slice(scrollIndex, scrollIndex + itemsToShow).map((playlist: any) => (
+                {playlistViewModel.playlists.slice(playlistViewModel.scrollIndex, playlistViewModel.scrollIndex + playlistViewModel.itemsToShow).map((playlist: any) => (
                     <div key={playlist.id} style={{display: 'flex', flexDirection: 'column', flex: '0 0 auto', marginRight: '10px', alignItems:'center', justifyContent: 'center' }}>
                         <a href={playlist.external_urls.spotify} target="_blank" rel="noopener noreferrer">
                             <img
@@ -89,7 +54,7 @@ export default function PlaylistLists() {
                 ))}
             </div>
             <button
-                onClick={scrollRight}
+                onClick={playlistViewModel.scrollRight}
                 onMouseEnter={() => setHoveredRight(true)}
                 onMouseLeave={() => setHoveredRight(false)}
                 style={{

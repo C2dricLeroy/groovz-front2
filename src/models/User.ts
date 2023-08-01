@@ -1,12 +1,10 @@
 import {Buffer} from "buffer";
 import axios from "axios";
 
-
-function getFullName(user) {
-    return user.firstName + ' ' + user.lastName;
+export interface UserDataType {
+    userName: string;
+    userId: string;
 }
-
-
 
 export class User {
     static async  getToken() {
@@ -18,12 +16,16 @@ export class User {
         }
     }
 
+    static async getFullName(user: any) {
+        return user.firstName + ' ' + user.lastName;
+    }
+
     static async getUserName() {
         try {
             let token = await this.getToken();
             if (token !== null) {
                 let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
-                const response = await axios.get(`http://217.160.238.71:3333/user/name/${payload.userId}`, {
+                const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/user/name/${payload.userId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 return response.data;
@@ -39,7 +41,7 @@ export class User {
             let token = await this.getToken();
             if (token !== null) {
                 let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
-                const response = await axios.get(`http://217.160.238.71:3333/user/follows/${payload.userId}`, {
+                const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/user/follows/${payload.userId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 return response.data;
@@ -55,7 +57,7 @@ export class User {
             let token = await this.getToken();
             if (token !== null) {
                 let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
-                const response = await axios.get(`http://217.160.238.71:3333/user/followers/${payload.userId}`, {
+                const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/user/followers/${payload.userId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 return response.data;
@@ -70,7 +72,7 @@ export class User {
         try {
             let token = await this.getToken();
             if (token !== null) {
-                const response = await axios.get(`http://217.160.238.71:3333/user/name/${id}`, {
+                const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/user/name/${id}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 return response.data;
@@ -85,7 +87,7 @@ export class User {
         try {
             let token = await this.getToken();
             if (token !== null) {
-                const response = await axios.get(`http://217.160.238.71:3333/user/followers/${userId}`, {
+                const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/user/followers/${userId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 return response.data;
@@ -100,7 +102,7 @@ export class User {
         try {
             let token = await this.getToken();
             if (token !== null) {
-                const response = await axios.get(`http://217.160.238.71:3333/user/follows/${userId}`, {
+                const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/user/follows/${userId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 return response.data;
@@ -116,7 +118,7 @@ export class User {
             let token = await this.getToken();
             if (token !== null) {
                 let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
-                const response = await axios.patch(`http://217.160.238.71:3333/user/updateName/${payload.userId}`, {
+                const response = await axios.patch(process.env.NEXT_PUBLIC_SERVER_HTTP + `/user/updateName/${payload.userId}`, {
                     userName: userName
                 });
                 return response.data;
@@ -125,6 +127,20 @@ export class User {
             console.error(error);
             return null;
         }
+    }
+
+    static async searchUsers(searchTerm: string): Promise<UserDataType[]> {
+        let token = await this.getToken();
+        if (token !== null) {
+            let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
+            let userId = payload.userId;
+            const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/search/${searchTerm}`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            let results = response.data.filter((item: UserDataType) => item.userId !== userId);
+            return results;
+        }
+        return [];
     }
 
 }

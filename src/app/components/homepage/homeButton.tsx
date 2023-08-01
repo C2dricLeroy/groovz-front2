@@ -12,7 +12,7 @@ function useMyRouter() {
     try {
         return useRouter();
     } catch {
-        console.log("Failed to use");
+        console.log("Failed to use Router");
     }
 }
 

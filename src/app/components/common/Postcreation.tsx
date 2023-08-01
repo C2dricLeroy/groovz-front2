@@ -1,46 +1,26 @@
 import {useEffect, useState} from "react";
-import {Customer} from "@/classes/Customer";
+import {Customer} from "@/models/Customer";
 import styles from '@/app/components/common/styles.module.css'
-import {Post} from "@/classes/Post";
+import {Post} from "@/models/Post";
+import {usePostCreationViewModel} from "@/viewModels/common/PostCreationViewModel";
 
 export default function PostCreation() {
-    const [playlists, setPlaylists] = useState<{public: boolean, id: string, name: string}[]>([]);
-    const [selectedPlaylist, setSelectedPlaylist] = useState<string | undefined>(undefined);
-    const [comment, setComment] = useState("");
-    const [loading, setLoading] = useState(true);
+    const PostCreationViewModel = usePostCreationViewModel();
 
-    useEffect(() => {
-        const fetchPlaylists = async () => {
-            const playlists = await Customer.getPlaylists();
-
-            setPlaylists(playlists.items);
-
-            if(playlists.items.length > 0) {
-                setSelectedPlaylist(playlists.items[0].id);
-            }
-            setLoading(false);
-        };
-        fetchPlaylists();
-    }, []);
-
-    const handleSubmit = async (event: any) => {
-        event.preventDefault();
-        await Post.sharePlaylist(comment, selectedPlaylist);
-    }
-    if (loading) {
+    if (PostCreationViewModel.loading) {
         return <div>Loading...</div>;
     }
 
     return (
         <div className = {styles.postCreationComponent}>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={PostCreationViewModel.handleSubmit}>
                 <div className={styles.postForm}>
                     <label className = {styles.playlistChoice}>
                         Choose a playlist:
                         <select style={{ width: '70%',
                         marginLeft: '5%'}}
-                                placeholder="Select a playlist" value={selectedPlaylist} onChange={(e) => setSelectedPlaylist(e.target.value)}>
-                            {(playlists || []).length > 0 && playlists?.map(playlist =>
+                                placeholder="Select a playlist" value={PostCreationViewModel.selectedPlaylist} onChange={(e) => PostCreationViewModel.setSelectedPlaylist(e.target.value)}>
+                            {(PostCreationViewModel.playlists || []).length > 0 && PostCreationViewModel.playlists?.map(playlist =>
                                 (playlist.public === true) ? (
                                     <option key={playlist.id} value={playlist.id}>
                                         {playlist.name}
@@ -53,7 +33,7 @@ export default function PostCreation() {
                 <div>
                     <label className = {styles.playlistComment}>
                         <p>Text:</p>
-                        <textarea className={styles.textArea} value={comment} onChange={(e) => setComment(e.target.value)} />
+                        <textarea className={styles.textArea} value={PostCreationViewModel.comment} onChange={(e) => PostCreationViewModel.setComment(e.target.value)} />
                     </label>
                 </div>
                 <button type="submit" className={styles.postSubmitButton}>Poster</button>

@@ -1,4 +1,4 @@
-import Spotify from "@/classes/Spotify";
+import Spotify from "@/models/Spotify";
 
 
 
