@@ -1,4 +1,4 @@
-import styles from "@/app/components/profile/desktop/styles.module.css"
+import styles from "@/app/components/common/styles.module.css"
 import SearchIcon from '@mui/icons-material/Search';
 import { styled } from '@mui/system';
 import { useEffect, useRef } from "react";

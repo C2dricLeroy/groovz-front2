@@ -1,9 +1,8 @@
 import {useState} from "react";
 import styles from "@/app/components/feed/mobile/styles.module.css";
-
 import FeedDrawer from "@/app/components/feed/mobile/FeedDrawer";
 import ProfileDrawer from "@/app/components/profile/mobile/ProfileDrawer";
-import SearchBar from "@/app/components/common/mobile/SearchBar";
+import SearchBar from "@/app/components/common/SearchBar";
 import Recommendations from "@/app/components/common/Recommendations";
 import PostCreation from "@/app/components/common/Postcreation";
 import Posts from "@/app/components/common/Posts";

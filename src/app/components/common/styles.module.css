@@ -248,14 +248,87 @@
     margin-left: 5%;
 }
 
+.searchBox {
+    background: #2f3640;
+    width: 100%;
+    height: 40px;
+    border-radius: 40px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.searchBox:hover > .searchInput {
+    width: 240px;
+    padding: 0 6px;
+}
+
+.searchBox:hover > .searchButton {
+    background: transparent;
+    color : #2f3640;
+}
+
+.searchButton {
+    color: white;
+    float: right;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #2f3640;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+}
+
+.searchInput {
+    border:none;
+    background: none;
+    outline:none;
+    float:left;
+    padding: 0;
+    color: white;
+    font-size: 16px;
+    transition: 0.4s;
+    line-height: 40px;
+    width: 0px;
+}
+
+.searchResults {
+    padding: 10px 20px;
+    border-bottom: 1px solid whitesmoke;
+}
+
+.searchResults:last-child {
+    border-bottom: none;
+}
+
+
+.search {
+    display: flex;
+    flex-direction: column;
+}
+
+.results {
+    z-index: 1000;
+    background-color: #2F3640FF;
+    width: 240px;
+    color: white;
+    border-radius: 10px;
+}
+
+.searchResults:hover {
+    padding: 10px 20px;
+    background-color: #273037;
+}
+
 
 @media (max-width: 1065px) {
-
-
     .textArea {
         width: 50%;
     }
-
 }
 
 @media (max-width: 500px) {
@@ -268,22 +341,18 @@
         align-items: center;
         padding: 0;
     }
-
     .postSubmitButton {
         position: initial;
     }
-
     .playlistComment {
         display: flex;
         flex-direction: column;
         align-items: center;
         margin: 0
     }
-
     .textArea {
         margin: 0;
     }
-
     .posts {
         width: 100%;
         height: auto;
@@ -291,19 +360,37 @@
         padding: 0;
         background-color: #232528;
     }
-
     .post {
         width: 100vw;
         border-radius: 2px;
         margin: 1vh;
     }
-
     .postHeader {
         margin: 0;
     }
-
     .commentsContainer {
         width: 100%;
         margin: 1vh 0;
+    }
+}
+
+@media (min-width: 500px) {
+    .searchBox {
+        position: absolute;
+        width: 40%;
+        max-width: 285px;
+        top: 5%;
+        left: 20%;
+        transform:  translate(-50%,50%);
+        justify-content: flex-start;
+    }
+    .search {
+        justify-content: center;
+        align-items: center;
+    }
+    .results {
+        position: absolute;
+        top: 80%;
+        left: 10%;
     }
 }

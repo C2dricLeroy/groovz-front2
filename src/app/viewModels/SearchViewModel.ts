@@ -2,11 +2,7 @@ import { useState, useCallback } from 'react';
 import axios from 'axios';
 import { User } from "@/models/User";
 import { Buffer } from "buffer";
-
-interface UserDataType {
-    userName: string;
-    userId: string;
-}
+import { UserDataType } from "@/models/User"
 
 export function useSearchViewModel() {
     const [searchTerm, setSearchTerm] = useState('');
