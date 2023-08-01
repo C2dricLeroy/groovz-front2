@@ -1,27 +1,13 @@
 import styles from '@/app/components/common/styles.module.css'
 import {useEffect, useState} from "react";
 import {Customer} from "@/models/Customer";
+import useRecommendationViewModel from "@/app/viewModels/common/RecommendationViewModel";
 export default function Recommendations() {
-    const [newRecommendations, setRecommendations] = useState<any>([]);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        const fetchRecommendations = async () => {
-            try {
-                const newRecommendations = await Customer.getRecommendations()
-                setRecommendations(newRecommendations);
-            } catch (error) {
-                console.error("Failed to fetch new releases:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchRecommendations();
-    }, []);
+    const recommendationViewModel = useRecommendationViewModel();
 
     return(
         <div className = {styles.recommandationsContainer}>
-            {newRecommendations.map((recommendation: any) => (
+            {recommendationViewModel.newRecommendations.map((recommendation: any) => (
                 <a
                     key={recommendation.id}
                     href={recommendation.external_urls.spotify}

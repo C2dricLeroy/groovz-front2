@@ -38,7 +38,7 @@ export default function usePostViewModel() {
         setPosts((prevPosts) => [...prevPosts, ...newPosts]);
         setVisiblePosts((prevVisiblePosts) => prevVisiblePosts + 5);
         setLoadedPostsCount(prevCount => prevCount + 10);
-    }, []);
+    }, [loadedPostsCount]);
 
     const handleCommentSubmit = useCallback(async () => {
         console.log('Thanks for commenting')
@@ -49,9 +49,9 @@ export default function usePostViewModel() {
         setComment(e.target.value);
     }, []);
 
-    const formatDate = useCallback((dateObject: Date) => {
+    const formatDate = (dateObject: Date) => {
         return `${dateObject.getFullYear()}-${('0' + (dateObject.getMonth() + 1)).slice(-2)}-${('0' + dateObject.getDate()).slice(-2)}`;
-    }, []);
+    };
 
     return {
         handleCommentChange,
