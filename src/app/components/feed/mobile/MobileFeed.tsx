@@ -7,10 +7,7 @@ import Recommendations from "@/app/components/common/Recommendations";
 import PostCreation from "@/app/components/common/Postcreation";
 import Posts from "@/app/components/common/Posts";
 
-
 export default function MobileFeed() {
-
-
 
     return (
         <div className={styles.page}>

@@ -1,16 +1,10 @@
 import styles from "@/app/components/feed/desktop/styles.module.css"
 import Link from "next/link";
 import {useRouter} from "next/navigation";
+import useFeedNavViewModel from "@/app/viewModels/feed/desktop/FeedNavViewModel";
 export default function FeedNav() {
-    const router = useRouter();
-    const signOut = async () => {
-        try {
-            localStorage.removeItem('userToken');
-            router.push('/');
-        } catch (error) {
-            console.error('Error during sign out', error);
-        }
-    };
+
+    const FeedNavViewModel = useFeedNavViewModel();
 
     return (
         <nav className={styles.nav}>
@@ -25,7 +19,7 @@ export default function FeedNav() {
                 </Link>
                 <p>link3</p>
             </div>
-            <button onClick={signOut}>Log out</button>
+            <button onClick={FeedNavViewModel.signOut}>Log out</button>
         </nav>
     )
 }
