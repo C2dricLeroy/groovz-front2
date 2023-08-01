@@ -1,78 +1,14 @@
 "use client";
-import Link from "next/link";
 import styles from "@/app/components/profile/mobile/styles.module.css";
-import {useEffect, useState} from "react";
-import {User} from "@/models/User";
-import TemporaryDrawer from "@/app/components/profile/mobile/ProfileDrawer";
 import Image from "next/image";
 import SearchBar from "@/app/components/common/SearchBar";
-import {Customer} from "@/models/Customer";
 import PlaylistLists from "@/app/components/profile/PlaylistLists";
 import RecentlyFollowed from "@/app/components/profile/RecentlyFollowed";
-import MobileDrawer from "@/app/components/profile/mobile/ProfileDrawer";
 import ProfileDrawer from "@/app/components/profile/mobile/ProfileDrawer";
-
-interface IUser {
-    userName: string;
-    follows: string;
-    followers: string;
-    playlists: string
-
-}
+import useProfileViewModel from "@/app/viewModels/profile/ProfileviewModel";
 
 export default function MobileProfile() {
-    const [user, setUser] = useState<IUser | null>(null);
-    const [showModal, setShowModal] = useState(false);
-    const [newName, setNewName] = useState("");
-
-    async function handleUpdateName() {
-        if (newName && newName.trim() !== "") {
-            await User.updateName(newName);
-            setUser(prevUser => {
-                if (prevUser === null) {
-                    return null;
-                } else {
-                    return {...prevUser, userName: newName}
-                }
-            });
-            setShowModal(false);
-        } else {
-            alert("User name cannot be empty");
-        }
-    }
-
-    function handleOpenModal() {
-        alert("Warning, your userName is the only way for your friends to find you on Groovz. Changing your name should be well considered decision");
-        setShowModal(true);
-    }
-
-    function handleNameChange(e: any) {
-        setNewName(e.target.value);
-    }
-
-    function handleCloseModal(e: any) {
-        if (e.target === e.currentTarget) {
-            setShowModal(false);
-        }
-    }
-
-    useEffect(() => {
-        async function fetchUser() {
-
-            const name = await User.getUserName();
-            const follows = await User.getFollows();
-            const followers = await User.getFollowers();
-            const playlists = await Customer.getPlaylists();
-
-            setUser({
-                userName: name.userName,
-                follows: follows,
-                followers: followers,
-                playlists: playlists
-            });
-        }
-        fetchUser();
-    }, []);
+    const ProfileViewModel = useProfileViewModel();
 
     return (
             <div className={styles.page}>
@@ -88,25 +24,25 @@ export default function MobileProfile() {
                 <div className={styles.profilInformationsContainer}>
                     <div className={styles.imageBackground}>
                         <div>
-                            <p className={styles.userName}>{user?.userName}</p>
+                            <p className={styles.userName}>{ProfileViewModel.user?.userName}</p>
                             <button className={styles.createPlaylist} type="button">Create a Playlist</button>
                         </div>
                     </div>
-                    <button className={[styles.underline, styles.Stats].join(' ')} onClick={handleOpenModal}>Modify Profile</button>
-                    {showModal &&
-                        <div className={styles.modal} onClick={handleCloseModal}>
+                    <button className={[styles.underline, styles.Stats].join(' ')} onClick={ProfileViewModel.handleOpenModal}>Modify Profile</button>
+                    {ProfileViewModel.showModal &&
+                        <div className={styles.modal} onClick={ProfileViewModel.handleCloseModal}>
                             <div className={styles.modalContent}>
                                 <label htmlFor="newName">New name:</label>
-                                <input type="text" id="newName" value={newName} onChange={handleNameChange} />
-                                <button onClick={handleUpdateName}>Validate</button>
+                                <input type="text" id="newName" value={ProfileViewModel.newName} onChange={ProfileViewModel.handleNameChange} />
+                                <button onClick={ProfileViewModel.handleUpdateName}>Validate</button>
                             </div>
                         </div>
                     }
                     <Image src={"/profil-de-lutilisateur.png"} alt={"profile picture"} width={100} height={100} className={styles.profileImage}></Image>
                     <div className={styles.secondContainer}>
                         <div className={styles.profileStats}>
-                            <p className={styles.Stats}>follows {user?.follows.length}</p>
-                            <p className={styles.Stats}>followed by {user?.followers.length}</p>
+                            <p className={styles.Stats}>follows {ProfileViewModel.user?.follows.length}</p>
+                            <p className={styles.Stats}>followed by {ProfileViewModel.user?.followers.length}</p>
                         </div>
                         <div className={styles.profileLinks}>
                             <p className={styles.Stats}>Link1</p>

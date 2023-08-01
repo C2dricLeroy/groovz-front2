@@ -11,6 +11,11 @@ import Link from "next/link";
 
 export default function ProfileDrawer() {
     const [isOpen, setIsOpen] = React.useState(false);
+    const links = [
+        { href: '/feed', text: 'Navigate to feed' },
+        { href: '/link2', text: 'Link2' },
+        { href: '/link3', text: 'Link3' }
+    ];
 
     const toggleDrawer = (open: any) => (event: any) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -32,17 +37,13 @@ export default function ProfileDrawer() {
                         <CloseIcon />
                     </IconButton>
                 </div>
-                <div className={styles.linkContainer}>
-                    <Link href={'/feed'}>
-                        <p className={styles.underline}>Navigate to feed</p>
-                    </Link>
-                </div>
-                <div className={styles.linkContainer}>
-                    <p>Link2 </p>
-                </div>
-                <div className={styles.linkContainer}>
-                    <p>Link3 </p>
-                </div>
+                {links.map(link => (
+                    <div className={styles.linkContainer} key={link.href}>
+                        <Link href={link.href}>
+                            <p className={styles.underline}>{link.text}</p>
+                        </Link>
+                    </div>
+                ))}
             </div>
         </Box>
     );

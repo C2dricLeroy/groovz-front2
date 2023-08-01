@@ -2,57 +2,21 @@
 import {useEffect, useState} from "react";
 import {Customer} from "@/models/Customer";
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
+import useRecentlyFollowedViewModel from "@/app/viewModels/profile/RecentlyFollowedViewModel";
 
 export default function RecentlyFollowed() {
-    const [artists, setArtists] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [scrollIndex, setScrollIndex] = useState(0);
     const [isHoveredLeft, setHoveredLeft] = useState(false);
     const [isHoveredRight, setHoveredRight] = useState(false);
-    const [itemsToShow, setItemsToShow] = useState(5);
+    const RecentlyFollowedViewModel = useRecentlyFollowedViewModel();
 
-    useEffect(() => {
-        function handleResize() {
-            if (window.matchMedia('(max-width: 600px)').matches) {
-                setItemsToShow(2);
-            } else if (window.matchMedia('(max-width: 900px)').matches) {
-                setItemsToShow(3);
-            } else if (window.matchMedia('(max-width: 1100px)').matches) {
-                setItemsToShow(5);
-            } else {
-                setItemsToShow(6)
-            }
-        }
-        const fetchArtists = async () => {
-            const result = await Customer.getFollowedArtists();
-            setArtists(result.artists.items);
-            setLoading(false);
-        };
-        fetchArtists();
-        handleResize();
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
-    const scrollRight = () => {
-        if (scrollIndex < artists.length - itemsToShow) {
-            setScrollIndex(scrollIndex + 1)
-        }
-    };
-    const scrollLeft = () => {
-        if (scrollIndex > 0) {
-            setScrollIndex(scrollIndex - 1);
-        }
-    };
-
-    if (loading) {
+    if (RecentlyFollowedViewModel.loading) {
         return <div>Chargement...</div>;
     }
 
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <button
-                onClick={scrollLeft}
+                onClick={RecentlyFollowedViewModel.scrollLeft}
                 onMouseEnter={() => setHoveredLeft(true)}
                 onMouseLeave={() => setHoveredLeft(false)}
                 style={{
@@ -70,7 +34,7 @@ export default function RecentlyFollowed() {
                 />
             </button>
             <div style={{ display: 'flex', overflowX: 'auto', width: '90%', alignItems:'center', justifyContent: 'center', margin: '2vh'}}>
-                {artists.slice(scrollIndex, scrollIndex + itemsToShow).map((artist: any) => (
+                {RecentlyFollowedViewModel.artists.slice(RecentlyFollowedViewModel.scrollIndex, RecentlyFollowedViewModel.scrollIndex + RecentlyFollowedViewModel.itemsToShow).map((artist: any) => (
                     <div key={artist.id} style={{display: 'flex', flexDirection: 'column', flex: '0 0 auto', marginRight: '10px', alignItems:'center', justifyContent: 'center' }}>
                         <a href={artist.external_urls.spotify} target="_blank" rel="noopener noreferrer">
                             <img
@@ -88,7 +52,7 @@ export default function RecentlyFollowed() {
                 ))}
             </div>
             <button
-                onClick={scrollRight}
+                onClick={RecentlyFollowedViewModel.scrollRight}
                 onMouseEnter={() => setHoveredRight(true)}
                 onMouseLeave={() => setHoveredRight(false)}
                 style={{

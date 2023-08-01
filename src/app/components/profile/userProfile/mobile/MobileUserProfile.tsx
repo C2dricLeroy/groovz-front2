@@ -7,6 +7,7 @@ import TemporaryDrawer from "@/app/components/profile/mobile/ProfileDrawer";
 import Image from "next/image";
 import {UserFollow} from "@/models/UserFollow";
 import SearchBar from "@/app/components/common/SearchBar";
+import useUserProfileViewModel from "@/app/viewModels/profile/userProfile/UserProfileViewModel";
 
 interface IUser {
     userName: string;
@@ -19,37 +20,7 @@ interface MobileUserProfileProps {
 }
 
 export default function MobileUserProfile({ userId }: MobileUserProfileProps) {
-    const [user, setUser] = useState<IUser | null>(null);
-    const [isFollowing, setIsFollowing] = useState<boolean>(false);
-
-    useEffect(() => {
-        async function fetchUser() {
-
-            const name = await User.getUserNameById(userId);
-            const follows = await User.getFollowsById(userId);
-            const followers = await User.getFollowersById(userId);
-            const following = await UserFollow.isUserFollowed(userId);
-
-            setUser({
-                userName: name.userName,
-                follows: follows,
-                followers: followers
-            });
-            setIsFollowing(following);
-        }
-
-        fetchUser();
-    }, []);
-
-    const toggleFollow = async () => {
-        if (isFollowing) {
-            await UserFollow.unfollow(userId);
-        } else {
-            await UserFollow.follow(userId);
-        }
-        setIsFollowing(!isFollowing);
-    }
-
+    const { user, isFollowing, toggleFollow } = useUserProfileViewModel(userId);
 
     return (
         <div className={styles.page}>
