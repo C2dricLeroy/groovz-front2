@@ -1,10 +1,6 @@
 "use client";
-import { useState } from 'react';
-import axios from "axios";
 
-import { useRouter } from 'next/router';
 import Link from 'next/link';
-import {inspect} from "util";
 import styles from "@/app/signup/styles.module.css"
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";

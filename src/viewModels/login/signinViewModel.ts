@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {useRouter} from "next/navigation";
-import axios from "axios/index";
+import axios from "axios";
 
 export default function useSigninViewModel() {
     const [password, setPassword] = useState('');
@@ -17,7 +17,17 @@ export default function useSigninViewModel() {
                 email,
                 password
             });
-            localStorage.setItem('userToken', response.data.token);
+
+            const xsrfCookie = document.cookie
+                .split('; ')
+                .find(row => row.startsWith('xsrf_token'));
+
+            if (xsrfCookie) {
+                axios.defaults.headers.common['x-xsrf-token'] = xsrfCookie.split('=')[1];
+            } else {
+                console.error('xsrf_token cookie not found');
+            }
+
             router.push('/feed');
         } catch (error: any) {
             console.error(error);
@@ -36,7 +46,5 @@ export default function useSigninViewModel() {
         setPassword,
         setShowPassword,
         error
-
-
     }
 }

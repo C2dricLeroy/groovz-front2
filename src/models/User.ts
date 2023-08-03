@@ -23,10 +23,13 @@ export class User {
     static async getUserName() {
         try {
             let token = await this.getToken();
-            if (token !== null) {
+            let xsrfToken = localStorage.getItem('xsrf_token');
+            if (token !== null && xsrfToken !== null) {
                 let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
                 const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/user/name/${payload.userId}`, {
-                    headers: { Authorization: `Bearer ${token}` }
+                    headers: {
+                        'x-xsrf-token': xsrfToken
+                    }
                 });
                 return response.data;
             }
