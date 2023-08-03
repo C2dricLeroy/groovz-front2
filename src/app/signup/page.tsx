@@ -8,62 +8,10 @@ import {inspect} from "util";
 import styles from "@/app/signup/styles.module.css"
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import useSignupViewModel from "@/viewModels/signup/SignupViewModel";
 
 function Signup() {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [email, setEmail] = useState('');
-    const [showPassword, setShowPassword] = useState(false);
-    const [emailError, setEmailError] = useState(false);
-    const [passwordError, setPasswordError] = useState(false);
-
-    const accountStatus = 1;
-    const createdAt = new Date(Date.now());
-    const isAdmin = false;
-    const isSuspended = false;
-
-    const validateEmail = () => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            setEmailError(true);
-        } else {
-            setEmailError(false);
-        }
-    }
-
-    const validatePassword = () => {
-        if (password.length < 8) {
-            setPasswordError(true);
-        } else {
-            setPasswordError(false);
-        }
-    }
-
-    const signupSubmit = async () => {
-        await validateEmail();
-        await validatePassword();
-
-        if (emailError || passwordError) {
-            return;
-        }
-
-        axios.post( process.env.NEXT_PUBLIC_SERVER_HTTP + '/user/signup', {
-            username,
-            password,
-            email,
-            accountStatus,
-            isAdmin,
-            isSuspended,
-            createdAt
-        })
-            .then((response) => {
-                const router = useRouter();
-                router.push('/login');
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-    }
+    const SignupViewModel = useSignupViewModel();
 
     return (
         <div className={styles.page}>
@@ -71,34 +19,34 @@ function Signup() {
                 <h1 className={styles.title}>Signup</h1>
                 <div className={styles.form}>
                     <label className={styles.label} htmlFor="username">Username</label>
-                    <input id="username" className={styles.input} placeholder="Username" onChange={e => setUsername(e.target.value)}
-                           value={username}/>
+                    <input id="username" className={styles.input} placeholder="Username" onChange={e => SignupViewModel.setUsername(e.target.value)}
+                           value={SignupViewModel.username}/>
                     <label className={styles.label} htmlFor="password">Password</label>
                     <div className={styles.inputContainer}>
                         <input
                             id="password"
-                            className={passwordError ? styles.inputError : styles.input}
+                            className={SignupViewModel.passwordError ? styles.inputError : styles.input}
                             placeholder="Password"
-                            type={showPassword ? 'text' : 'password'}
-                            onChange={e => setPassword(e.target.value)}
-                            onBlur={validatePassword}
-                            value={password}
+                            type={SignupViewModel.showPassword ? 'text' : 'password'}
+                            onChange={e => SignupViewModel.setPassword(e.target.value)}
+                            onBlur={SignupViewModel.validatePassword}
+                            value={SignupViewModel.password}
                         />
-                        <button type='button' className={styles.iconButton} onClick={() => setShowPassword(!showPassword)}>
-                            {showPassword ? <Visibility /> : <VisibilityOff />}
+                        <button type='button' className={styles.iconButton} onClick={() => SignupViewModel.setShowPassword(!SignupViewModel.showPassword)}>
+                            {SignupViewModel.showPassword ? <Visibility /> : <VisibilityOff />}
                         </button>
                     </div>
                     <label className={styles.label} htmlFor="email">Email</label>
                     <input
                         id="email"
-                        className={emailError ? styles.inputError : styles.input}
+                        className={SignupViewModel.emailError ? styles.inputError : styles.input}
                         placeholder="Email"
-                        onChange={e => setEmail(e.target.value)}
-                        onBlur={validateEmail}
-                        value={email}
+                        onChange={e => SignupViewModel.setEmail(e.target.value)}
+                        onBlur={SignupViewModel.validateEmail}
+                        value={SignupViewModel.email}
                     />
                 </div>
-                <button className={styles.button} title={"Submit"} onClick={signupSubmit}>Submit</button>
+                <button className={styles.button} title={"Submit"} onClick={SignupViewModel.signupSubmit}>Submit</button>
                 <Link href="/signin">
                     <p className={styles.underline}>already have an account? Signin</p>
                 </Link>
