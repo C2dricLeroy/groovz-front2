@@ -1,4 +1,4 @@
-# Contributing to [Your Project]
+# Contributing to Groovz
 
 We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:
 
@@ -8,11 +8,11 @@ We love your input! We want to make contributing to this project as easy and tra
 - Proposing new features
 - Becoming a maintainer
 
-## We Develop with Github
+## We Develop with GitHub
 
-We use github to host code, to track issues and feature requests, as well as accept pull requests.
+We use GitHub to host code, to track issues and feature requests, as well as accept pull requests.
 
-## We Use [Github Flow](https://guides.github.com/introduction/flow/index.html)
+## We Use [GitHub Flow](https://guides.github.com/introduction/flow/index.html)
 
 Pull Requests are the best way to propose changes to the codebase (we use [Github Flow](https://guides.github.com/introduction/flow/index.html)). We actively welcome your pull requests:
 
