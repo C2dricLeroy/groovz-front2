@@ -42,10 +42,13 @@ export class User {
     static async getFollows() {
         try {
             let token = await this.getToken();
+            let xsrfToken = localStorage.getItem('xsrf_token');
             if (token !== null) {
                 let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
                 const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/user/follows/${payload.userId}`, {
-                    headers: { Authorization: `Bearer ${token}` }
+                    headers: { Authorization: `Bearer ${token}`,
+                        'x-xsrf-token': xsrfToken
+                    }
                 });
                 return response.data;
             }
@@ -58,10 +61,13 @@ export class User {
     static async getFollowers() {
         try {
             let token = await this.getToken();
+            let xsrfToken = localStorage.getItem('xsrf_token');
             if (token !== null) {
                 let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
                 const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/user/followers/${payload.userId}`, {
-                    headers: { Authorization: `Bearer ${token}` }
+                    headers: { Authorization: `Bearer ${token}`,
+                        'x-xsrf-token': xsrfToken
+                    }
                 });
                 return response.data;
             }
@@ -74,9 +80,12 @@ export class User {
     static async getUserNameById(id: string) {
         try {
             let token = await this.getToken();
+            let xsrfToken = localStorage.getItem('xsrf_token');
             if (token !== null) {
                 const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/user/name/${id}`, {
-                    headers: { Authorization: `Bearer ${token}` }
+                    headers: { Authorization: `Bearer ${token}`,
+                        'x-xsrf-token': xsrfToken
+                    }
                 });
                 return response.data;
             }
@@ -89,9 +98,12 @@ export class User {
     static async getFollowersById(userId: string) {
         try {
             let token = await this.getToken();
+            let xsrfToken = localStorage.getItem('xsrf_token');
             if (token !== null) {
                 const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/user/followers/${userId}`, {
-                    headers: { Authorization: `Bearer ${token}` }
+                    headers: { Authorization: `Bearer ${token}`,
+                        'x-xsrf-token': xsrfToken
+                    }
                 });
                 return response.data;
             }
@@ -104,9 +116,12 @@ export class User {
     static async getFollowsById(userId: string) {
         try {
             let token = await this.getToken();
+            let xsrfToken = localStorage.getItem('xsrf_token');
             if (token !== null) {
                 const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/user/follows/${userId}`, {
-                    headers: { Authorization: `Bearer ${token}` }
+                    headers: { Authorization: `Bearer ${token}`,
+                        'x-xsrf-token': xsrfToken
+                    }
                 });
                 return response.data;
             }
@@ -119,12 +134,17 @@ export class User {
     static async updateName(userName: string){
         try {
             let token = await this.getToken();
+            let xsrfToken = localStorage.getItem('xsrf_token');
             if (token !== null) {
                 let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
                 const response = await axios.patch(process.env.NEXT_PUBLIC_SERVER_HTTP + `/user/updateName/${payload.userId}`, {
                     userName: userName
+                }, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'x-xsrf-token': xsrfToken
+                    }
                 });
-                return response.data;
             }
         } catch (error) {
             console.error(error);

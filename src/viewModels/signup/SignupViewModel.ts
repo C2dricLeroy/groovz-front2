@@ -10,7 +10,7 @@ export default function useSignupViewModel() {
     const [showPassword, setShowPassword] = useState(false);
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
-
+    const router = useRouter();
     const accountStatus = 1;
     const createdAt = new Date(Date.now());
     const isAdmin = false;
@@ -40,7 +40,13 @@ export default function useSignupViewModel() {
         if (emailError || passwordError) {
             return;
         }
-
+        console.log(username,
+            password,
+            email,
+            accountStatus,
+            isAdmin,
+            isSuspended,
+            createdAt)
         axios.post( process.env.NEXT_PUBLIC_SERVER_HTTP + '/user/signup', {
             username,
             password,
@@ -51,7 +57,6 @@ export default function useSignupViewModel() {
             createdAt
         })
             .then((response) => {
-                const router = useRouter();
                 router.push('/login');
             })
             .catch((error) => {

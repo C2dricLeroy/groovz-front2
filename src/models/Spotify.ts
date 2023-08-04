@@ -5,6 +5,7 @@ import {Buffer} from "buffer";
 class Spotify {
     static async getToken() {
         const appToken = await User.getToken();
+        const xsrf = await localStorage.getItem('xsrf_token');
         if (!appToken) {
             throw new Error('appToken is undefined');
         }
@@ -14,7 +15,11 @@ class Spotify {
         }
         let payload = JSON.parse(Buffer.from(splitToken, 'base64').toString());
         try{
-            const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/spotify/getSpotifyAccess/${payload.userId}`);
+            const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/spotify/getSpotifyAccess/${payload.userId}`, {
+                headers: {
+                    'X-XSRF-TOKEN': xsrf,
+                },
+            });
             const spotifyToken = response.data.spotifyAccessToken;
             const refreshToken = response.data.spotifyRefreshToken;
             return { spotifyToken, refreshToken };
