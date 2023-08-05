@@ -30,6 +30,7 @@ class Spotify {
 
     static async createAxiosInstance() {
         const appToken = await User.getToken();
+        const xsrf = await localStorage.getItem('xsrf_token');
         if (!appToken) {
             throw new Error('appToken is undefined');
         }
@@ -42,7 +43,8 @@ class Spotify {
         const instance = axios.create({
             baseURL: 'https://api.spotify.com/v1/',
             timeout: 5000,
-            headers: { 'Authorization': 'Bearer ' + spotifyToken }
+            headers: { 'Authorization': 'Bearer ' + spotifyToken,
+            'x-xsrf-token': xsrf}
         });
 
         instance.interceptors.response.use(response => response, async function axiosRetryInterceptor(error) {
@@ -78,7 +80,7 @@ class Spotify {
             const response = await spotifyInstance.get(`playlists/${id}`)
             return response.data;
         } catch (error: any) {
-            throw new Error(`Failed to get Plalist By Id: ${error.message}`)
+            throw new Error(`Failed to get Playlist By Id: ${error.message}`)
         }
      }
 }
