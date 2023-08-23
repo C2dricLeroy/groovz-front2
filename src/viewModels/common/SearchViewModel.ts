@@ -20,18 +20,11 @@ export function useSearchViewModel() {
             return;
         }
         try {
-            let token = await User.getToken();
-            if (token !== null) {
-                let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
-                let userId = payload.userId;
-                const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/search/${searchTerm}`, {
-                    headers: { Authorization: `Bearer ${token}` }
-                });
-                let results = response.data.filter((item: UserDataType) => item.userId !== userId);
-                setIsSearchDone(true);
-                setSearchResults(results);
-            }
-        } catch (error) {
+            const results = await User.searchUsers(searchTerm)
+            setIsSearchDone(true);
+            setSearchResults(results);
+        }
+        catch (error) {
             console.error('An error occurred while searching:', error);
         }
     }, [searchTerm]);

@@ -4,17 +4,20 @@ import {Buffer} from "buffer";
 
 class Spotify {
     static async getToken() {
-        const appToken = await User.getToken();
-        if (!appToken) {
-            throw new Error('appToken is undefined');
+        const xsrfToken = await User.getToken();
+        const userId = await User.getUserId();
+
+        if (!xsrfToken) {
+            throw new Error('xsrfToken is undefined');
         }
-        const splitToken = appToken.split('.')[1];
-        if (!splitToken) {
-            throw new Error('Cannot get payload from appToken');
-        }
-        let payload = JSON.parse(Buffer.from(splitToken, 'base64').toString());
+
         try{
-            const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/spotify/getSpotifyAccess/${payload.userId}`);
+            const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/spotify/getSpotifyAccess/${userId}`, {
+                headers: {
+                    'x-xsrf-token': xsrfToken
+                },
+                withCredentials: true
+            });
             const spotifyToken = response.data.spotifyAccessToken;
             const refreshToken = response.data.spotifyRefreshToken;
             return { spotifyToken, refreshToken };
@@ -24,29 +27,29 @@ class Spotify {
     }
 
     static async createAxiosInstance() {
-        const appToken = await User.getToken();
-        if (!appToken) {
-            throw new Error('appToken is undefined');
-        }
-        const splitToken = appToken.split('.')[1];
-        if (!splitToken) {
-            throw new Error('Cannot get payload from appToken');
-        }
-        let payload = JSON.parse(Buffer.from(splitToken, 'base64').toString());
+        const userId = await User.getUserId();
         const { spotifyToken, refreshToken } = await Spotify.getToken();
         const instance = axios.create({
             baseURL: 'https://api.spotify.com/v1/',
             timeout: 5000,
-            headers: { 'Authorization': 'Bearer ' + spotifyToken }
+            headers: { 'Authorization': 'Bearer ' + spotifyToken}
         });
 
         instance.interceptors.response.use(response => response, async function axiosRetryInterceptor(error) {
 
             if (error.response && error.response.status === 401) {
+                const xsrfToken = await User.getToken();
                 const originalRequest = error.config;
-                const res = await axios.post(process.env.NEXT_PUBLIC_SERVER_HTTP + `/spotify/refreshToken/${payload.userId}`, {
-                    refreshToken: refreshToken
-                });
+                const res = await axios.post(
+                    process.env.NEXT_PUBLIC_SERVER_HTTP + `/spotify/refreshToken/${userId}`,
+                    { refreshToken: refreshToken },
+                    {
+                        headers: {
+                            'x-xsrf-token': xsrfToken
+                        },
+                        withCredentials: true
+                    }
+                );
                 if (res.status === 200) {
                     originalRequest.headers['Authorization'] = 'Bearer ' + res.data.spotifyAccessToken;
                     return axios(originalRequest);
@@ -73,7 +76,7 @@ class Spotify {
             const response = await spotifyInstance.get(`playlists/${id}`)
             return response.data;
         } catch (error: any) {
-            throw new Error(`Failed to get Plalist By Id: ${error.message}`)
+            throw new Error(`Failed to get Playlist By Id: ${error.message}`)
         }
      }
 }

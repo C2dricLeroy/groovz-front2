@@ -8,6 +8,7 @@ export class UserFollow {
     static async isUserFollowed(userId: string) {
         try {
             let token = await User.getToken();
+            const xsrf = await localStorage.getItem('xsrf_token');
             if (token !== null) {
                 let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
                 let correctUserId = parseInt(userId);
@@ -16,7 +17,9 @@ export class UserFollow {
                         userId: parseInt(payload.userId)
                     },
                     {
-                        headers: { Authorization: `Bearer ${token}` }
+                        headers: { Authorization: `Bearer ${token}`,
+                        'x-xsrf-token': xsrf
+                        }
                     });
                 return response.data;
             }
@@ -29,6 +32,7 @@ export class UserFollow {
     static async follow(userId: string) {
         try {
             let token = await User.getToken();
+            const xsrf = await localStorage.getItem('xsrf_token');
             if (token !== null) {
                 let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
                 const response = await axios.post(process.env.NEXT_PUBLIC_SERVER_HTTP + `/follow/follow`, {
@@ -36,7 +40,9 @@ export class UserFollow {
                     userId: parseInt(payload.userId)
                 },
                     {
-                    headers: { Authorization: `Bearer ${token}` }
+                    headers: { Authorization: `Bearer ${token}`,
+                    'x-xsrf-token': xsrf
+                    }
                 });
                 return response.data;
             }
@@ -49,6 +55,7 @@ export class UserFollow {
     static async unfollow(userId: string) {
         try {
             let token = await User.getToken();
+            const xsrf = await localStorage.getItem('xsrf_token');
             if (token !== null) {
                 let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
 
@@ -57,7 +64,9 @@ export class UserFollow {
                         userId: parseInt(payload.userId)
                     },
                     {
-                        headers: { Authorization: `Bearer ${token}` }
+                        headers: { Authorization: `Bearer ${token}`,
+                        'x-xsrf-token': xsrf
+                        }
                     });
                 return response.data;
             }
