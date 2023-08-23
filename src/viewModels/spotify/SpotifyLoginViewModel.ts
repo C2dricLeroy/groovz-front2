@@ -20,11 +20,17 @@ export default function useSpotifyLoginViewModel() {
     let client_id = process.env.CLIENT_ID;
 
     const handleLogin = async () => {
-        const token = await User.getToken();
-        if (token !== null) {
-            let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
-            let userId = payload.userId;
-            const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/spotify/generateState/${userId}`);
+        const xsrfToken = await User.getToken();
+        if (xsrfToken) {
+            let userId = await User.getUserId();
+            const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/spotify/generateState/${userId}`,
+                {
+                    headers: {
+                        'x-xsrf-token': xsrfToken
+                    },
+                    withCredentials: true
+                }
+            );
             const state = await response.data;
             if (!client_id) {
                 throw new Error("Client not found");

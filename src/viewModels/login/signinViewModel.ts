@@ -16,16 +16,16 @@ export default function useSigninViewModel() {
             const response = await axios.post(process.env.NEXT_PUBLIC_SERVER_HTTP + '/user/signin', {
                 email,
                 password
+            }, {
+                withCredentials: true
             });
 
-            const xsrfCookie = document.cookie
-                .split('; ')
-                .find(row => row.startsWith('xsrf_token'));
-
-            if (xsrfCookie) {
-                axios.defaults.headers.common['x-xsrf-token'] = xsrfCookie.split('=')[1];
+            if (response.data.xsrfToken && response.data.userId) {
+                localStorage.setItem('xsrfToken', response.data.xsrfToken)
+                localStorage.setItem('userId', response.data.userId)
+                axios.defaults.headers.common['x-xsrf-token'] = response.data.xsrfToken
             } else {
-                console.error('xsrf_token cookie not found');
+                console.error('xsrf_token not found in the response');
             }
 
             router.push('/feed');

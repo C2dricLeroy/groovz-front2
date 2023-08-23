@@ -1,5 +1,6 @@
 import {Buffer} from "buffer";
 import axios from "axios";
+import Cookies from 'js-cookie';
 
 export interface UserDataType {
     userName: string;
@@ -7,9 +8,19 @@ export interface UserDataType {
 }
 
 export class User {
-    static async  getToken() {
+    static async getToken() {
         try {
-            return await localStorage.getItem('userToken');
+            return await localStorage.getItem('xsrfToken');
+        } catch (e) {
+            console.error(e);
+            return null;
+        }
+    }
+
+    static async  getUserId() {
+        try {
+            let userId = await localStorage.getItem('userId');
+            return userId;
         } catch (e) {
             console.error(e);
             return null;
@@ -22,14 +33,14 @@ export class User {
 
     static async getUserName() {
         try {
-            let token = await this.getToken();
-            let xsrfToken = localStorage.getItem('xsrf_token');
-            if (token !== null && xsrfToken !== null) {
-                let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
-                const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/user/name/${payload.userId}`, {
+            let userId = await this.getUserId();
+            let xsrfToken = await this.getToken();
+            if (userId && xsrfToken !== null) {
+                const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/user/name/${userId}`, {
                     headers: {
                         'x-xsrf-token': xsrfToken
-                    }
+                    },
+                    withCredentials: true
                 });
                 return response.data;
             }
@@ -41,14 +52,14 @@ export class User {
 
     static async getFollows() {
         try {
-            let token = await this.getToken();
-            let xsrfToken = localStorage.getItem('xsrf_token');
-            if (token !== null) {
-                let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
-                const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/user/follows/${payload.userId}`, {
-                    headers: { Authorization: `Bearer ${token}`,
+            let userId = await this.getUserId();
+            let xsrfToken = await this.getToken();
+            if (userId && xsrfToken !== null) {
+                const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/user/follows/${userId}`, {
+                    headers: {
                         'x-xsrf-token': xsrfToken
-                    }
+                    },
+                    withCredentials: true
                 });
                 return response.data;
             }
@@ -60,14 +71,14 @@ export class User {
 
     static async getFollowers() {
         try {
-            let token = await this.getToken();
-            let xsrfToken = localStorage.getItem('xsrf_token');
-            if (token !== null) {
-                let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
-                const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/user/followers/${payload.userId}`, {
-                    headers: { Authorization: `Bearer ${token}`,
+            let userId = await this.getUserId();
+            let xsrfToken = await this.getToken();
+            if (userId && xsrfToken !== null) {
+                const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/user/followers/${userId}`, {
+                    headers: {
                         'x-xsrf-token': xsrfToken
-                    }
+                    },
+                    withCredentials: true
                 });
                 return response.data;
             }
@@ -79,14 +90,15 @@ export class User {
 
     static async getUserNameById(id: string) {
         try {
-            let token = await this.getToken();
-            let xsrfToken = localStorage.getItem('xsrf_token');
-            if (token !== null) {
+            let xsrfToken = await this.getToken();
+            if (xsrfToken) {
                 const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/user/name/${id}`, {
-                    headers: { Authorization: `Bearer ${token}`,
+                    headers: {
                         'x-xsrf-token': xsrfToken
-                    }
+                    },
+                    withCredentials: true
                 });
+                console.log(response.data)
                 return response.data;
             }
         } catch (error) {
@@ -97,13 +109,13 @@ export class User {
 
     static async getFollowersById(userId: string) {
         try {
-            let token = await this.getToken();
-            let xsrfToken = localStorage.getItem('xsrf_token');
-            if (token !== null) {
+            let xsrfToken = await this.getToken();
+            if (xsrfToken) {
                 const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/user/followers/${userId}`, {
-                    headers: { Authorization: `Bearer ${token}`,
+                    headers: {
                         'x-xsrf-token': xsrfToken
-                    }
+                    },
+                    withCredentials: true
                 });
                 return response.data;
             }
@@ -113,15 +125,15 @@ export class User {
         }
     }
 
-    static async getFollowsById(userId: string) {
+    static async getFollowsById(id: string) {
         try {
-            let token = await this.getToken();
-            let xsrfToken = localStorage.getItem('xsrf_token');
-            if (token !== null) {
-                const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/user/follows/${userId}`, {
-                    headers: { Authorization: `Bearer ${token}`,
+            let xsrfToken = await this.getToken();
+            if (xsrfToken) {
+                const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/user/follows/${id}`, {
+                    headers: {
                         'x-xsrf-token': xsrfToken
-                    }
+                    },
+                    withCredentials: true
                 });
                 return response.data;
             }
@@ -133,17 +145,16 @@ export class User {
 
     static async updateName(userName: string){
         try {
-            let token = await this.getToken();
-            let xsrfToken = localStorage.getItem('xsrf_token');
-            if (token !== null) {
-                let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
-                const response = await axios.patch(process.env.NEXT_PUBLIC_SERVER_HTTP + `/user/updateName/${payload.userId}`, {
+            let userId = await this.getUserId();
+            let xsrfToken = await this.getToken();
+            if (xsrfToken) {
+                const response = await axios.patch(process.env.NEXT_PUBLIC_SERVER_HTTP + `/user/updateName/${userId}`, {
                     userName: userName
                 }, {
                     headers: {
-                        'Authorization': `Bearer ${token}`,
                         'x-xsrf-token': xsrfToken
-                    }
+                    },
+                    withCredentials: true
                 });
             }
         } catch (error) {
@@ -153,17 +164,20 @@ export class User {
     }
 
     static async searchUsers(searchTerm: string): Promise<UserDataType[]> {
-        let token = await this.getToken();
-        if (token !== null) {
-            let payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
-            let userId = payload.userId;
-            const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/search/${searchTerm}`, {
-                headers: { Authorization: `Bearer ${token}` }
-            });
-            let results = response.data.filter((item: UserDataType) => item.userId !== userId);
-            return results;
-        }
+            let userId = await this.getUserId();
+            let xsrfToken = await this.getToken();
+            if (userId && xsrfToken) {
+                const response = await axios.get(process.env.NEXT_PUBLIC_SERVER_HTTP + `/search/${searchTerm}`, {
+                    headers: {
+                        'x-xsrf-token': xsrfToken
+                    },
+                    withCredentials: true
+                });
+                let results = response.data.filter((item: UserDataType) => item.userId !== userId);
+                console.log(results);
+                return results;
+            }
+
         return [];
     }
-
 }
