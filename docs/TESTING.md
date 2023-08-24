@@ -107,8 +107,64 @@ Groovz is divided into several test suites. Each test suite is responsible for t
 - Scenario 6 : Test with missing userId. This test should return an error. 
 - Scenario 7 : Test that the current user is excluded from the results. This test should verify that the current user's id is properly excluded from the result array. 
 
+#### UserFollow
 
+**isUserFollowed**
+- Scenario 1 : Test successful check when the user is followed. This test should return true.
+- Scenario 2 : Test successful check when the user is not followed. This test should return false.
+- Scenario 3 : Test when missing xsrf token. This test should return an error.
+- Scenario 4 : Test with missing userId. This test should return an error.
+- Scenario 5 : Test with response failure from the server. This test should return an error. 
 
+**follow**
+- Scenario 1 : Test successful follow of another user. This test should return response data from the API.
+- Scenario 2 : Test with missing xsrf token. This test should return an error.
+- Scenario 3 : Test with missing userId. This test should return an error.
+- Scenario 4 : Test with response failure from the server. Ths test should return an error. 
+
+**unfollow** 
+- Scenario 1 : Test successfull unfollowing of another user. This test should return response data from the API
+- Scenario 2 : Test with missing xsrf token. This test should return an error.
+- Scenario 3 : Test with missing userId. This test should return an error.
+- Scenario 4 : Test with response failure from the server. Ths test should return an error.
+
+#### Customer 
+
+**getPlaylists**
+- Scenario 1 : Test successful retrieval of playlists. This test should return response data from the API.
+- Scenario 2 : Test with missing or invalid Spotify ID. This test should return an error.
+- Scenario 3 : Test with failure of the axios.createInstance. This test should return an error.
+- Scenario 4 : Test with response failure from the server. This test should return the servor error.
+- Scenario 5 : Test with a user who has no playlists. This test should return ???
+
+**getFollowedArtists**
+- Scenario 1 : Test successful retrieval of followed artists. This test should return response data from the API.
+- Scenario 2 : Test with missing or invalid Spotify ID. This test should return an error.
+- Scenario 3 : Test with failure of the axios.createInstance. This test should return an error.
+- Scenario 4 : Test with response failure from the server. This test should return the servor error.
+
+**getRecommendations**
+- Scenario 1 : Test successful retrieval or recommandations. This test should return the response data from the API.
+- Scenario 2 : Test with no followed artists. This test should return ???
+- Scenario 3 : Test with failure in creating the axios Instance. This test should return an error
+- Scenario 4 : Test with response failure from the spotify API. This test should return an error.
+- Scenario 5 : Test the logic of selecting a random artist from the followed artists. 
+
+**getFollowedUsers**
+- Scenario 1 : Test successful retrieval of followed followedUsers. This test should return response data from the API.
+- Scenario 2 : Test with missing or invalid Spotify ID. This test should return an error.
+- Scenario 3 : Test with failure of the axios.createInstance. This test should return an error.
+- Scenario 4 : Test with response failure from the server. This test should return the servor error.
+- 
+#### Spotify
+
+**getToken**
+
+**createAxiosInstance**
+
+**getSpotifyId**
+
+**getPlaylistById**
 
 ### View-Model
 
