@@ -17,7 +17,7 @@ export class User {
         }
     }
 
-    static async  getUserId() {
+    static async getUserId() {
         try {
             let userId = await localStorage.getItem('userId');
             return userId;
@@ -25,10 +25,6 @@ export class User {
             console.error(e);
             return null;
         }
-    }
-
-    static async getFullName(user: any) {
-        return user.firstName + ' ' + user.lastName;
     }
 
     static async getUserName() {
@@ -44,9 +40,9 @@ export class User {
                 });
                 return response.data;
             }
-        } catch (error) {
+        } catch (error: any) {
             console.error(error);
-            return null;
+            return { success: false, error: `Failed to get username: ${error.message}` };
         }
     }
 
