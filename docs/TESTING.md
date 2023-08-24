@@ -159,12 +159,28 @@ Groovz is divided into several test suites. Each test suite is responsible for t
 #### Spotify
 
 **getToken**
+- Scenario 1 : Test successful retrieval of Spotify tokens. This test should return response data from the API.
+- Scenario 2 : Test with missing user ID. This test should return an error.
+- Scenario 3 : Test with missing xsrf token. This test should return an error.
+- Scenario 4 : Test with response failure from the server. This test should return the appropriate error.
+- Scenario 5 : Test the case the server response does'nt include spotifyacessToken and spotifyrefreshToken.
 
 **createAxiosInstance**
+- Scenario 1 : Test successful creation oof axios instance. This test should return an axio instance.
+- Scenario 2 : Test with missing user ID. This test should return an error. 
+- Scenario 3 : Test with missing spotify ID. This test should return an error.
+- Scenario 4 : Test interceptor for 401 responses. This test should refresh the token and retries the original request.
+- Scenario 5 : Test the response interceptor for non-401 responses. This test should return appropriate errors.
+- Scenario 6 : Test the behavior when the token refresh failes. This test should return an error.
 
 **getSpotifyId**
+- Scenario 1 : Test successful retrieval of the Spotify user ID. This test should return the response data from the API.
+- Scenario 2 : Test with error response from spotify API. This test should return the error.
+- Scenario 3 : Test the behavior when invalid ID type (refactor then delete with scenario)
 
 **getPlaylistById**
+- Scenario 1 : Test successful retrieval of a playlist. This test should return the response data from the API.
+- Scenario 2 : Test with missing playlist ID. This function should return an error.
 
 ### View-Model
 

@@ -29,6 +29,11 @@ class Spotify {
     static async createAxiosInstance() {
         const userId = await User.getUserId();
         const { spotifyToken, refreshToken } = await Spotify.getToken();
+
+        if (!userId || !spotifyToken || !refreshToken) {
+            throw new Error('Missing user ID or Spotify tokens');
+        }
+
         const instance = axios.create({
             baseURL: 'https://api.spotify.com/v1/',
             timeout: 5000,
@@ -54,6 +59,7 @@ class Spotify {
                     originalRequest.headers['Authorization'] = 'Bearer ' + res.data.spotifyAccessToken;
                     return axios(originalRequest);
                 }
+                return Promise.reject(new Error('Failed to refresh token'));
             }
             return Promise.reject(error);
         });
@@ -70,6 +76,7 @@ class Spotify {
             throw new Error(`Failed to get Spotify user ID: ${error.message}`);
         }
     }
+
      static async getPlaylistById(id: any){
         const spotifyInstance = await Spotify.createAxiosInstance();
         try {
