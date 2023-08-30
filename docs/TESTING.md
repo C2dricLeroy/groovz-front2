@@ -124,7 +124,7 @@ ___
 - Scenario 4 : Test with response failure from the server. Ths test should return an error. 
 
 **unfollow** 
-- Scenario 1 : Test successfull unfollowing of another user. This test should return response data from the API
+- Scenario 1 : Test successful unfollowing of another user. This test should return response data from the API
 - Scenario 2 : Test with missing xsrf token. This test should return an error.
 - Scenario 3 : Test with missing userId. This test should return an error.
 - Scenario 4 : Test with response failure from the server. Ths test should return an error.
