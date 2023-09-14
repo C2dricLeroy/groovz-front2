@@ -5,7 +5,7 @@ import axios from "axios";
 export default function useSigninViewModel() {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
-    const [error, setError] = useState('');
+    const [error, setError] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
 
     const router = useRouter()
@@ -32,7 +32,7 @@ export default function useSigninViewModel() {
         } catch (error: any) {
             console.error(error);
             if (error.response && error.response.status === 400) {
-                setError('Invalid email or password. Please try again.');
+                setError(true);
             }
         }
     };
@@ -45,6 +45,7 @@ export default function useSigninViewModel() {
         password,
         setPassword,
         setShowPassword,
-        error
+        error,
+        setError
     }
 }

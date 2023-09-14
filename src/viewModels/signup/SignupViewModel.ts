@@ -16,7 +16,7 @@ export default function useSignupViewModel() {
     const isAdmin = false;
     const isSuspended = false;
 
-    const validateEmail = () => {
+    let validateEmail = () => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             setEmailError(true);
@@ -26,27 +26,22 @@ export default function useSignupViewModel() {
     }
 
     const validatePassword = () => {
-        if (password.length < 8) {
-            setPasswordError(true);
-        } else {
+        let passwordRegexp = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,200}$/;
+        let validPassword = password.match(passwordRegexp);
+
+        if ((password.length >= 8 && password.length <= 200) && validPassword) {
             setPasswordError(false);
+            console.log('valid')
+        } else if (password.length === 0){
+
+        } else {
+            setPasswordError(true);
+            console.log('invalid')
         }
     }
 
     const signupSubmit = async () => {
-        await validateEmail();
-        await validatePassword();
 
-        if (emailError || passwordError) {
-            return;
-        }
-        console.log(username,
-            password,
-            email,
-            accountStatus,
-            isAdmin,
-            isSuspended,
-            createdAt)
         axios.post( process.env.NEXT_PUBLIC_SERVER_HTTP + '/user/signup', {
             username,
             password,
