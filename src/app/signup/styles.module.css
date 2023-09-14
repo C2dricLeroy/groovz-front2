@@ -82,8 +82,9 @@
     padding-left: 10px;
     border-radius: 5px;
     color: #232528;
-    background-color: white;
+    background-color: pink;
     cursor: pointer;
+
 }
 
 .error {
