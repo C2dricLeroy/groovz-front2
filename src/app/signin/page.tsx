@@ -26,8 +26,9 @@ function Login() {
                     <label className={styles.label} htmlFor="password">Password</label>
                     <input id="password" className={styles.input} type={signinViewModel.showPassword ? 'text' : 'password'} placeholder="Password"
                            onChange={(e) => signinViewModel.setPassword(e.target.value)}
+                           onFocus={() => signinViewModel.setError(false)}
                            value={signinViewModel.password} required />
-                    {signinViewModel.error && <p className={styles.error}>{signinViewModel.error}</p>}
+                    {signinViewModel.error && <p className={styles.error}>Invalid email or password. Please try again</p>}
                     <button type='button' className={styles.iconButton} onClick={() => signinViewModel.setShowPassword(!signinViewModel.showPassword)}>
                         {signinViewModel.showPassword ? <Visibility /> : <VisibilityOff />}
                     </button>
