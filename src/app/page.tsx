@@ -11,7 +11,7 @@ function HomePage() {
         <div>
             <div id={"homePage"} className={styles.homePage}>
                 <div>
-                    <h1 className={styles.mainTitle}>Groovz</h1>
+                    <Image src={'/GroovzComplet.png'} alt={"Groovz logo"} className={styles.mainTitle} width={700} height={100}/>
                     <p className={styles.mainText}>A playlist sharing platform</p>
                 </div>
                 <div className={styles.buttonContainer}>

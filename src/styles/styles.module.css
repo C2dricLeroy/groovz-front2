@@ -12,16 +12,18 @@
     justify-content: center;
     align-items: center;
     padding: 20px;
-    background-color: #fff;
+    background-color: #F9F9F9;
 
 }
 
 .homePage{
-    width: 100vw;
-    height: 100vh;
-    background-color: #232528;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 98vw;
+    height: 100vh;
+    background-color: #07020D;
 }
 
 .title {
@@ -72,13 +74,8 @@
 }
 
 .mainTitle {
-    font-size: 120px;
-    font-weight: bold;
-    padding: 100px;
-    color: #9FB1BC;
-    text-align: center;
-    font-family: 'roboto', sans-serif;
-
+    border: none;
+    color: black;
 }
 
 .buttonContainer {
@@ -87,37 +84,96 @@
     justify-content: center;
 }
 
-.button {
-    padding: 25px 30px;
-    margin: 30px;
-    background-color: #050801;
-    color: #D3D0CB;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    letter-spacing: 4px;
-    overflow: hidden;
-    margin: 10px;
+.pushable {
+    position: relative;
+    background: transparent;
+    padding: 0px;
+    margin: 20px;
     width: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    border: none;
+    cursor: pointer;
+    outline-offset: 4px;
+    outline-color: deeppink;
+    transition: filter 250ms;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-
-.button:hover {
-    background-color: #FB5012;
-    color: #232528;
-    box-shadow: 0 0 20px rgba(251, 80, 18, 0.5);
-    width: 160px;
+.shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: hsl(226, 25%, 69%);
+    border-radius: 8px;
+    filter: blur(2px);
+    will-change: transform;
+    transform: translateY(2px);
+    transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
 }
 
-.buttonText {
-    color: #D3D0CB;
-    font-size: 20px;
+.edge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 8px;
+    background: linear-gradient(
+            to right,
+            #AD72E8 0%,
+            #AD72E8 8%,
+            #AD72E8 92%,
+            #AD72E8 100%
+    );
+}
+
+.front {
+    display: block;
+    position: relative;
+    border-radius: 8px;
+    background: #ffff;
+    padding: 16px 32px;
+    color: #07020D;
     font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 1rem;
+    transform: translateY(-4px);
+    transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
 }
+
+.pushable:hover {
+    filter: brightness(110%);
+}
+
+.pushable:hover .front {
+    transform: translateY(-6px);
+    transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+}
+
+.pushable:active .front {
+    transform: translateY(-2px);
+    transition: transform 34ms;
+}
+
+.pushable:hover .shadow {
+    transform: translateY(4px);
+    transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+}
+
+.pushable:active .shadow {
+    transform: translateY(1px);
+    transition: transform 34ms;
+}
+
+.pushable:focus:not(:focus-visible) {
+    outline: none;
+}
+
+
+
 
 .container {
     width: 100%;
@@ -154,7 +210,7 @@
 
 .mainText {
     font-size: 30px;
-    color: #6E8898;
+    color: #FDB2B2;
     margin-top: 50px;
     text-align: center;
     font-family: 'Quicksand', sans-serif;

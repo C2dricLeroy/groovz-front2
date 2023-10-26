@@ -20,9 +20,17 @@ export default function HomeButton({ title, link }: HomeButtonProps) {
         const router = useMyRouter();
 
         return (
-        <button className={styles.button} type="button" onClick={() => router?.push(link)}>
-            {title}
-        </button>
+            <button className={styles.pushable} onMouseUp={() => {
+                    setTimeout(() => {
+                        router?.push(link);
+                    }, 200);
+                }}>
+                <span className={styles.shadow}></span>
+                <span className={styles.edge}></span>
+                <span className={styles.front}>
+                    {title}
+                </span>
+            </button>
     );
 }
 
