@@ -4,30 +4,49 @@
     margin: auto;
     justify-content: center;
     align-items: center;
-
 }
 
-.input {
-    height: 40px;
-    width: 80%;
-    border: 1px solid gray;
-    margin-bottom: 10px;
-    padding-left: 10px;
-    border-radius: 5px;
-    color: #232528;
-    background-color: white;
-    cursor: pointer;
+.formGroup {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    padding: 15px;
+    width: 100%;
 }
+
+.formField {
+    font-family: inherit;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #9b9b9b;
+    outline: 0;
+    font-size: 17px;
+    color: #fff;
+    background: transparent;
+    padding: 5px;
+    transition: border-color 0.2s;
+}
+
+.formLabel {
+    font-size: 17px;
+    color: #9b9b9b;
+}
+
+.formField:focus {
+    padding-bottom: 6px;
+    font-weight: 700;
+    border-width: 3px;
+    border-image: linear-gradient(to right, #A67171, #FDB2B2);
+    border-image-slice: 1;
+}
+
 
 .title {
     font-size: 75px;
     color: #9FB1BC;
     font-weight: bold;
-}
-
-
-.label {
-    color: #232528;
 }
 
 .container {
@@ -37,37 +56,38 @@
     align-items: center;
     color: white;
     padding: 20px;
-    background-color: #232528;
+    background-color: #212131;
     margin: auto;
     width: 35%;
     height: auto;
     border-radius: 5px;
-    box-shadow: 0 5px 15px rgba(251, 80, 18, 0.5);
-    border: 1px solid rgba(251, 80, 18, 0.5);
+
 }
 
 .page {
     width: 100vw;
     height: 100vh;
-    background-color: #232528;
+    background-color: #07020D;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .button {
-    background-color: #FB5012;
+    background-color: #FDB2B2;
     color: #232528;
     border-radius: 20px;
     cursor: pointer;
-    border: 1px solid #FB5012;
+    border: 1px solid #FDB2B2;
     width: 50%;
-    margin: 10px;
+    margin: 50px;
+    padding: 5px 10px;
 }
 
 .button:hover {
     background-color: transparent;
-    color: #FB5012;
+    color: #FDB2B2;
+    font-weight: bold;
 }
 
 .underline {
@@ -75,19 +95,25 @@
 }
 
 .inputError {
-    border: 1px solid red;
-    height: 40px;
-    width: 80%;
-    margin-bottom: 10px;
-    padding-left: 10px;
-    border-radius: 5px;
-    color: #232528;
-    background-color: pink;
-    cursor: pointer;
-
+  color: red;
 }
 
 .error {
     color: #FB5012;
     margin-bottom: 10px;
+}
+
+
+.logo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.iconButton {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    transform: translate(0, -50%);
 }
