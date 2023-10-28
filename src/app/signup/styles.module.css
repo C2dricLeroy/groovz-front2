@@ -59,6 +59,7 @@
     background-color: #212131;
     margin: auto;
     width: 35%;
+    max-width: 500px;
     height: auto;
     border-radius: 5px;
 
@@ -116,4 +117,11 @@
     top: 60%;
     right: 30px;
     transform: translate(0, -50%);
+}
+
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 100%;
+        background-color: transparent;
+    }
 }
