@@ -34,11 +34,12 @@ function Login() {
                         <input type={signinViewModel.showPassword ? 'text' : 'password'} className={styles.formField}  autoComplete="off"
                                onChange={(e) => signinViewModel.setPassword(e.target.value)}
                                value={signinViewModel.password} required id="password"/>
+                        <button type='button' className={styles.iconButton} onClick={() => signinViewModel.setShowPassword(!signinViewModel.showPassword)}>
+                            {signinViewModel.showPassword ? <Visibility /> : <VisibilityOff />}
+                        </button>
                     </div>
                     {signinViewModel.error && <p className={styles.error}>Invalid email or password. Please try again</p>}
-                    <button type='button' className={styles.iconButton} onClick={() => signinViewModel.setShowPassword(!signinViewModel.showPassword)}>
-                        {signinViewModel.showPassword ? <Visibility /> : <VisibilityOff />}
-                    </button>
+
                     <button className={styles.button} type="submit">Submit</button>
                 </form>
                 <Link href="/signup">

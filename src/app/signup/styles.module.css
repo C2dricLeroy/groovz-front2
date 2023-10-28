@@ -11,7 +11,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: start;
+    align-items: flex-start;
     padding: 15px;
     width: 100%;
 }
@@ -113,7 +113,7 @@
 .iconButton {
     cursor: pointer;
     position: absolute;
-    top: 50%;
+    top: 60%;
     right: 30px;
     transform: translate(0, -50%);
 }

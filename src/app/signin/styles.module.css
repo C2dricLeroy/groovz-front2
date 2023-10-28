@@ -18,10 +18,11 @@
 }
 
 .formGroup {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: start;
+    align-items: flex-start;
     padding: 15px;
     width: 100%;
 }
@@ -104,5 +105,13 @@
     position: absolute;
     top: 10px;
     left: 10px;
+}
+
+.iconButton {
+    cursor: pointer;
+    position: absolute;
+    top: 60%;
+    right: 30px;
+    transform: translate(0, -50%);
 }
 
