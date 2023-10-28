@@ -16,6 +16,9 @@ function Login() {
 
     return (
         <div className={styles.page}>
+            <Link href='/'>
+                <img src='/Groovz.png' alt="Groovz logo" className={styles.logo} width={100} height={100}/>
+            </Link>
             <div className={styles.container}>
                 <h1 className={styles.title}>Login</h1>
                 <form className={styles.form} onSubmit={signinViewModel.signinSubmit}>
