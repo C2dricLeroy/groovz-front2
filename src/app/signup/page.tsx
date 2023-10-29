@@ -15,11 +15,12 @@ function Signup() {
                 <img src='/Groovz.png' alt="Groovz logo" className={styles.logo} width={100} height={100}/>
             </Link>
             <div className={styles.container}>
-                <h1 className={styles.title}>Signup</h1>
+                <h1 className={styles.title}>SIGN UP</h1>
                 <div className={styles.form}>
                     <div className={`${styles.formGroup} ${styles.field}`}>
                         <label className={styles.formLabel} htmlFor="username">Username</label>
                         <input type="input" className={styles.formField}
+                               autoComplete={'off'}
                                onChange={e => SignupViewModel.setUsername(e.target.value)}
                                value={SignupViewModel.username} required id="username"/>
                     </div>
@@ -39,6 +40,7 @@ function Signup() {
                     <div className={`${styles.formGroup} ${styles.field}`}>
                         <label className={styles.formLabel} htmlFor="email">Email</label>
                         <input type="input" className={styles.formField}
+                               autoComplete={'off'}
                                onChange={e => SignupViewModel.setEmail(e.target.value)}
                                value={SignupViewModel.email} required id="email"/>
                     </div>

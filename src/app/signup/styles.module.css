@@ -44,9 +44,10 @@
 
 
 .title {
-    font-size: 75px;
-    color: #9FB1BC;
-    font-weight: bold;
+    font-size: 60px;
+    color: #F9F9F9;
+    font-weight: 300;
+    font-family: 'Bahaus', sans-serif;
 }
 
 .container {

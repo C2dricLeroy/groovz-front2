@@ -12,9 +12,10 @@
 }
 
 .title {
-    font-size: 75px;
+    font-size: 60px;
     color: #F9F9F9;
     font-weight: bold;
+    font-family: Bahaus, sans-serif;
 }
 
 .formGroup {
@@ -104,8 +105,8 @@
 
 .logo {
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 20px;
+    left: 20px;
 }
 
 .iconButton {
@@ -121,7 +122,5 @@
         width: 100%;
         background-color: transparent;
     }
-
-
 }
 
