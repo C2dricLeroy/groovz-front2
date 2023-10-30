@@ -29,6 +29,6 @@ body {
 }
 
 @font-face {
-  font-family: 'Bahaus';
-  src: url('../../public/bauhaus-93.ttf') format('truetype');
+  font-family: 'Bauhaus';
+  src: url('/bauhaus-93.ttf') format('truetype');
 }

@@ -15,7 +15,7 @@ function Signup() {
                 <img src='/Groovz.png' alt="Groovz logo" className={styles.logo} width={100} height={100}/>
             </Link>
             <div className={styles.container}>
-                <h1 className={styles.title}>SIGN UP</h1>
+                <h1 className={styles.title}>Sign Up</h1>
                 <div className={styles.form}>
                     <div className={`${styles.formGroup} ${styles.field}`}>
                         <label className={styles.formLabel} htmlFor="username">Username</label>
