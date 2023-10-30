@@ -11,40 +11,43 @@ function Signup() {
 
     return (
         <div className={styles.page}>
+            <Link href='/'>
+                <img src='/Groovz.png' alt="Groovz logo" className={styles.logo} width={100} height={100}/>
+            </Link>
             <div className={styles.container}>
-                <h1 className={styles.title}>Signup</h1>
+                <h1 className={styles.title}>Sign Up</h1>
                 <div className={styles.form}>
-                    <label className={styles.label} htmlFor="username">Username</label>
-                    <input id="username" className={styles.input} placeholder="Username" onChange={e => SignupViewModel.setUsername(e.target.value)}
-                           value={SignupViewModel.username}/>
-                    <label className={styles.label} htmlFor="password">Password</label>
-                    <div className={styles.inputContainer}>
-                        <input
-                            id="password"
-                            className={SignupViewModel.passwordError ? styles.inputError : styles.input}
-                            placeholder="Password"
-                            type={SignupViewModel.showPassword ? 'text' : 'password'}
-                            onChange={e => SignupViewModel.setPassword(e.target.value)}
-                            onBlur={SignupViewModel.validatePassword}
-                            value={SignupViewModel.password}
-                        />
+                    <div className={`${styles.formGroup} ${styles.field}`}>
+                        <label className={styles.formLabel} htmlFor="username">Username</label>
+                        <input type="input" className={styles.formField}
+                               autoComplete={'off'}
+                               onChange={e => SignupViewModel.setUsername(e.target.value)}
+                               value={SignupViewModel.username} required id="username"/>
+                    </div>
+
+                    <div className={`${styles.formGroup} ${styles.field}`}>
+                        <label className={styles.formLabel} htmlFor="password">Password</label>
+                        <input type={SignupViewModel.showPassword ? 'text' : 'password'}
+                               className={SignupViewModel.passwordError ? `${styles.inputError} ${styles.formField}` : styles.formField}
+                               onChange={e => SignupViewModel.setPassword(e.target.value)}
+                               onBlur={SignupViewModel.validatePassword}
+                               value={SignupViewModel.password} required id="password"/>
                         <button type='button' className={styles.iconButton} onClick={() => SignupViewModel.setShowPassword(!SignupViewModel.showPassword)}>
                             {SignupViewModel.showPassword ? <Visibility /> : <VisibilityOff />}
                         </button>
                     </div>
-                    <label className={styles.label} htmlFor="email">Email</label>
-                    <input
-                        id="email"
-                        className={SignupViewModel.emailError ? styles.inputError : styles.input}
-                        placeholder="Email"
-                        onChange={e => SignupViewModel.setEmail(e.target.value)}
-                        onBlur={SignupViewModel.validateEmail}
-                        value={SignupViewModel.email}
-                    />
+
+                    <div className={`${styles.formGroup} ${styles.field}`}>
+                        <label className={styles.formLabel} htmlFor="email">Email</label>
+                        <input type="input" className={styles.formField}
+                               autoComplete={'off'}
+                               onChange={e => SignupViewModel.setEmail(e.target.value)}
+                               value={SignupViewModel.email} required id="email"/>
+                    </div>
                 </div>
                 <button className={styles.button} title={"Submit"} onClick={SignupViewModel.signupSubmit}>Submit</button>
                 <Link href="/signin">
-                    <p className={styles.underline}>already have an account? Signin</p>
+                    <p className={styles.underline}>Already have an account? Signin</p>
                 </Link>
             </div>
         </div>
